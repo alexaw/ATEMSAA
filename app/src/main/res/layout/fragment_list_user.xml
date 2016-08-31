@@ -1,0 +1,81 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical" >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:orientation="vertical"
+        tools:context="com.example.yogis.atemsaa_fragments.fragments.ListUserFragment">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_list"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <EditText
+            android:id="@+id/id_list_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID:"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/txt_list_estado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/spinner_estado"
+            android:layout_marginBottom="10dp"
+            />
+
+        <Spinner
+            android:id="@+id/list_estado_de_usuario_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <Button
+            android:id="@+id/btn_list_usr"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:text="@string/button_enviar"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/txt_rta_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/respuesta_usr"
+            />
+
+        <TextView
+            android:id="@+id/txt_view_rta_list_usr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="" />
+
+    </LinearLayout>
+</ScrollView>

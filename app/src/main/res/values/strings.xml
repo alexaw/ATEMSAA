@@ -1,0 +1,102 @@
+<resources>
+    <string name="app_name">ATEMSAA</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_scan_devices">ScanDevicesActivity</string>
+    <string name="logo_desc">logo</string>
+
+    <string name="resultado">Result</string>
+    <string name="action_settings">Settings</string>
+
+
+    //Mensajes de conexion Bluetooth
+    <string name="title_not_connected">Not connected</string>
+    <string name="none_paired">No devices have been paired</string>
+    <string name="none_found">No devices found</string>
+    <string name="select_device">Select a device to connect</string>
+    <string name="connect">Connect a device</string>
+    <string name="discoverable">Make discoverable</string>
+    <string name="title_connected_to">Connected to: </string>
+    <string name="title_connecting">Connecting...</string>
+    <string name="title_disconnect">Disconnect </string>
+    <string name="scanning">Scanning for devices...</string>
+    <string name="connection_lost">Device connection was lost </string>
+
+
+    //Mensajes Toast
+    <string name="bt_not_available">Bluetooth is not available </string>
+    <string name="txt_not_connect_yet">Not connected yet </string>
+    <string name="txt_enter_option">Please enter an option </string>
+    <string name="bt_not_enabled_leaving">Bluetooth was not enabled. Leaving Remote Bluetooth</string>
+
+    // Titulos en los Activity y/o Fragments
+    <string name="title_users">Users </string>
+    <string name="title_settings">Settings </string>
+    <string name="title_reports">Reports</string>
+    <string name="title_search">Search</string>
+    <string name="title_list">List</string>
+    <string name="title_register">Register</string>
+    <string name="title_test_frame">Test</string>
+    <string name="title_PLC_MMS">PLC-MMS</string>
+    <string name="title_PLC_TU">PLC-TU</string>
+    <string name="title_PLC_MC">PLC-MC</string>
+    <string name="title_reloj">Clock</string>
+    <string name="title_radiofrecuencia">Radiofrecuency (RF)</string>
+    <string name="title_gprs">GPRS</string>
+
+
+    //Titulos del menu
+    <string name="title_connect">Connect </string>
+
+    //Subtitulos en la aplicacion
+    <string name="title_paired_devices">Paired Devices</string>
+    <string name="title_other_devices">Other Available Devices</string>
+    <string name="subtitle_parametros_PLC">Select the parameters of the unit</string>
+    <string name="txt_options">Options </string>
+    <string name="txt_clear">Clear </string>
+    <string name="txt_download">Download </string>
+    <string name="txt_verificar_ID">Please check the ID </string>
+    <string name="txt_caution">Caution </string>
+    <string name="txt_sure_quit">Closing the application will lose the bluetooth link previously established. Are you sure you want to quit? </string>
+    <string name="txt_no_off">No </string>
+    <string name="txt_si_off">Yes </string>
+    <string name="txt_sure_interrupt">Sure to interrupt the Bluetooth link with the device </string>
+
+
+    //Nombre de los Spinner
+    <string name="spinner_estado">State:</string>
+    <string name="spinner_accion">Action:</string>
+    <string name="spinner_gan_tx">Transmission gain:</string>
+    <string name="spinner_gan_rx">Reception gain:</string>
+    <string name="spinner_ret_tx">Transmission delay:</string>
+    <string name="spinner_tasa_tx">Transmission rate:</string>
+    <string name="spinner_hora_encuesta">Time survey:</string>
+
+    //Spinner Estado de usuario
+    <string name="txt_choose_option">Choose option: </string>
+    <string name="txt_list_usr">List users </string>
+    <string name="txt_register_usr">Register user </string>
+    <string name="txt_search_usr">Search user </string>
+    <string name="txt_test_frame">Test frame </string>
+
+    //Texto de los botones
+    <string name="btn_find">Find Device</string>
+    <string name="button_scan">Scan for devices</string>
+    <string name="button_enviar">Send</string>
+    <string name="button_grabar">Record</string>
+    <string name="button_ver_config">Check settings</string>
+
+    //Texto de RadioButton
+    <string name="button_setting_PLC_TU">Settings PLC-TU</string>
+    <string name="button_setting_PLC_MMS">Settings PLC-MMS</string>
+
+    //Nombre de los TextView de respuesta
+    <string name="respuesta_usr">RESPUESTA:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_sign_off">Sign off</string>
+
+
+</resources>

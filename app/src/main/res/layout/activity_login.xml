@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    tools:context=".Login.LoginActivity">
+
+    <TextView
+        style="@style/TextAppearance.AppCompat.Title"
+        android:id="@+id/app_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ATEMSAA"
+        android:textColor="#ffff00"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_marginBottom="30dp"
+        android:background="#0000ff"
+        />
+
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:id="@+id/text_log"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Inicio de sesion"
+        android:gravity="center"
+        android:layout_marginBottom="30dp"
+        />
+    <EditText
+        android:id="@+id/usr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Usuario"
+        android:inputType="text"
+        android:gravity="center"
+        android:layout_marginBottom="30dp"
+        />
+
+    <EditText
+        android:id="@+id/pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:gravity="center"
+        android:layout_marginBottom="30dp"
+        />
+
+    <Button
+        android:id="@+id/btn_log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Ingresar"
+        android:textColor="#ffff00"
+        android:background="#0000ff"
+        />
+
+    <TextView
+        android:id="@+id/linkReg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registre aqui"
+        android:textColor="#ff1702"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:paddingTop="50dp"
+        />
+
+</LinearLayout>

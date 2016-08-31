@@ -1,0 +1,99 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.yogis.atemsaa_fragments.fragments.UserFragment"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_users"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_marginBottom="10dp"
+        />
+
+    <Button
+        android:id="@+id/btn_menu_buscar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@mipmap/ic_search"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        />
+
+    <TextView
+        android:id="@+id/txt_buscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_search"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn_menu_buscar"
+        android:layout_marginBottom="30dp"
+        />
+
+    <Button
+        android:id="@+id/btn_menu_listar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@mipmap/ic_list"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txt_buscar"
+        />
+
+    <TextView
+        android:id="@+id/txt_listar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_list"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn_menu_listar"
+        android:layout_marginBottom="30dp"
+        />
+
+    <Button
+        android:id="@+id/btn_menu_registrar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@mipmap/ic_register"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txt_listar"
+        />
+
+    <TextView
+        android:id="@+id/txt_registrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_register"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn_menu_registrar"
+        android:layout_marginBottom="30dp"
+        />
+
+    <Button
+        android:id="@+id/btn_menu_prueba"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@mipmap/ic_test"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txt_registrar"
+        />
+
+    <TextView
+        android:id="@+id/txt_prueba"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_test_frame"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn_menu_prueba"
+        />
+
+
+</RelativeLayout>

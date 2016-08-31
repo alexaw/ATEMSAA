@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    tools:context=".Login.RegisterActivity">
+
+
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registro de nuevo usuario"
+        android:layout_marginBottom="15dp"
+        />
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_marginBottom="15dp"
+        android:hint="Nombre"
+        />
+    <EditText
+        android:id="@+id/lastname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_marginBottom="15dp"
+        android:hint="Apellido"
+        />
+    <EditText
+        android:id="@+id/numId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:layout_marginBottom="15dp"
+        android:hint="Identificacion"
+        />
+    <EditText
+        android:id="@+id/usr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_marginBottom="15dp"
+        android:hint="Usuario"
+        />
+    <EditText
+        android:id="@+id/pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_marginBottom="15dp"
+        android:hint="Contraseña"
+        />
+    <Button
+        android:id="@+id/btnReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrar"
+        android:background="#0000ff"
+        android:textColor="#ffff00"/>
+</LinearLayout>

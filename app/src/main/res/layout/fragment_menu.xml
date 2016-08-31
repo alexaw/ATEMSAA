@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.yogis.atemsaa_fragments.fragments.MenuFragment"
+
+    android:id="@+id/menu_principal">
+
+    <Button
+        android:id="@+id/btn_menu_usuarios"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@mipmap/ic_user"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        />
+
+    <TextView
+        android:id="@+id/txt_user"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:text="@string/title_users"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn_menu_usuarios"
+        android:layout_marginBottom="30dp"
+        />
+
+    <Button
+        android:id="@+id/btn_menu_configuracion"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@mipmap/ic_settings"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txt_user"
+        />
+
+    <TextView
+        android:id="@+id/txt_set"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:text="@string/title_settings"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn_menu_configuracion"
+        android:layout_marginBottom="30dp"
+        />
+
+    <Button
+        android:id="@+id/btn_menu_reportes"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@mipmap/ic_reportes"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txt_set"
+        />
+
+    <TextView
+        android:id="@+id/txt_rep"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:text="@string/title_reports"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn_menu_reportes"
+        android:layout_marginBottom="30dp"
+        />
+
+
+
+</RelativeLayout>
