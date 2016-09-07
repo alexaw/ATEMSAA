@@ -49,14 +49,14 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_menu, container, false);
 
         //Recupero los botones
-        Button menu_usuarios = (Button) v.findViewById(R.id.btn_menu_usuarios);
-        menu_usuarios.setOnClickListener(this);
+        Button menuUsuarios = (Button) v.findViewById(R.id.btn_menu_usuarios);
+        menuUsuarios.setOnClickListener(this);
 
-        Button menu_configuracion = (Button) v.findViewById(R.id.btn_menu_configuracion);
-        menu_configuracion.setOnClickListener(this);
+        Button menuConfiguracion = (Button) v.findViewById(R.id.btn_menu_configuracion);
+        menuConfiguracion.setOnClickListener(this);
 
-        Button menu_reportes = (Button) v.findViewById(R.id.btn_menu_reportes);
-        menu_reportes.setOnClickListener(this);
+        Button menuReportes = (Button) v.findViewById(R.id.btn_menu_reportes);
+        menuReportes.setOnClickListener(this);
 
         return v;
     }
