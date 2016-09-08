@@ -62,4 +62,9 @@
         android:text="Registrar"
         android:background="#0000ff"
         android:textColor="#ffff00"/>
+
+    <ImageButton
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:background="@drawable/oval"/>
 </LinearLayout>
