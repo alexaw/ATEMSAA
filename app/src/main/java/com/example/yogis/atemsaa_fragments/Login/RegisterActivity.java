@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.yogis.atemsaa_fragments.R;
@@ -19,6 +20,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText name, lastname, numId, usr, pass;
     String sName, sLastname, sNumId, sUsr, sPass;
     Button reg;
+    ImageButton floatButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +32,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         numId = (EditText) findViewById(R.id.numId);
         usr = (EditText) findViewById(R.id.usr);
         pass = (EditText) findViewById(R.id.pass);
+        floatButton = (ImageButton)findViewById(R.id.imButton);
 
         reg = (Button) findViewById(R.id.btnReg);
 
         reg.setOnClickListener(this);
+
+        floatButton.setOnClickListener(this);
     }
 
     @Override
@@ -78,7 +83,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                     }
                 });
+            break;
 
+            case R.id.imButton:
+                Toast.makeText(getApplicationContext(),"Button is clicked", Toast.LENGTH_LONG).show();
+                break;
         }
 
 

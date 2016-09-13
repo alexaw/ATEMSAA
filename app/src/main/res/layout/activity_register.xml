@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    android:orientation="vertical"
     tools:context=".Login.RegisterActivity">
 
 
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Title"
+        android:id="@+id/texReg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registro de nuevo usuario"
@@ -22,6 +22,7 @@
         android:inputType="text"
         android:layout_marginBottom="15dp"
         android:hint="Nombre"
+        android:layout_below="@id/texReg"
         />
     <EditText
         android:id="@+id/lastname"
@@ -30,6 +31,7 @@
         android:inputType="text"
         android:layout_marginBottom="15dp"
         android:hint="Apellido"
+        android:layout_below="@id/name"
         />
     <EditText
         android:id="@+id/numId"
@@ -38,6 +40,7 @@
         android:inputType="number"
         android:layout_marginBottom="15dp"
         android:hint="Identificacion"
+        android:layout_below="@id/lastname"
         />
     <EditText
         android:id="@+id/usr"
@@ -46,6 +49,7 @@
         android:inputType="text"
         android:layout_marginBottom="15dp"
         android:hint="Usuario"
+        android:layout_below="@id/numId"
         />
     <EditText
         android:id="@+id/pass"
@@ -54,6 +58,7 @@
         android:inputType="text"
         android:layout_marginBottom="15dp"
         android:hint="Contraseña"
+        android:layout_below="@id/usr"
         />
     <Button
         android:id="@+id/btnReg"
@@ -61,10 +66,19 @@
         android:layout_height="wrap_content"
         android:text="Registrar"
         android:background="#0000ff"
-        android:textColor="#ffff00"/>
+        android:textColor="#ffff00"
+        android:layout_below="@id/pass"/>
 
     <ImageButton
+        android:id="@+id/imButton"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:background="@drawable/oval"/>
-</LinearLayout>
+        android:background="@drawable/oval"
+        android:elevation="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="65dp"
+        android:layout_marginRight="25dp"
+        android:src="@mipmap/ic_mas"
+        />
+</RelativeLayout>
