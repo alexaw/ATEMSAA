@@ -15,8 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.yogis.atemsaa_fragments.BluetoothCommandService;
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
 
@@ -59,6 +61,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         menuReportes.setOnClickListener(this);
 
         return v;
+
     }
 
     @Override
@@ -71,8 +74,56 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
                 changeFragment.onChange(OnChangeFragment.SETTINGS);
                 break;
             case R.id.btn_menu_reportes:
-                changeFragment.onChange(OnChangeFragment.REPORT);
+                changeFragment.onChange(OnChangeFragment.NEWUSER);
+
+
+                byte[] frame2Send = new byte[7];
+
+                frame2Send[0] = 0x24;// $
+                frame2Send[1] = 0x40;// @
+                frame2Send[2] = 0x07;// length
+                frame2Send[3] = 0x06;// Tipo
+                frame2Send[4] = 0x01;// Suponiendo 1 como origen PC
+                frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
+                //se calcula el CRC
+                frame2Send[6] = calcularCRC(frame2Send);
+
+
+
+                sendMessage(frame2Send);
+
+
+
                 break;
         }
+    }
+
+
+
+    private void sendMessage(byte[] message) {
+
+        // Check that we're actually connected before trying anything
+        if (MainActivity.mCommandService.getState() != BluetoothCommandService.STATE_CONNECTED) {
+            Toast.makeText(this.getActivity(), getString(R.string.txt_not_connect_yet), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Check that there's actually something to send
+        if (message.length > 0) {
+
+            MainActivity.mCommandService.write(message);
+
+        }
+    }
+
+    private byte calcularCRC(byte[] frame2send) {
+        Byte CRC = (byte) (frame2send[2]);
+        for (int i = 3; i <= frame2send.length - 1; i++) {
+            CRC = (byte) (CRC ^ frame2send[i]);
+        }
+
+        Log.e("CRCCCCCC", CRC.toString());
+
+        return CRC;
     }
 }

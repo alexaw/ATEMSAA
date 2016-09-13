@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.yogis.atemsaa_fragments.fragments.ListUserFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MenuFragment;
+import com.example.yogis.atemsaa_fragments.fragments.NewUserFragment;
 import com.example.yogis.atemsaa_fragments.fragments.OnChangeFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcMmsSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcTuSettingsFragment;
@@ -40,8 +41,6 @@ import com.example.yogis.atemsaa_fragments.fragments.UserFragment;
 public class MainActivity extends AppCompatActivity implements OnChangeFragment {
 
     public static Context appContext;
-
-
     private boolean bol = false;
 
     // Intent request codes
@@ -79,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
     Button btnUsers;
     TextView tv_rta_user;
 
-
     //se inicializan todos los objetos
     String buff = "";
     byte[] readBuf;
@@ -94,10 +92,10 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
     TestFrameFragment test;
     PlcMmsSettingsFragment plcmms;
     PlcTuSettingsFragment plctu;
+    NewUserFragment newUser;
+
 
     ToolBarFragment hola;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,9 +113,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
         test = new TestFrameFragment();
         plcmms = new PlcMmsSettingsFragment();
         plctu = new PlcTuSettingsFragment();
+        newUser = new NewUserFragment();
 
         hola = new ToolBarFragment();
-
 
         /*Toolbar topToolBar = (Toolbar) findViewById(R.id.my_toolbar);
 
@@ -129,8 +127,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
         currentFragment = MENU;
         putFragment(menu, MENU);
 
-
-
         // Get local Bluetooth adapter
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -140,11 +136,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
             finish();
             return;
         }
-
-
     }
-
-
 
     @Override
     protected void onStart() {
@@ -161,7 +153,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
             if (mCommandService == null)
                 setupCommand();
         }
-
     }
 
     @Override
@@ -261,15 +252,12 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
                 return true;
 
-
-
             default:
                 return super.onOptionsItemSelected(item);
         }
 
 
     }
-
 
     private final void setStatus(int resId) {
         final ActionBar myToolbar = getSupportActionBar();
@@ -284,7 +272,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
     // The Handler that gets information back from the BluetoothChatService
     private final Handler mHandler;
-
     {
         mHandler = new Handler() {
             @Override
@@ -329,8 +316,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                                 }
 
                                 break;
-
-
                         }
                         break;
 
@@ -356,10 +341,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
                         ///Ahora esto!!!!! noooooo
                         list.setMsg(buff);
+                        newUser.setMsg(buff);
 
                         break;
-
-
                 }
             }
         };
@@ -428,13 +412,10 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
         return super.onKeyDown(keyCode, event);
     }
-
-
 */
 
     @Override
     public void onChange(int fragment) {
-
         switch (fragment){
             case MENU :
                 putFragment(menu, fragment);
@@ -445,7 +426,8 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
             case SETTINGS :
                 putFragment(settings, fragment);
                 break;
-            case REPORT:
+            case NEWUSER:
+                putFragment(newUser, fragment);
                 break;
 
             case SEARCH :
@@ -479,12 +461,8 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
             case GPRS :
                 putFragment(hola, fragment);
                 break;
-
-
         }
     }
-
-
 
     @Override
     public void onBackPressed() {
@@ -499,10 +477,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
             case SETTINGS:
                 putFragment(menu, MENU);
                 break;
-            case REPORT:
+            case NEWUSER:
                 putFragment(menu, MENU);
                 break;
-
 
             case SEARCH:
                 putFragment(user, USER);
@@ -537,10 +514,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 break;
 
         }
-
-
-
-
     }
 
     private void putFragment(Fragment fragment, int fragmentType){
