@@ -1,6 +1,7 @@
 package com.example.yogis.atemsaa_fragments.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,12 +19,19 @@ import com.example.yogis.atemsaa_fragments.R;
 public class NewUserFragment extends Fragment implements View.OnClickListener {
 
     TextView tvRtaListUser;
-    ImageButton floatButton;
+    //ImageButton floatButton;
     OnChangeFragment changeFragment;
 
 
     public NewUserFragment() {
         // Required empty public constructor
+    }
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        changeFragment = (OnChangeFragment) context;
     }
 
 
@@ -40,7 +48,10 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
         tvRtaListUser=(TextView)vistaUsr.findViewById(R.id.txt_view_rta_list_usr);
 
         tvRtaListUser.setText("");
-        floatButton = (ImageButton)vistaUsr.findViewById(R.id.imButton);
+
+        ImageButton floatButton = (ImageButton)vistaUsr.findViewById(R.id.imButton);
+
+
         floatButton.setOnClickListener(this);
 
         return vistaUsr;
@@ -56,10 +67,13 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
+        switch(view.getId()){
             case R.id.imButton:
+                //Toast.makeText(this.getActivity(),"Button is clicked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"Button is clicked", Toast.LENGTH_LONG).show();
                 changeFragment.onChange(OnChangeFragment.SEARCH);
                 break;
+
         }
     }
 }

@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Login.LoginActivity"
            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +35,7 @@
 
         <activity android:name=".DeviceListActivity" />
         <activity android:name=".Login.RootActivity" />
-        <activity android:name=".Login.LoginActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".Login.RegisterActivity"></activity>
     </application>
 

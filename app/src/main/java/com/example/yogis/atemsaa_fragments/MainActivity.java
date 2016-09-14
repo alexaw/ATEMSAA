@@ -378,41 +378,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
         }
     }
 
-   /* @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-
-            if (flagConnectDisconnect) {
-
-                new AlertDialog.Builder(this)
-                        .setTitle(R.string.txt_caution)
-                        .setMessage(getString(R.string.txt_sure_quit))
-                        .setNegativeButton(R.string.txt_no_off, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dlg, int sumthin) {
-                                // no se ejectua acci�n - cierre automatico de AlertDialog
-                            }
-                        })
-                        .setPositiveButton(R.string.txt_si_off, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dlg, int sumthin) {
-
-                                finish();
-
-                            }
-                        })
-                        .show();
-            } else {
-
-                finish();
-            }
-
-
-            return true;
-        }
-
-        return super.onKeyDown(keyCode, event);
-    }
-*/
 
     @Override
     public void onChange(int fragment) {

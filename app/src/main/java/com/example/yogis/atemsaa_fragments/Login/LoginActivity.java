@@ -19,15 +19,6 @@ import com.parse.ParseUser;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //4. SE DECLARAN LAS LLAVES QUE SON IMPORTANTES PARA RECUPERAR CON ESE NOMBRE
-    //una para saber si se esta logueado o no
-    public static final String KEY_LOGIN="login";
-
-    //Nombre del usuario
-    public static final String KEY_USER="user";
-
-    //Las preferencias
-    public static final String PREFERENCE="preference";
 
     //1. Se crean las variables que retienen la informaciion
     EditText usr, pass;
@@ -35,9 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button in;
     TextView link;
 
-    //5. Se declaran los objetos para leer y para escribir
-    SharedPreferences preferences;
-    SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         link.setOnClickListener(this);
 
-        //6. Se obtienen los valores de preference
-        preferences = getSharedPreferences(PREFERENCE,MODE_PRIVATE);
-        editor = preferences.edit();
+
     }
 
     @Override
@@ -69,16 +56,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 sUsr = usr.getText().toString();
                 sPass = pass.getText().toString();
 
-                ParseUser.logInInBackground(sUsr, sPass, new LogInCallback() {
-                    @Override
-                    public void done(ParseUser user, ParseException e) {
-
-                        if(user != null){
-                            //7. Cuando se le click a boton se va a llenar el editor
-                            editor.putBoolean(KEY_LOGIN, true);
-                            editor.putString(KEY_USER, usr.getText().toString());
-                            editor.commit();
-
+                if(sUsr.equals("admin")&&sPass.equals("123")){
                             //8. Se hace la navegacion hacia el Main, se describe la accion del intent
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
@@ -94,13 +72,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             toast.show();
                         }
 
-                    }
-                });
+
+
 
                 break;
 
             case R.id.linkReg:
-                Intent intent = new Intent(this, RegisterActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();
                 break;

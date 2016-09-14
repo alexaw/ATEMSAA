@@ -19,30 +19,7 @@ public class RootActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_root);
 
-        SharedPreferences preferences = getSharedPreferences(LoginActivity.PREFERENCE, MODE_PRIVATE);
 
-        //Con el preference sabemos si se esta logueado o no
-        boolean login = preferences.getBoolean(LoginActivity.KEY_LOGIN, false);
-        Intent intent = null;
-
-        if(login)
-            intent = new Intent(this, MainActivity.class);
-        else
-
-            while (a==0) {
-                //Se inicializa Parse
-                Parse.initialize(this, "oWuXpc5ahPda0W9eBntpFNW3Grk3wLwVgSJZzbyQ", "JmCInHZTQuiYtizQTPYVDk6qUZ6VQLq4585RNr6q");
-                a++;
-
-                if (a>0){
-
-                    break;
-                }
-            }
-        intent = new Intent(this, LoginActivity.class);
-
-
-        startActivity(intent);
 
     }
 
