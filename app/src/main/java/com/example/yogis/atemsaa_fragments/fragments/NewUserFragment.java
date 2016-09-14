@@ -6,17 +6,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.yogis.atemsaa_fragments.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewUserFragment extends Fragment {
+public class NewUserFragment extends Fragment implements View.OnClickListener {
 
     TextView tvRtaListUser;
-
+    ImageButton floatButton;
+    OnChangeFragment changeFragment;
 
 
     public NewUserFragment() {
@@ -37,6 +40,8 @@ public class NewUserFragment extends Fragment {
         tvRtaListUser=(TextView)vistaUsr.findViewById(R.id.txt_view_rta_list_usr);
 
         tvRtaListUser.setText("");
+        floatButton = (ImageButton)vistaUsr.findViewById(R.id.imButton);
+        floatButton.setOnClickListener(this);
 
         return vistaUsr;
 
@@ -49,4 +54,12 @@ public class NewUserFragment extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.imButton:
+                changeFragment.onChange(OnChangeFragment.SEARCH);
+                break;
+        }
+    }
 }

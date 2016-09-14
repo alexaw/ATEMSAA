@@ -461,6 +461,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
             case GPRS :
                 putFragment(hola, fragment);
                 break;
+            case HOLA :
+                putFragment(hola, fragment);
+                break;
         }
     }
 
@@ -511,6 +514,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 break;
             case GPRS:
                 putFragment(settings, USER);
+                break;
+            case HOLA:
+                putFragment(settings, NEWUSER);
                 break;
 
         }
