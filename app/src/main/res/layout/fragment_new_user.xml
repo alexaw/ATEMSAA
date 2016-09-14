@@ -6,6 +6,14 @@
     android:orientation="vertical">
 
 
+    <EditText
+        android:id="@+id/id_list_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ID:"
+        android:layout_marginBottom="10dp"
+        />
+
     <TextView
         android:id="@+id/txt_rta_user"
         android:layout_width="match_parent"
