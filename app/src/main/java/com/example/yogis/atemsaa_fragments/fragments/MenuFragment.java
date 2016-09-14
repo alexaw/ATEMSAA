@@ -76,7 +76,6 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_menu_reportes:
                 changeFragment.onChange(OnChangeFragment.NEWUSER);
 
-
                 byte[] frame2Send = new byte[7];
 
                 frame2Send[0] = 0x24;// $
@@ -88,17 +87,11 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
                 //se calcula el CRC
                 frame2Send[6] = calcularCRC(frame2Send);
 
-
-
                 sendMessage(frame2Send);
-
-
 
                 break;
         }
     }
-
-
 
     private void sendMessage(byte[] message) {
 

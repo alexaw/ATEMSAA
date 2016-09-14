@@ -252,6 +252,8 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
                 return true;
 
+
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -340,7 +342,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                         buff = buff + readMessage;
 
                         ///Ahora esto!!!!! noooooo
-                        list.setMsg(buff);
+                        //list.setMsg(buff);
                         newUser.setMsg(buff);
 
                         break;
