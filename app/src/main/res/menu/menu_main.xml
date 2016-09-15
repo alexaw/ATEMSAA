@@ -14,12 +14,4 @@
         android:title="@string/title_sign_off"
         android:showAsAction="never"
         tools:ignore="AppCompatResource" />
-
-
-
-
-
-
-
-
 </menu>

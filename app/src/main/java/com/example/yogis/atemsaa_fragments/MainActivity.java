@@ -453,13 +453,13 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 break;
 
             case SEARCH:
-                putFragment(user, USER);
+                putFragment(newUser, NEWUSER);
                 break;
             case LIST:
                 putFragment(user, USER);
                 break;
             case REGISTER:
-                putFragment(user, USER);
+                putFragment(newUser, NEWUSER);
                 break;
             case TEST:
                 putFragment(user, USER);

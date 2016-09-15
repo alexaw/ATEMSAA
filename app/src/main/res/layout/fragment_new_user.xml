@@ -1,9 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.yogis.atemsaa_fragments.fragments.NewUserFragment"
-    android:orientation="vertical">
+    >
 
 
     <EditText
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="ID:"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="50dp"
         />
 
     <TextView
@@ -19,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/respuesta_usr"
+        android:layout_margin="50dp"
         />
 
     <TextView
@@ -33,16 +35,45 @@
         android:layout_height="wrap_content"
         android:text="" />
 
-    <ImageButton
-        android:id="@+id/imButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/oval"
-        android:elevation="30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="65dp"
-        android:layout_marginRight="25dp"
-        android:src="@mipmap/ic_mas"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/flAddUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="180dp"
+        android:src="@mipmap/ic_add_user"
+        android:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        app:backgroundTint="@color/colorOrange"
+        android:visibility="invisible"
         />
-</RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/flSearchUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="100dp"
+        android:src="@mipmap/ic_search_user"
+        android:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        app:backgroundTint="@color/colorOrange"
+        android:visibility="invisible"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/flButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@mipmap/ic_mas"
+        android:elevation="6dp"
+        app:pressedTranslationZ="6dp"
+        app:backgroundTint="@color/colorOrange"
+        />
+
+</android.support.design.widget.CoordinatorLayout>

@@ -3,10 +3,13 @@ package com.example.yogis.atemsaa_fragments.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,8 +21,12 @@ import com.example.yogis.atemsaa_fragments.R;
  */
 public class NewUserFragment extends Fragment implements View.OnClickListener {
 
+    FloatingActionButton flBut, flAdd, flSearch;
+    Animation open, close, clock, anticlock;
+    boolean isOpen = false;
+
     TextView tvRtaListUser;
-    //ImageButton floatButton;
+
     OnChangeFragment changeFragment;
 
 
@@ -49,10 +56,20 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
 
         tvRtaListUser.setText("");
 
-        ImageButton floatButton = (ImageButton)vistaUsr.findViewById(R.id.imButton);
+        flBut = (FloatingActionButton) vistaUsr.findViewById(R.id.flButton);
+        flAdd = (FloatingActionButton) vistaUsr.findViewById(R.id.flAddUser);
+        flSearch = (FloatingActionButton) vistaUsr.findViewById(R.id.flSearchUser);
 
 
-        floatButton.setOnClickListener(this);
+        open = AnimationUtils.loadAnimation(vistaUsr.getContext(),R.anim.open);
+        close = AnimationUtils.loadAnimation(vistaUsr.getContext(),R.anim.close);
+        clock = AnimationUtils.loadAnimation(vistaUsr.getContext(),R.anim.rorate_clock);
+        anticlock = AnimationUtils.loadAnimation(vistaUsr.getContext(),R.anim.rotate_anticlock);
+
+
+        flBut.setOnClickListener(this);
+        flAdd.setOnClickListener(this);
+        flSearch.setOnClickListener(this);
 
         return vistaUsr;
 
@@ -67,13 +84,37 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+
+        if (isOpen){
+
+            flAdd.startAnimation(close);
+            flSearch.startAnimation(close);
+            flBut.startAnimation(anticlock);
+            flAdd.setClickable(false);
+            flSearch.setClickable(false);
+            isOpen = false;
+        }
+        else {
+            flAdd.startAnimation(open);
+            flSearch.startAnimation(open);
+            flBut.startAnimation(clock);
+            flAdd.setClickable(true);
+            flSearch.setClickable(true);
+            isOpen = true;
+        }
         switch(view.getId()){
-            case R.id.imButton:
+
+            case R.id.flAddUser:
                 //Toast.makeText(this.getActivity(),"Button is clicked", Toast.LENGTH_SHORT).show();
                 //Toast.makeText(getApplicationContext(),"Button is clicked", Toast.LENGTH_LONG).show();
                 changeFragment.onChange(OnChangeFragment.SEARCH);
                 break;
 
+            case R.id.flSearchUser:
+                //Toast.makeText(this.getActivity(),"Button is clicked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"Button is clicked", Toast.LENGTH_LONG).show();
+                changeFragment.onChange(OnChangeFragment.SEARCH);
+                break;
         }
     }
 }
