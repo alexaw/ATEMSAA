@@ -8,7 +8,7 @@
 
 
     <EditText
-        android:id="@+id/id_list_user"
+        android:id="@+id/id_list_newuser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="ID:"
@@ -16,7 +16,7 @@
         />
 
     <TextView
-        android:id="@+id/txt_rta_user"
+        android:id="@+id/txt_rta_newuser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/respuesta_usr"
@@ -24,7 +24,7 @@
         />
 
     <TextView
-        android:id="@+id/txt_view_rta_list_usr"
+        android:id="@+id/txt_view_rta_list_newusr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""

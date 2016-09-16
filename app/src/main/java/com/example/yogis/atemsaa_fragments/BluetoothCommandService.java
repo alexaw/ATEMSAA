@@ -244,10 +244,10 @@ public class BluetoothCommandService {
                 // This is a blocking call and will only return on a
                 // successful connection or an exception
                 mmSocket.connect();
-            } catch (IOException e) {
-                connectionFailed();
-                // Close the socket
-                try {
+                  } catch (IOException e) {
+                        connectionFailed();
+                          // Close the socket
+                   try {
                     mmSocket.close();
                 } catch (IOException e2) {
                     Log.e(TAG, "unable to close() socket during connection failure", e2);
@@ -312,7 +312,6 @@ public class BluetoothCommandService {
                     // Read from the InputStream
                     int bytes = mmInStream.read(buffer);
 
-
                     byte[] bufferRX = new byte[bytes];
 
                     if(bytes != -1){
@@ -320,7 +319,6 @@ public class BluetoothCommandService {
                         for(int i=0; i < bytes; i++){
 
                             bufferRX[i] = buffer[i];
-
                         }
 
                         // Send the obtained bytes to the UI Activity

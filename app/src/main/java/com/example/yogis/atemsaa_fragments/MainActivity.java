@@ -117,13 +117,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
         hola = new ToolBarFragment();
 
-        /*Toolbar topToolBar = (Toolbar) findViewById(R.id.my_toolbar);
-
-        setSupportActionBar(topToolBar);
-        topToolBar.setLogo(R.drawable.logo);
-        topToolBar.setLogoDescription(getResources().getString(R.string.logo_desc));*/
-        getSupportActionBar().setSubtitle(R.string.title_not_connected);
-
         currentFragment = MENU;
         putFragment(menu, MENU);
 
@@ -214,7 +207,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 menuItemConnectDisconnect = item;
 
                 if (flagConnectDisconnect) {
-
                     new AlertDialog.Builder(this)
                             .setTitle(R.string.txt_caution)
                             .setMessage(getString(R.string.txt_sure_interrupt) + " " + mConnectedDeviceName + "?")
@@ -252,13 +244,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
                 return true;
 
-
-
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-
     }
 
     private final void setStatus(int resId) {
@@ -304,7 +292,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                                 break;
 
                             case BluetoothCommandService.STATE_LISTEN:
+
                                 break;
+
                             case BluetoothCommandService.STATE_NONE:
 
                                 //actionBar.setSubtitle(getString(R.string.title_not_connected));
@@ -319,6 +309,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
                                 break;
                         }
+
                         break;
 
                     case MESSAGE_DEVICE_NAME:
@@ -344,7 +335,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                         ///Ahora esto!!!!! noooooo
                         //list.setMsg(buff);
                         newUser.setMsg(buff);
-
                         break;
                 }
             }
