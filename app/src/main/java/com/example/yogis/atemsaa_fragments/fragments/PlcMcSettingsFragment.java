@@ -22,7 +22,7 @@ public class PlcMcSettingsFragment extends Fragment {
     //se inicializan todos los objetos
     TextView tv_rta_mC_settings;
     Button btnCheckSettings, btnRecord;
-    Spinner ganancia_transmision, ganancia_recepcion, retardo_transmision, tasa_transmision, hora_encuesta;
+    Spinner ganTransmisionMC, ganRecepcionMC, retTransmisionMC, tasaTransmisionMC, horaEncuestaMC;
     ArrayList lista_gtx, lista_grx, lista_retardo_tx, lista_tasa_tx, lista_hora_encuesta;
     String ganancia_transmision_spinner, ganancia_recepcion_spinner, retardo_transmision_spinner, tasa_transmision_spinner, hora_encuesta_spinner;
     String buff = "";

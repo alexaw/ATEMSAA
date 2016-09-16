@@ -35,6 +35,8 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 
     OnChangeFragment changeFragment;
 
+    Button menuUsuarios, menuConfiguracion, menuReportes;
+
     public MenuFragment() {}
 
 
@@ -51,17 +53,16 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_menu, container, false);
 
         //Recupero los botones
-        Button menuUsuarios = (Button) v.findViewById(R.id.btn_menu_usuarios);
+        menuUsuarios = (Button) v.findViewById(R.id.btn_menu_usuarios);
         menuUsuarios.setOnClickListener(this);
 
-        Button menuConfiguracion = (Button) v.findViewById(R.id.btn_menu_configuracion);
+        menuConfiguracion = (Button) v.findViewById(R.id.btn_menu_configuracion);
         menuConfiguracion.setOnClickListener(this);
 
-        Button menuReportes = (Button) v.findViewById(R.id.btn_menu_reportes);
+        menuReportes = (Button) v.findViewById(R.id.btn_menu_reportes);
         menuReportes.setOnClickListener(this);
 
         return v;
-
     }
 
     @Override
@@ -103,9 +104,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 
         // Check that there's actually something to send
         if (message.length > 0) {
-
             MainActivity.mCommandService.write(message);
-
         }
     }
 
@@ -114,9 +113,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         for (int i = 3; i <= frame2send.length - 1; i++) {
             CRC = (byte) (CRC ^ frame2send[i]);
         }
-
         Log.e("CRCCCCCC", CRC.toString());
-
         return CRC;
     }
 }

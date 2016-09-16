@@ -36,7 +36,7 @@ public class PlcMmsSettingsFragment extends Fragment {
     //se inicializan todos los objetos
     TextView tvRtaMmsSettings;
     Button btnCheckSettings, btnRecord;
-    Spinner gananciaTransmision, gananciaRecepcion, retardoTransmision, tasaTransmision, horaEncuesta;
+    Spinner ganTransmisionMMS, ganRecepcionMMS, retTransmisionMMS, tasaTransmisionMMS, horaEncuestaMMS;
     ArrayList listaGtx, listaGrx, listaRetardoTx, listaTasaTx, listaHoraEncuesta;
     String gananciaTransmisionSpinner, gananciaRecepcionSpinner, retardoTransmisionSpinner, tasaTransmisionSpinner, horaEncuestaSpinner;
     String buff = "";
@@ -59,7 +59,7 @@ public class PlcMmsSettingsFragment extends Fragment {
         //declaro todos los spinner
 
         //Spinner Ganancia de transmision
-        gananciaTransmision = (Spinner) vista5.findViewById(R.id.mms_ganancia_transmision_spinner);
+        ganTransmisionMMS = (Spinner) vista5.findViewById(R.id.mms_ganancia_transmision_spinner);
 
         listaGtx = new ArrayList<String>();
         listaGtx.add("55 mVpp");
@@ -79,10 +79,10 @@ public class PlcMmsSettingsFragment extends Fragment {
         listaGtx.add("3.50 Vpp");
         ArrayAdapter<String> adaptador3 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listaGtx);
         adaptador3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        gananciaTransmision.setAdapter(adaptador3);
+        ganTransmisionMMS.setAdapter(adaptador3);
 
         //Spinner Ganancia de recepcion
-        gananciaRecepcion = (Spinner) vista5.findViewById(R.id.mms_ganancia_recepcion_spinner);
+        ganRecepcionMMS = (Spinner) vista5.findViewById(R.id.mms_ganancia_recepcion_spinner);
 
         listaGrx = new ArrayList<String>();
         listaGrx.add("5 mVrms");
@@ -94,10 +94,10 @@ public class PlcMmsSettingsFragment extends Fragment {
         listaGrx.add("125 uVrms");
         ArrayAdapter<String> adaptador4 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listaGrx);
         adaptador4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        gananciaRecepcion.setAdapter(adaptador4);
+        ganRecepcionMMS.setAdapter(adaptador4);
 
         //Spinner Retardo de transmision
-        retardoTransmision = (Spinner) vista5.findViewById(R.id.mms_retardo_transmision_spinner);
+        retTransmisionMMS = (Spinner) vista5.findViewById(R.id.mms_retardo_transmision_spinner);
 
         listaRetardoTx = new ArrayList<String>();
         listaRetardoTx.add("100 ms");
@@ -107,10 +107,10 @@ public class PlcMmsSettingsFragment extends Fragment {
         listaRetardoTx.add("500 ms");
         ArrayAdapter<String> adaptador5 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listaRetardoTx);
         adaptador5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        retardoTransmision.setAdapter(adaptador5);
+        retTransmisionMMS.setAdapter(adaptador5);
 
         //Spinner Tasa de transmision
-        tasaTransmision = (Spinner) vista5.findViewById(R.id.mms_tasa_transmision_spinner);
+        tasaTransmisionMMS = (Spinner) vista5.findViewById(R.id.mms_tasa_transmision_spinner);
 
         listaTasaTx = new ArrayList<String>();
         listaTasaTx.add("600 bps");
@@ -118,10 +118,10 @@ public class PlcMmsSettingsFragment extends Fragment {
         listaTasaTx.add("2400 bps");
         ArrayAdapter<String> adaptador6 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listaTasaTx);
         adaptador6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        tasaTransmision.setAdapter(adaptador6);
+        tasaTransmisionMMS.setAdapter(adaptador6);
 
         //Spinner Hora de encuesta
-        horaEncuesta = (Spinner) vista5.findViewById(R.id.mms_hora_encuesta_spinner);
+        horaEncuestaMMS = (Spinner) vista5.findViewById(R.id.mms_hora_encuesta_spinner);
 
         listaHoraEncuesta = new ArrayList<String>();
         listaHoraEncuesta.add("00");
@@ -150,23 +150,19 @@ public class PlcMmsSettingsFragment extends Fragment {
         listaHoraEncuesta.add("23");
         ArrayAdapter<String> adaptador7 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listaHoraEncuesta);
         adaptador7.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        horaEncuesta.setAdapter(adaptador7);
+        horaEncuestaMMS.setAdapter(adaptador7);
 
         //textView donde se muestra la respuesta a la busqueda del usuario (Search User)
         tvRtaMmsSettings=(TextView)vista5.findViewById(R.id.txt_view_mms_rta_settings);
 
-
-
-
         //aqui van todos los estados de los spinner!!!
 
-        gananciaTransmision.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        ganTransmisionMMS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 
                 gananciaTransmisionSpinner = arg0.getItemAtPosition(arg2).toString();
-
             }
 
             @Override
@@ -174,13 +170,12 @@ public class PlcMmsSettingsFragment extends Fragment {
             }
         });
 
-        gananciaRecepcion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        ganRecepcionMMS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 
                 gananciaRecepcionSpinner = arg0.getItemAtPosition(arg2).toString();
-
             }
 
             @Override
@@ -188,13 +183,12 @@ public class PlcMmsSettingsFragment extends Fragment {
             }
         });
 
-        retardoTransmision.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        retTransmisionMMS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 
                 retardoTransmisionSpinner = arg0.getItemAtPosition(arg2).toString();
-
             }
 
             @Override
@@ -202,13 +196,12 @@ public class PlcMmsSettingsFragment extends Fragment {
             }
         });
 
-        tasaTransmision.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        tasaTransmisionMMS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 
                 tasaTransmisionSpinner = arg0.getItemAtPosition(arg2).toString();
-
             }
 
             @Override
@@ -216,13 +209,12 @@ public class PlcMmsSettingsFragment extends Fragment {
             }
         });
 
-        horaEncuesta.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        horaEncuestaMMS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 
                 horaEncuestaSpinner = arg0.getItemAtPosition(arg2).toString();
-
             }
 
             @Override
@@ -237,7 +229,6 @@ public class PlcMmsSettingsFragment extends Fragment {
             public void onClick(View v) {
 
                 byte []frame2Send = new byte[7];
-
 
                 frame2Send[0] = 0x24;// $
                 frame2Send[1] = 0x40;// @
@@ -255,12 +246,10 @@ public class PlcMmsSettingsFragment extends Fragment {
             }
         });
 
-
 //Boton de Grabar la configuracion del PLC-MMS
         btnRecord = (Button) vista5.findViewById(R.id.btn_mms_configuracion);
         btnRecord.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
 
                 // Capturo el contenido del editText donde van los ID
                 TextView et_id = (TextView) vista5.findViewById(R.id.id_mms_user);
@@ -330,7 +319,6 @@ public class PlcMmsSettingsFragment extends Fragment {
                         gantxBytes = 0x0E;
                         break;
                 }
-
 
                 //Capturo el valor del spinner 'ganancia de recepcion'
                 String ganancia_recepcion_elegida = gananciaRecepcionSpinner;
@@ -445,7 +433,6 @@ public class PlcMmsSettingsFragment extends Fragment {
             }
         });
 
-
         //Para limpiar la pantalla o descargar archivos
         tvRtaMmsSettings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -474,14 +461,11 @@ public class PlcMmsSettingsFragment extends Fragment {
                             }
                         })
                         .show();
-
             }
         });
-
         return vista5;
 
     }
-
 
     public static byte[] hexStringToByteArray(String s) {
         int len = s.length();
@@ -493,14 +477,9 @@ public class PlcMmsSettingsFragment extends Fragment {
         return data;
     }
 
-
     public void toastIngresarId() {
         Toast.makeText(this.getContext(), getString(R.string.txt_verificar_ID), Toast.LENGTH_SHORT).show();
-
     }
-
-
-
 
     private void sendMessage(byte[] message) {
 
@@ -512,9 +491,7 @@ public class PlcMmsSettingsFragment extends Fragment {
 
         // Check that there's actually something to send
         if (message.length > 0) {
-
             MainActivity.mCommandService.write(message);
-
         }
     }
 
@@ -523,9 +500,7 @@ public class PlcMmsSettingsFragment extends Fragment {
         for (int i = 3; i <= frame2send.length - 1; i++) {
             CRC = (byte) (CRC ^ frame2send[i]);
         }
-
         Log.e("CRCCCCCC", CRC.toString());
-
         return CRC;
     }
 
@@ -536,7 +511,6 @@ public class PlcMmsSettingsFragment extends Fragment {
             OutputStreamWriter outw = new OutputStreamWriter(new FileOutputStream(file));
             outw.write(textfile);
             outw.close();
-
         } catch (Exception e) {}
     }
 

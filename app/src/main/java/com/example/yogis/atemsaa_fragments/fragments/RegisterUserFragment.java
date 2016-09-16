@@ -42,14 +42,12 @@ public class RegisterUserFragment extends Fragment {
 
     //se inicializan todos los objetos
     Button btnRegisterUser;
-    TextView tv_rta_register_user;
-    Spinner register_estado_de_usuario, accion_de_usuario;
-    ArrayList lista_estado, lista_accion;
-    String estado_de_usuario_spinner, accion_de_usuario_spinner;
+    TextView tvRtaRegisterUser;
+    Spinner registerEstadoUsuario;
+    ArrayList listaEstado;
+    String estadoUsuarioSpinner;
     String buff = "";
     byte[] readBuf;
-
-
 
     public RegisterUserFragment() {
         // Required empty public constructor
@@ -58,45 +56,39 @@ public class RegisterUserFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         final View vista3 = inflater.inflate(R.layout.fragment_register_user, container, false);
 
-
-        //declaro todos los spinner
+        //declaro el spinner
 
         //Spinner Estado de Usuario
-        register_estado_de_usuario = (Spinner) vista3.findViewById(R.id.register_estado_de_usuario_spinner);
+        registerEstadoUsuario = (Spinner) vista3.findViewById(R.id.register_estado_de_usuario_spinner);
 
-        lista_estado = new ArrayList<String>();
-        lista_estado.add("1");
-        lista_estado.add("2");
-        lista_estado.add("3");
-        ArrayAdapter<String> adaptador2 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, lista_estado);
+        listaEstado = new ArrayList<String>();
+        listaEstado.add("1");
+        listaEstado.add("2");
+        listaEstado.add("3");
+        ArrayAdapter<String> adaptador2 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listaEstado);
         adaptador2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        register_estado_de_usuario.setAdapter(adaptador2);
+        registerEstadoUsuario.setAdapter(adaptador2);
 
         //textView donde se muestra la respuesta a la busqueda del usuario (Search User)
-        tv_rta_register_user=(TextView)vista3.findViewById(R.id.txt_view_rta_register);
-
-
-
+        tvRtaRegisterUser=(TextView)vista3.findViewById(R.id.txt_view_rta_register);
 
         //aqui van todos los estados de los spinner!!!
 
-        register_estado_de_usuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        registerEstadoUsuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 
-                estado_de_usuario_spinner = arg0.getItemAtPosition(arg2).toString();
-
+                estadoUsuarioSpinner = arg0.getItemAtPosition(arg2).toString();
             }
 
             @Override
@@ -115,7 +107,7 @@ public class RegisterUserFragment extends Fragment {
                 String id_usuario = et_id.getText().toString();
 
                 //Capturo el valor del spinner 'estado_de_usuario'
-                int estado_de_usuario_spinner_int = Integer.parseInt(estado_de_usuario_spinner);
+                int estado_de_usuario_spinner_int = Integer.parseInt(estadoUsuarioSpinner);
                 String estado_de_usuario = Integer.toHexString(estado_de_usuario_spinner_int);
                 if (estado_de_usuario.length() == 1) {
                     estado_de_usuario = "0" + estado_de_usuario;
@@ -145,7 +137,7 @@ public class RegisterUserFragment extends Fragment {
                     frame2Send[14] = estado_de_usuario_bytes[0]; //Estado de usuario
                     frame2Send[15] = calcularCRC(frame2Send);
 
-                    tv_rta_register_user.setText("");
+                    tvRtaRegisterUser.setText("");
                     buff="";
 
                     sendMessage(frame2Send);
@@ -158,7 +150,7 @@ public class RegisterUserFragment extends Fragment {
         });
 
         //Para limpiar la pantalla o descargar archivos
-        tv_rta_register_user.setOnClickListener(new View.OnClickListener() {
+        tvRtaRegisterUser.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 new AlertDialog.Builder(v.getContext())
@@ -167,7 +159,7 @@ public class RegisterUserFragment extends Fragment {
                         .setNegativeButton(getString(R.string.txt_clear), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dlg, int sumthin) {
                                 // Limpio los textView
-                                tv_rta_register_user.setText("");
+                                tvRtaRegisterUser.setText("");
                                 buff="";
                             }
                         })
@@ -181,18 +173,12 @@ public class RegisterUserFragment extends Fragment {
                                         ""+horaActual.getMinutes()+""+horaActual.getSeconds();
 
                                 writeFile("atemsaa"+fecha+".csv", buff);
-
                             }
                         })
                         .show();
-
             }
         });
-
-
-
         return vista3;
-
     }
 
     public static byte[] hexStringToByteArray(String s) {
@@ -205,14 +191,9 @@ public class RegisterUserFragment extends Fragment {
         return data;
     }
 
-
     public void toastIngresarId() {
         Toast.makeText(this.getContext(), getString(R.string.txt_verificar_ID), Toast.LENGTH_SHORT).show();
-
     }
-
-
-
 
     private void sendMessage(byte[] message) {
 
@@ -226,7 +207,6 @@ public class RegisterUserFragment extends Fragment {
         if (message.length > 0) {
 
             MainActivity.mCommandService.write(message);
-
         }
     }
 
@@ -235,66 +215,17 @@ public class RegisterUserFragment extends Fragment {
         for (int i = 3; i <= frame2send.length - 1; i++) {
             CRC = (byte) (CRC ^ frame2send[i]);
         }
-
         Log.e("CRCCCCCC", CRC.toString());
-
         return CRC;
     }
 
     public void writeFile(String filename, String textfile) {
         try {
-
             File file = new File(Environment.getExternalStorageDirectory(), filename );
             OutputStreamWriter outw = new OutputStreamWriter(new FileOutputStream(file));
             outw.write(textfile);
             outw.close();
-
         } catch (Exception e) {}
-    }
-
-
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.i("Reg","Entro en onResume");
-    }
-
-
-
-    @Override
-    public void onStop() {
-        Log.i("Reg","Entro en onStop");
-        super.onStop();
-    }
-
-
-    @Override
-    public void onDestroy() {
-        Log.i("Reg","Entro en onDestroy");
-        super.onDestroy();
-    }
-
-    @Override
-    public void onPause() {
-        Log.i("Menu","Entro en onPause");
-
-        super.onPause();
-    }
-
-    @Override
-    public void onStart() {
-        Log.i("Menu","Entro en onStart");
-
-        super.onStart();
-    }
-
-    @Override
-    public void onDestroyView() {
-        Log.i("Menu","Entro en onDestroiView");
-
-        super.onDestroyView();
     }
 
 }

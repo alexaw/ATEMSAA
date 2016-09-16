@@ -49,11 +49,9 @@ public class ListUserFragment extends Fragment {
     String buff = "";
     byte[] readBuf;
 
-
     public ListUserFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,7 +59,7 @@ public class ListUserFragment extends Fragment {
         // Inflate the layout for this fragment
         final View vista2 = inflater.inflate(R.layout.fragment_list_user, container, false);
 
-        //declaro todos los spinner
+        //declaro el spinner
 
         //Spinner Estado de Usuario
         listEstadoUsuario = (Spinner) vista2.findViewById(R.id.list_estado_de_usuario_spinner);
@@ -77,9 +75,6 @@ public class ListUserFragment extends Fragment {
         //textView donde se muestra la respuesta a la busqueda del usuario (Search User)
         tvRtaListUser=(TextView)vista2.findViewById(R.id.txt_view_rta_list_usr);
 
-
-
-
         //aqui van todos los estados de los spinner!!!
 
         listEstadoUsuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -88,7 +83,6 @@ public class ListUserFragment extends Fragment {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 
                 estadoUsuarioSpinner = arg0.getItemAtPosition(arg2).toString();
-
             }
 
             @Override
@@ -100,7 +94,6 @@ public class ListUserFragment extends Fragment {
         btnListUser = (Button) vista2.findViewById(R.id.btn_list_usr);
         btnListUser.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
 
                 // Capturo el contenido del editText donde van los ID
                 TextView et_id = (TextView) vista2.findViewById(R.id.id_list_user);
@@ -156,18 +149,12 @@ public class ListUserFragment extends Fragment {
                                         ""+horaActual.getMinutes()+""+horaActual.getSeconds();
 
                                 writeFile("atemsaa"+fecha+".csv", buff);
-
                             }
                         })
                         .show();
-
             }
         });
-
-
-
         return vista2;
-
     }
 
     public static byte[] hexStringToByteArray(String s) {
@@ -180,7 +167,6 @@ public class ListUserFragment extends Fragment {
         return data;
     }
 
-
     private void sendMessage(byte[] message) {
 
         // Check that we're actually connected before trying anything
@@ -191,9 +177,7 @@ public class ListUserFragment extends Fragment {
 
         // Check that there's actually something to send
         if (message.length > 0) {
-
             MainActivity.mCommandService.write(message);
-
         }
     }
 
@@ -202,23 +186,18 @@ public class ListUserFragment extends Fragment {
         for (int i = 3; i <= frame2send.length - 1; i++) {
             CRC = (byte) (CRC ^ frame2send[i]);
         }
-
         Log.e("CRCCCCCC", CRC.toString());
-
         return CRC;
     }
 
     public void writeFile(String filename, String textfile) {
         try {
-
             File file = new File(Environment.getExternalStorageDirectory(), filename );
             OutputStreamWriter outw = new OutputStreamWriter(new FileOutputStream(file));
             outw.write(textfile);
             outw.close();
-
         } catch (Exception e) {}
     }
-
 
     public void setMsg(String msg){
        tvRtaListUser.setText(msg);

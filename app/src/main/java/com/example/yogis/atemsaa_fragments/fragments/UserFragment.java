@@ -51,17 +51,17 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         TextView txt = (TextView) v.findViewById(R.id.title_user);
 
         //Recupero los botones
-        Button menu_buscar = (Button) v.findViewById(R.id.btn_menu_buscar);
-        menu_buscar.setOnClickListener(this);
+        Button menuBuscar = (Button) v.findViewById(R.id.btn_menu_buscar);
+        menuBuscar.setOnClickListener(this);
 
-        Button menu_listar = (Button) v.findViewById(R.id.btn_menu_listar);
-        menu_listar.setOnClickListener(this);
+        Button menuListar = (Button) v.findViewById(R.id.btn_menu_listar);
+        menuListar.setOnClickListener(this);
 
-        Button menu_registrar = (Button) v.findViewById(R.id.btn_menu_registrar);
-        menu_registrar.setOnClickListener(this);
+        Button menuRegistrar = (Button) v.findViewById(R.id.btn_menu_registrar);
+        menuRegistrar.setOnClickListener(this);
 
-        Button menu_prueba = (Button) v.findViewById(R.id.btn_menu_prueba);
-        menu_prueba.setOnClickListener(this);
+        Button menuTest = (Button) v.findViewById(R.id.btn_menu_prueba);
+        menuTest.setOnClickListener(this);
 
         return v;
     }

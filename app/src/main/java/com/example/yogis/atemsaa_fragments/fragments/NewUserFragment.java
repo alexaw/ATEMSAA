@@ -37,8 +37,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
     TextView tvRtaListNewUser;
     String buff = "";
     String idUsuario;
-
-   static String estadoUsuario = "1";
+    static String estadoUsuario = "1";
 
     OnChangeFragment changeFragment;
 

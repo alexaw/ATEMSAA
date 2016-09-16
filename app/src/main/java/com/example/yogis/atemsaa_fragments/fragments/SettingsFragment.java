@@ -22,6 +22,9 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     OnChangeFragment changeFragment;
 
+    Button menuPlcMMS, menuPlcTU, menuPlcMC, menuReloj, menuRF, menuGPRS;
+
+
     public SettingsFragment() {
         // Required empty public constructor
     }
@@ -42,23 +45,23 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         TextView txt = (TextView) v.findViewById(R.id.title_settings);
 
         //Recupero los botones
-        Button menu_plc_mms = (Button) v.findViewById(R.id.btn_menu_PLC_MMS);
-        menu_plc_mms.setOnClickListener(this);
+        menuPlcMMS = (Button) v.findViewById(R.id.btn_menu_PLC_MMS);
+        menuPlcMMS.setOnClickListener(this);
 
-        Button menu_plc_tu = (Button) v.findViewById(R.id.btn_menu_PLC_TU);
-        menu_plc_tu.setOnClickListener(this);
+        menuPlcTU  = (Button) v.findViewById(R.id.btn_menu_PLC_TU);
+        menuPlcTU.setOnClickListener(this);
 
-        Button menu_plc_mc = (Button) v.findViewById(R.id.btn_menu_PLC_MC);
-        menu_plc_mc.setOnClickListener(this);
+        menuPlcMC= (Button) v.findViewById(R.id.btn_menu_PLC_MC);
+        menuPlcMC.setOnClickListener(this);
 
-        Button menu_reloj = (Button) v.findViewById(R.id.btn_menu_reloj);
-        menu_reloj.setOnClickListener(this);
+        menuReloj  = (Button) v.findViewById(R.id.btn_menu_reloj);
+        menuReloj.setOnClickListener(this);
 
-        Button menu_rf = (Button) v.findViewById(R.id.btn_menu_RF);
-        menu_rf.setOnClickListener(this);
+        menuRF = (Button) v.findViewById(R.id.btn_menu_RF);
+        menuRF.setOnClickListener(this);
 
-        Button menu_gprs = (Button) v.findViewById(R.id.btn_menu_GPRS);
-        menu_gprs.setOnClickListener(this);
+        menuGPRS = (Button) v.findViewById(R.id.btn_menu_GPRS);
+        menuGPRS.setOnClickListener(this);
 
         return v;
     }

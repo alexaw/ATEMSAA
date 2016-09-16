@@ -35,11 +35,8 @@ public class PlcTuSettingsFragment extends Fragment {
 
     //se inicializan todos los objetos
     TextView tvRtaTuSettings;
-    Spinner register_estado_de_usuario, accion_de_usuario;
-    ArrayList lista_estado, lista_accion;
-    String estado_de_usuario_spinner, accion_de_usuario_spinner;
     Button btnCheckSettings, btnRecord;
-    Spinner gananciaTransmision, gananciaRecepcion, retardoTransmision, tasaTransmision, horaEncuesta;
+    Spinner ganTransmisionTU, ganRecepcionTU, retTransmisionTU, tasaTransmisionTU, horaEncuestaTU;
     ArrayList listaGtx, listaGrx, listaRetardoTx, listaTasaTx, listaHoraEncuesta;
     String gananciaTransmisionSpinner, gananciaRecepcionSpinner, retardoTransmisionSpinner, tasaTransmisionSpinner, horaEncuestaSpinner;
     String buff = "";
@@ -63,7 +60,7 @@ public class PlcTuSettingsFragment extends Fragment {
         //declaro todos los spinner
 
         //Spinner Ganancia de transmision
-        gananciaTransmision = (Spinner) vista6.findViewById(R.id.tu_ganancia_transmision_spinner);
+        ganTransmisionTU = (Spinner) vista6.findViewById(R.id.tu_ganancia_transmision_spinner);
 
         listaGtx = new ArrayList<String>();
         listaGtx.add("55 mVpp");
@@ -83,10 +80,10 @@ public class PlcTuSettingsFragment extends Fragment {
         listaGtx.add("3.50 Vpp");
         ArrayAdapter<String> adaptador3 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listaGtx);
         adaptador3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        gananciaTransmision.setAdapter(adaptador3);
+        ganTransmisionTU.setAdapter(adaptador3);
 
         //Spinner Ganancia de recepcion
-        gananciaRecepcion = (Spinner) vista6.findViewById(R.id.tu_ganancia_recepcion_spinner);
+        ganRecepcionTU = (Spinner) vista6.findViewById(R.id.tu_ganancia_recepcion_spinner);
 
         listaGrx = new ArrayList<String>();
         listaGrx.add("5 mVrms");
@@ -98,10 +95,10 @@ public class PlcTuSettingsFragment extends Fragment {
         listaGrx.add("125 uVrms");
         ArrayAdapter<String> adaptador4 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listaGrx);
         adaptador4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        gananciaRecepcion.setAdapter(adaptador4);
+        ganRecepcionTU.setAdapter(adaptador4);
 
         //Spinner Retardo de transmision
-        retardoTransmision = (Spinner) vista6.findViewById(R.id.tu_retardo_transmision_spinner);
+        retTransmisionTU = (Spinner) vista6.findViewById(R.id.tu_retardo_transmision_spinner);
 
         listaRetardoTx = new ArrayList<String>();
         listaRetardoTx.add("100 ms");
@@ -111,10 +108,10 @@ public class PlcTuSettingsFragment extends Fragment {
         listaRetardoTx.add("500 ms");
         ArrayAdapter<String> adaptador5 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listaRetardoTx);
         adaptador5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        retardoTransmision.setAdapter(adaptador5);
+        retTransmisionTU.setAdapter(adaptador5);
 
         //Spinner Tasa de transmision
-        tasaTransmision = (Spinner) vista6.findViewById(R.id.tu_tasa_transmision_spinner);
+        tasaTransmisionTU = (Spinner) vista6.findViewById(R.id.tu_tasa_transmision_spinner);
 
         listaTasaTx = new ArrayList<String>();
         listaTasaTx.add("600 bps");
@@ -122,10 +119,10 @@ public class PlcTuSettingsFragment extends Fragment {
         listaTasaTx.add("2400 bps");
         ArrayAdapter<String> adaptador6 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listaTasaTx);
         adaptador6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        tasaTransmision.setAdapter(adaptador6);
+        tasaTransmisionTU.setAdapter(adaptador6);
 
         //Spinner Hora de encuesta
-        horaEncuesta = (Spinner) vista6.findViewById(R.id.tu_hora_encuesta_spinner);
+        horaEncuestaTU = (Spinner) vista6.findViewById(R.id.tu_hora_encuesta_spinner);
 
         listaHoraEncuesta = new ArrayList<String>();
         listaHoraEncuesta.add("00");
@@ -154,23 +151,18 @@ public class PlcTuSettingsFragment extends Fragment {
         listaHoraEncuesta.add("23");
         ArrayAdapter<String> adaptador7 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listaHoraEncuesta);
         adaptador7.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        horaEncuesta.setAdapter(adaptador7);
+        horaEncuestaTU.setAdapter(adaptador7);
 
         //textView donde se muestra la respuesta a la busqueda del usuario (Search User)
         tvRtaTuSettings=(TextView)vista6.findViewById(R.id.txt_view_tu_rta_settings);
 
-
-
-
         //aqui van todos los estados de los spinner!!!
 
-        gananciaTransmision.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        ganTransmisionTU.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
-
                 gananciaTransmisionSpinner = arg0.getItemAtPosition(arg2).toString();
-
             }
 
             @Override
@@ -178,13 +170,11 @@ public class PlcTuSettingsFragment extends Fragment {
             }
         });
 
-        gananciaRecepcion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        ganRecepcionTU.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
-
                 gananciaRecepcionSpinner = arg0.getItemAtPosition(arg2).toString();
-
             }
 
             @Override
@@ -192,13 +182,11 @@ public class PlcTuSettingsFragment extends Fragment {
             }
         });
 
-        retardoTransmision.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        retTransmisionTU.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
-
                 retardoTransmisionSpinner = arg0.getItemAtPosition(arg2).toString();
-
             }
 
             @Override
@@ -206,13 +194,11 @@ public class PlcTuSettingsFragment extends Fragment {
             }
         });
 
-        tasaTransmision.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        tasaTransmisionTU.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
-
                 tasaTransmisionSpinner = arg0.getItemAtPosition(arg2).toString();
-
             }
 
             @Override
@@ -220,13 +206,11 @@ public class PlcTuSettingsFragment extends Fragment {
             }
         });
 
-        horaEncuesta.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        horaEncuestaTU.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
-
                 horaEncuestaSpinner = arg0.getItemAtPosition(arg2).toString();
-
             }
 
             @Override
@@ -235,13 +219,11 @@ public class PlcTuSettingsFragment extends Fragment {
         });
 
         //Boton de Verificar la configuracion del PLC-MMS
-
         btnCheckSettings = (Button) vista6.findViewById(R.id.btn_tu_verificar_configuracion);
         btnCheckSettings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 byte []frame2Send = new byte[7];
-
 
                 frame2Send[0] = 0x24;// $
                 frame2Send[1] = 0x40;// @
@@ -264,7 +246,6 @@ public class PlcTuSettingsFragment extends Fragment {
         btnRecord = (Button) vista6.findViewById(R.id.btn_tu_configuracion);
         btnRecord.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
 
                 // Capturo el contenido del editText donde van los ID
                 TextView et_id = (TextView) vista6.findViewById(R.id.id_tu_user);
@@ -334,7 +315,6 @@ public class PlcTuSettingsFragment extends Fragment {
                         gantxBytes = 0x0E;
                         break;
                 }
-
 
                 //Capturo el valor del spinner 'ganancia de recepcion'
                 String ganancia_recepcion_elegida = gananciaRecepcionSpinner;
@@ -441,7 +421,6 @@ public class PlcTuSettingsFragment extends Fragment {
                     frame2Send[15] = calcularCRC(frame2Send);
 
                     sendMessage(frame2Send);
-
                 } else {
                     toastIngresarId();
                 }
@@ -481,14 +460,8 @@ public class PlcTuSettingsFragment extends Fragment {
 
             }
         });
-
-
-
-
         return vista6;
-
     }
-
 
     public static byte[] hexStringToByteArray(String s) {
         int len = s.length();
@@ -500,14 +473,10 @@ public class PlcTuSettingsFragment extends Fragment {
         return data;
     }
 
-
     public void toastIngresarId() {
         Toast.makeText(this.getContext(), getString(R.string.txt_verificar_ID), Toast.LENGTH_SHORT).show();
 
     }
-
-
-
 
     private void sendMessage(byte[] message) {
 
@@ -519,9 +488,7 @@ public class PlcTuSettingsFragment extends Fragment {
 
         // Check that there's actually something to send
         if (message.length > 0) {
-
             MainActivity.mCommandService.write(message);
-
         }
     }
 
@@ -530,9 +497,7 @@ public class PlcTuSettingsFragment extends Fragment {
         for (int i = 3; i <= frame2send.length - 1; i++) {
             CRC = (byte) (CRC ^ frame2send[i]);
         }
-
         Log.e("CRCCCCCC", CRC.toString());
-
         return CRC;
     }
 
@@ -543,7 +508,6 @@ public class PlcTuSettingsFragment extends Fragment {
             OutputStreamWriter outw = new OutputStreamWriter(new FileOutputStream(file));
             outw.write(textfile);
             outw.close();
-
         } catch (Exception e) {}
     }
 
