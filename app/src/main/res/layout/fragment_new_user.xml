@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/respuesta_usr"
-        android:layout_margin="50dp"
+        android:layout_marginTop="50dp"
         />
 
     <TextView
@@ -28,12 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:layout_marginTop="100dp"
         />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/flAddUser"
@@ -75,5 +71,11 @@
         app:pressedTranslationZ="6dp"
         app:backgroundTint="@color/colorOrange"
         />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_gravity="bottom|End"
+        android:text="Borrar"/>
 
 </android.support.design.widget.CoordinatorLayout>
