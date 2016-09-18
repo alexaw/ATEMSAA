@@ -7,46 +7,33 @@
     android:orientation="vertical"
     tools:context=".Login.LoginActivity">
 
-    <TextView
-        style="@style/TextAppearance.AppCompat.Title"
-        android:id="@+id/app_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ATEMSAA"
-        android:textColor="#ffff00"
-        android:gravity="center"
-        android:padding="10dp"
-        android:layout_marginBottom="30dp"
-        android:background="#0000ff"
-        />
 
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:id="@+id/text_log"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Inicio de sesion"
+        android:text="@string/txt_log_in"
         android:gravity="center"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="40dp"
+        android:paddingTop="50dp"
         />
     <EditText
         android:id="@+id/usr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Usuario"
+        android:hint="@string/txt_user"
         android:inputType="text"
-        android:gravity="center"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="15dp"
         />
 
     <EditText
         android:id="@+id/pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Contraseña"
+        android:hint="@string/txt_password"
         android:inputType="textPassword"
-        android:gravity="center"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="50dp"
         />
 
     <Button
@@ -54,20 +41,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Ingresar"
-        android:textColor="#ffff00"
-        android:background="#0000ff"
+        android:text="Log in"
+        android:textColor="#ffffff"
+        android:background="#FF8700"
         />
 
     <TextView
         android:id="@+id/linkReg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registre aqui"
-        android:textColor="#ff1702"
+        android:text="@string/txt_register_here"
+        android:textColor="#2240bc"
         android:textStyle="bold"
         android:layout_gravity="center"
-        android:paddingTop="50dp"
+        android:paddingTop="20dp"
         />
 
 </LinearLayout>

@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.yogis.atemsaa_fragments.fragments.ListUserFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MenuFragment;
+import com.example.yogis.atemsaa_fragments.fragments.NewSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.NewUserFragment;
 import com.example.yogis.atemsaa_fragments.fragments.OnChangeFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcMmsSettingsFragment;
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
     PlcMmsSettingsFragment plcmms;
     PlcTuSettingsFragment plctu;
     NewUserFragment newUser;
+    NewSettingsFragment newSettings;
 
 
     ToolBarFragment hola;
@@ -114,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
         plcmms = new PlcMmsSettingsFragment();
         plctu = new PlcTuSettingsFragment();
         newUser = new NewUserFragment();
+        newSettings = new NewSettingsFragment();
 
         hola = new ToolBarFragment();
 
@@ -382,7 +385,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 putFragment(user, fragment);
                 break;
             case SETTINGS :
-                putFragment(settings, fragment);
+                putFragment(newSettings, fragment);
                 break;
             case NEWUSER:
                 putFragment(newUser, fragment);

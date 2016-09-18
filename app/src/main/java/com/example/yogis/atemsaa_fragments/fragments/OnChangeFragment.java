@@ -29,6 +29,7 @@ public interface OnChangeFragment {
     int HOLA = 14;
 
     int NEWUSER = 15;
+    int NEWSETTINGS = 16;
 
 
 
