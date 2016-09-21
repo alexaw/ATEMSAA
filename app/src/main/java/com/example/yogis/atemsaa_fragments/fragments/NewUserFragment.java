@@ -1,7 +1,9 @@
 package com.example.yogis.atemsaa_fragments.fragments;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
@@ -24,6 +26,7 @@ import com.example.yogis.atemsaa_fragments.R;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,6 +44,8 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
 
     OnChangeFragment changeFragment;
 
+    EditText edTxtID;
+
     public NewUserFragment() {
         // Required empty public constructor
     }
@@ -56,13 +61,47 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        final View vistaUsr = inflater.inflate(R.layout.fragment_new_user, container, false);
+         View vistaUsr = inflater.inflate(R.layout.fragment_new_user, container, false);
 
 
 
         //textView donde se muestra la respuesta a la busqueda del usuario (Search User)
         tvRtaListNewUser=(TextView)vistaUsr.findViewById(R.id.txt_view_rta_list_newusr);
         tvRtaListNewUser.setText("");
+
+        //Para limpiar la pantalla o descargar archivos
+        tvRtaListNewUser.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                new AlertDialog.Builder(v.getContext())
+                        .setTitle(getString(R.string.txt_options))
+                        .setMessage("")
+                        .setNegativeButton(getString(R.string.txt_clear), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dlg, int sumthin) {
+                                // Limpio los textView
+                                tvRtaListNewUser.setText("");
+                                buff="";
+                            }
+                        })
+                        .setPositiveButton(getString(R.string.txt_download), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dlg, int sumthin) {
+
+                                Date horaActual=new Date();
+
+                                String fecha=(horaActual.getYear()+1900)+""+(horaActual.getMonth()+1)+
+                                        ""+horaActual.getDate()+""+horaActual.getHours()+
+                                        ""+horaActual.getMinutes()+""+horaActual.getSeconds();
+
+                                writeFile("atemsaa"+fecha+".csv", buff);
+                            }
+                        })
+                        .show();
+            }
+        });
+
+
+
+
 
         flBut = (FloatingActionButton) vistaUsr.findViewById(R.id.flButton);
         flAdd = (FloatingActionButton) vistaUsr.findViewById(R.id.flAddUser);
@@ -79,18 +118,11 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
         flAdd.setOnClickListener(this);
         flSearch.setOnClickListener(this);
 
-
-
-
-
         // Capturo el contenido del editText donde van los ID
-        EditText edTxtID = (EditText) vistaUsr.findViewById(R.id.id_list_newuser);
-        idUsuario = edTxtID.getText().toString();
+        edTxtID = (EditText) vistaUsr.findViewById(R.id.id_list_newuser);
 
         //Capturo el valor del spinner 'estado_de_usuario'
         //estadoUsuario = "1";
-
-
 
         return vistaUsr;
     }
@@ -125,6 +157,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
                 //Toast.makeText(this.getActivity(),"Button is clicked", Toast.LENGTH_SHORT).show();
                 //Toast.makeText(getApplicationContext(),"Button is clicked", Toast.LENGTH_LONG).show();
                 //changeFragment.onChange(OnChangeFragment.NEWUSER);
+                idUsuario = edTxtID.getText().toString();
 
                 if (estadoUsuario.length() == 1) {
                     estadoUsuario = "0" + estadoUsuario;
@@ -134,8 +167,6 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
                 if (idUsuario.length() == 16) {
 
                     byte[] frame2Send = new byte[16];
-
-
 
                     byte[] idUsuarioBytes = hexStringToByteArray(idUsuario);
 

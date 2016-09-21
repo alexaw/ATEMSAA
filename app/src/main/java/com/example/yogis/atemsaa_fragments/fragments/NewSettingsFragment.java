@@ -522,6 +522,9 @@ public class NewSettingsFragment extends Fragment {
         } catch (Exception e) {}
     }
 
+    public void setMsg(String msg){
+        tvRtaNewSettings.setText(msg);
+    }
 
 
 

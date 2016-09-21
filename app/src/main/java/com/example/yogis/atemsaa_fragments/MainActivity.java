@@ -99,12 +99,16 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
     ToolBarFragment hola;
 
+    ActionBar myToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         appContext = getApplicationContext();
+
+        myToolbar = getSupportActionBar();
 
         menu = new MenuFragment();
         settings = new SettingsFragment();
@@ -172,10 +176,13 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
 
-        if (mCommandService != null)
+
+        if (mCommandService != null) {
             mCommandService.stop();
+            mCommandService = null;
+        }
+        super.onDestroy();
     }
 
     public void sendMessage(byte[] message) {
@@ -253,20 +260,16 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
     }
 
     private final void setStatus(int resId) {
-        final ActionBar myToolbar = getSupportActionBar();
         myToolbar.setSubtitle(resId);
     }
 
     private final void setStatus(CharSequence subTitle) {
-        final ActionBar myToolbar = getSupportActionBar();
         myToolbar.setSubtitle(subTitle);
 
     }
 
     // The Handler that gets information back from the BluetoothChatService
-    private final Handler mHandler;
-    {
-        mHandler = new Handler() {
+    private  Handler mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 switch (msg.what) {
@@ -275,6 +278,8 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                             case BluetoothCommandService.STATE_CONNECTED:
 
                                 //actionBar.setSubtitle(getString(R.string.title_connected_to) + " " + mConnectedDeviceName);
+
+                                //le coloco el nombre en el actionBar
                                 setStatus(getString(R.string.title_connected_to) + " " + mConnectedDeviceName);
                                 menuItemConnectDisconnect.setActionView(null);
                                 //menuItemConnectDisconnect.setIcon(R.drawable.ic_bluetooth_on);
@@ -338,11 +343,12 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                         ///Ahora esto!!!!! noooooo
                         //list.setMsg(buff);
                         newUser.setMsg(buff);
+                        //newSettings.setMsg(buff);
                         break;
                 }
             }
         };
-    }
+
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
