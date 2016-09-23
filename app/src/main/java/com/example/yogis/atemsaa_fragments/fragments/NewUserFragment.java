@@ -60,10 +60,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
          View vistaUsr = inflater.inflate(R.layout.fragment_new_user, container, false);
-
-
 
         //textView donde se muestra la respuesta a la busqueda del usuario (Search User)
         tvRtaListNewUser=(TextView)vistaUsr.findViewById(R.id.txt_view_rta_list_newusr);
@@ -99,20 +96,14 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-
-
-
-
         flBut = (FloatingActionButton) vistaUsr.findViewById(R.id.flButton);
         flAdd = (FloatingActionButton) vistaUsr.findViewById(R.id.flAddUser);
         flSearch = (FloatingActionButton) vistaUsr.findViewById(R.id.flSearchUser);
-
 
         open = AnimationUtils.loadAnimation(vistaUsr.getContext(),R.anim.open);
         close = AnimationUtils.loadAnimation(vistaUsr.getContext(),R.anim.close);
         clock = AnimationUtils.loadAnimation(vistaUsr.getContext(),R.anim.rorate_clock);
         anticlock = AnimationUtils.loadAnimation(vistaUsr.getContext(),R.anim.rotate_anticlock);
-
 
         flBut.setOnClickListener(this);
         flAdd.setOnClickListener(this);
@@ -121,15 +112,15 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
         // Capturo el contenido del editText donde van los ID
         edTxtID = (EditText) vistaUsr.findViewById(R.id.id_list_newuser);
 
-        //Capturo el valor del spinner 'estado_de_usuario'
-        //estadoUsuario = "1";
-
         return vistaUsr;
     }
 
     public void setMsg(String msg){
         tvRtaListNewUser.setText(msg);
     }
+
+
+
 
     @Override
     public void onClick(View view) {

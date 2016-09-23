@@ -95,11 +95,17 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
     PlcTuSettingsFragment plctu;
     NewUserFragment newUser;
     NewSettingsFragment newSettings;
-
-
     ToolBarFragment hola;
 
     ActionBar myToolbar;
+
+    private static final int MENUPPAL = 0;
+    private static final int MENUSEARCH = 1;
+    //private static final int HIDE = 2;
+    Menu menuActionBar;
+    int state;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,7 +183,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
     @Override
     protected void onDestroy() {
 
-
         if (mCommandService != null) {
             mCommandService.stop();
             mCommandService = null;
@@ -205,7 +210,30 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
+
+        this.menuActionBar = menu;
+        //return super.onCreateOptionsMenu(menu);
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+
+
+        if(state == MENUPPAL){
+            menu.clear();
+            inflater.inflate(R.menu.menu_main,menu);
+           // menu.clear();
+        }else if (state == MENUSEARCH)
+        {
+            menu.clear();
+            inflater.inflate(R.menu.menu_main,menu);
+            inflater.inflate(R.menu.menu_main_search, menu);
+       }
+
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -265,7 +293,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
     private final void setStatus(CharSequence subTitle) {
         myToolbar.setSubtitle(subTitle);
-
     }
 
     // The Handler that gets information back from the BluetoothChatService
@@ -395,6 +422,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 break;
             case NEWUSER:
                 putFragment(newUser, fragment);
+                showMenuSearch();
                 break;
 
             case SEARCH :
@@ -449,6 +477,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 break;
             case NEWUSER:
                 putFragment(menu, MENU);
+                showMenuPpal();
                 break;
 
             case SEARCH:
@@ -495,4 +524,17 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
         ft.replace(R.id.container_menu, fragment);
         ft.commit();
     }
+
+
+
+    private void showMenuSearch() {
+        state = MENUSEARCH;
+        onPrepareOptionsMenu(menuActionBar);
+    }
+
+    private void showMenuPpal() {
+        state = MENUPPAL;
+        onPrepareOptionsMenu(menuActionBar);
+    }
+
 }
