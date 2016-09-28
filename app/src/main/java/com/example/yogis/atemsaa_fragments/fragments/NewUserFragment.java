@@ -33,11 +33,11 @@ import java.util.Date;
  */
 public class NewUserFragment extends Fragment implements View.OnClickListener {
 
-    FloatingActionButton flBut, flAdd, flTestFrame;
+    FloatingActionButton flMore, flAdd, flTestFrame, flOpc;
     Animation open, close, clock, anticlock;
     boolean isOpen = false;
 
-    TextView tvRtaListNewUser;
+    TextView tvRtaListNewUser, txtOpc, txtAdd, txtTest;
     String buff = "";
     String idUsuario;
     static String estadoUsuario = "1";
@@ -69,50 +69,25 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
         tvRtaListNewUser=(TextView)vistaUsr.findViewById(R.id.txt_view_rta_list_newusr);
         tvRtaListNewUser.setText("");
 
-        //Para limpiar la pantalla o descargar archivos
-        tvRtaListNewUser.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
 
-                new AlertDialog.Builder(v.getContext())
-                        .setTitle(getString(R.string.txt_options))
-                        .setMessage("")
-                        .setNegativeButton(getString(R.string.txt_clear), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dlg, int sumthin) {
-                                // Limpio los textView
-                                tvRtaListNewUser.setText("");
-                                buff="";
-                            }
-                        })
-                        .setPositiveButton(getString(R.string.txt_download), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dlg, int sumthin) {
+        flMore = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_More);
+        flAdd = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_Add_User);
+        flTestFrame = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_Test_Frame_User);
+        flOpc = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_Opc);
 
-                                Date horaActual=new Date();
-
-                                String fecha=(horaActual.getYear()+1900)+""+(horaActual.getMonth()+1)+
-                                        ""+horaActual.getDate()+""+horaActual.getHours()+
-                                        ""+horaActual.getMinutes()+""+horaActual.getSeconds();
-
-                                writeFile("atemsaa"+fecha+".csv", buff);
-
-                            }
-
-                        })
-                        .show();
-            }
-        });
-
-        flBut = (FloatingActionButton) vistaUsr.findViewById(R.id.flButton);
-        flAdd = (FloatingActionButton) vistaUsr.findViewById(R.id.flAddUser);
-        flTestFrame = (FloatingActionButton) vistaUsr.findViewById(R.id.flTestFrameUser);
+        txtOpc = (TextView) vistaUsr.findViewById(R.id.txt_opc);
+        txtAdd = (TextView) vistaUsr.findViewById(R.id.txt_add_user);
+        txtTest = (TextView) vistaUsr.findViewById(R.id.txt_test_frame);
 
         open = AnimationUtils.loadAnimation(vistaUsr.getContext(),R.anim.open);
         close = AnimationUtils.loadAnimation(vistaUsr.getContext(),R.anim.close);
         clock = AnimationUtils.loadAnimation(vistaUsr.getContext(),R.anim.rorate_clock);
         anticlock = AnimationUtils.loadAnimation(vistaUsr.getContext(),R.anim.rotate_anticlock);
 
-        flBut.setOnClickListener(this);
+        flMore.setOnClickListener(this);
         flAdd.setOnClickListener(this);
         flTestFrame.setOnClickListener(this);
+        flOpc.setOnClickListener(this);
 
         // Capturo el contenido del editText donde van los ID
         edTxtID = (EditText) vistaUsr.findViewById(R.id.id_list_newuser);
@@ -126,24 +101,55 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
         if (isOpen){
 
             flAdd.startAnimation(close);
+            txtAdd.startAnimation(close);
+
             flTestFrame.startAnimation(close);
-            flBut.startAnimation(anticlock);
+            txtTest.startAnimation(close);
+
+            flOpc.startAnimation(close);
+            txtOpc.startAnimation(close);
+
+            flMore.startAnimation(anticlock);
+
             flAdd.setClickable(false);
+            txtAdd.setClickable(false);
+
             flTestFrame.setClickable(false);
+            txtTest.setClickable(false);
+
+            flOpc.setClickable(false);
+            txtOpc.setClickable(false);
+
             isOpen = false;
         }
         else {
+
             flAdd.startAnimation(open);
+            txtAdd.startAnimation(open);
+
             flTestFrame.startAnimation(open);
-            flBut.startAnimation(clock);
+            txtTest.startAnimation(open);
+
+            flOpc.startAnimation(open);
+            txtOpc.startAnimation(open);
+
+            flMore.startAnimation(clock);
+
             flAdd.setClickable(true);
+            txtAdd.setClickable(false);
+
             flTestFrame.setClickable(true);
+            txtTest.setClickable(false);
+
+            flOpc.setClickable(true);
+            txtOpc.setClickable(false);
+
             isOpen = true;
         }
         switch(view.getId()){
 
             //caso de REGISTRAR un usuario
-            case R.id.flAddUser:
+            case R.id.fl_Add_User:
                 //Toast.makeText(this.getActivity(),"Button is clicked", Toast.LENGTH_SHORT).show();
                 //Toast.makeText(getApplicationContext(),"Button is clicked", Toast.LENGTH_LONG).show();
                 //changeFragment.onChange(OnChangeFragment.NEWUSER);
@@ -188,7 +194,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
                 break;
 
             //caso de ENVIAR TRAMA DE PRUEBA
-            case R.id.flTestFrameUser:
+            case R.id.fl_Test_Frame_User:
                 //Toast.makeText(this.getActivity(),"Button is clicked", Toast.LENGTH_SHORT).show();
                 //Toast.makeText(getApplicationContext(),"Button is clicked", Toast.LENGTH_LONG).show();
                 //changeFragment.onChange(OnChangeFragment.SEARCH);
@@ -226,6 +232,44 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
                 }
 
                 break;
+
+            case R.id.fl_Opc:
+
+
+
+                new AlertDialog.Builder(view.getContext())
+
+
+                        .setTitle(getString(R.string.txt_options))
+                        .setMessage("")
+                        .setNegativeButton(getString(R.string.txt_clear), new DialogInterface.OnClickListener() {
+
+
+                            public void onClick(DialogInterface dlg, int sumthin) {
+                                        // Limpio los textView
+                                tvRtaListNewUser.setText("");
+                                buff="";
+                            }
+                        })
+                        .setPositiveButton(getString(R.string.txt_download), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dlg, int sumthin) {
+
+                                Date horaActual=new Date();
+
+                                String fecha=(horaActual.getYear()+1900)+""+(horaActual.getMonth()+1)+
+                                        ""+horaActual.getDate()+""+horaActual.getHours()+
+                                        ""+horaActual.getMinutes()+""+horaActual.getSeconds();
+
+                                writeFile("atemsaa"+fecha+".csv", buff);
+
+                            }
+
+                        })
+                        .show();
+
+                break;
+
+
 
 
         }
@@ -321,8 +365,8 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
            toastIngresarId();
        }
        return;
-
-
    }
+
+
 
 }
