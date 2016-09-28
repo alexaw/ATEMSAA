@@ -57,9 +57,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         menuReloj  = (Button) v.findViewById(R.id.btn_menu_reloj);
         menuReloj.setOnClickListener(this);
 
-        menuRF = (Button) v.findViewById(R.id.btn_menu_RF);
-        menuRF.setOnClickListener(this);
-
         menuGPRS = (Button) v.findViewById(R.id.btn_menu_GPRS);
         menuGPRS.setOnClickListener(this);
 
@@ -80,9 +77,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btn_menu_reloj:
                 changeFragment.onChange(OnChangeFragment.PLCMMS);
-                break;
-            case R.id.btn_menu_RF:
-                changeFragment.onChange(OnChangeFragment.HOLA);
                 break;
             case R.id.btn_menu_GPRS:
                 changeFragment.onChange(OnChangeFragment.HOLA);

@@ -279,12 +279,11 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                     Intent serverIntent = new Intent(this, DeviceListActivity.class);
                     startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
                 }
-
                 return true;
 
             case R.id.action_search_user:
 
-               newUser.getCualquierCosa();
+               newUser.getSearchUser();
 
 
                 return true;
@@ -422,7 +421,8 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 putFragment(menu, fragment);
                 break;
             case USER :
-                putFragment(user, fragment);
+                putFragment(newUser, fragment);
+                showMenuSearch();
                 break;
             case SETTINGS :
                 putFragment(newSettings, fragment);
@@ -478,6 +478,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 break;
             case USER:
                 putFragment(menu, MENU);
+                showMenuPpal();
                 break;
             case SETTINGS:
                 putFragment(menu, MENU);

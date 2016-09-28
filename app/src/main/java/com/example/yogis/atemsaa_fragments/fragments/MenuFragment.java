@@ -105,7 +105,6 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 
         // Check that there's actually something to send
         if (message.length > 0) {
-
             activity.writeMessage(message);
         }
     }

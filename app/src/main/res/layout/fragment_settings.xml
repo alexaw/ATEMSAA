@@ -1,3 +1,9 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical" >
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -96,32 +102,12 @@
         />
 
     <Button
-        android:id="@+id/btn_menu_RF"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/txt_reloj"
-        />
-
-    <TextView
-        android:id="@+id/txt_RF"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/title_radiofrecuencia"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/btn_menu_RF"
-        android:layout_marginBottom="10dp"
-        />
-
-    <Button
         android:id="@+id/btn_menu_GPRS"
         android:layout_width="50dp"
         android:layout_height="50dp"
 
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/txt_RF"
+        android:layout_below="@+id/txt_reloj"
         />
 
     <TextView
@@ -136,3 +122,4 @@
         />
 
 </RelativeLayout>
+</ScrollView>

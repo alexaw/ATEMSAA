@@ -287,7 +287,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
         tvRtaListNewUser.setText(msg);
     }
 
-   public void getCualquierCosa(){
+   public void getSearchUser(){
 
        idUsuario = edTxtID.getText().toString();
 
