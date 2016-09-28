@@ -29,7 +29,7 @@ import java.util.Date;
  */
 public class MenuFragment extends Fragment implements View.OnClickListener {
 
-    Activity activty;
+    MainActivity activity;
     private boolean bol = false;
     private final String LOG_TAG = "test";
 
@@ -44,6 +44,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
     public void onAttach(Context context) {
         super.onAttach(context);
         changeFragment = (OnChangeFragment) context;
+        activity = (MainActivity) context;
     }
 
     @Override
@@ -104,7 +105,8 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 
         // Check that there's actually something to send
         if (message.length > 0) {
-            MainActivity.mCommandService.write(message);
+
+            activity.writeMessage(message);
         }
     }
 

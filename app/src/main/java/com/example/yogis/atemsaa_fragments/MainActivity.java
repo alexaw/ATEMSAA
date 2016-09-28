@@ -282,6 +282,13 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
                 return true;
 
+            case R.id.action_search_user:
+
+               newUser.getCualquierCosa();
+
+
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -537,4 +544,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
         onPrepareOptionsMenu(menuActionBar);
     }
 
+
+    public void writeMessage(byte[] msg){
+        buff = "";
+        mCommandService.write(msg);
+    }
 }

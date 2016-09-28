@@ -33,7 +33,7 @@ import java.util.Date;
  */
 public class NewUserFragment extends Fragment implements View.OnClickListener {
 
-    FloatingActionButton flBut, flAdd, flSearch;
+    FloatingActionButton flBut, flAdd, flTestFrame;
     Animation open, close, clock, anticlock;
     boolean isOpen = false;
 
@@ -46,6 +46,8 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
 
     EditText edTxtID;
 
+    MainActivity activity;
+
     public NewUserFragment() {
         // Required empty public constructor
     }
@@ -54,6 +56,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
     public void onAttach(Context context) {
         super.onAttach(context);
         changeFragment = (OnChangeFragment) context;
+        activity = (MainActivity) context;
     }
 
     @Override
@@ -62,7 +65,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
          View vistaUsr = inflater.inflate(R.layout.fragment_new_user, container, false);
 
-        //textView donde se muestra la respuesta a la busqueda del usuario (Search User)
+        //textView donde se muestra las respuesta de las consultas
         tvRtaListNewUser=(TextView)vistaUsr.findViewById(R.id.txt_view_rta_list_newusr);
         tvRtaListNewUser.setText("");
 
@@ -90,7 +93,9 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
                                         ""+horaActual.getMinutes()+""+horaActual.getSeconds();
 
                                 writeFile("atemsaa"+fecha+".csv", buff);
+
                             }
+
                         })
                         .show();
             }
@@ -98,7 +103,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
 
         flBut = (FloatingActionButton) vistaUsr.findViewById(R.id.flButton);
         flAdd = (FloatingActionButton) vistaUsr.findViewById(R.id.flAddUser);
-        flSearch = (FloatingActionButton) vistaUsr.findViewById(R.id.flSearchUser);
+        flTestFrame = (FloatingActionButton) vistaUsr.findViewById(R.id.flTestFrameUser);
 
         open = AnimationUtils.loadAnimation(vistaUsr.getContext(),R.anim.open);
         close = AnimationUtils.loadAnimation(vistaUsr.getContext(),R.anim.close);
@@ -107,7 +112,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
 
         flBut.setOnClickListener(this);
         flAdd.setOnClickListener(this);
-        flSearch.setOnClickListener(this);
+        flTestFrame.setOnClickListener(this);
 
         // Capturo el contenido del editText donde van los ID
         edTxtID = (EditText) vistaUsr.findViewById(R.id.id_list_newuser);
@@ -115,35 +120,29 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
         return vistaUsr;
     }
 
-    public void setMsg(String msg){
-        tvRtaListNewUser.setText(msg);
-    }
-
-
-
-
     @Override
     public void onClick(View view) {
 
         if (isOpen){
 
             flAdd.startAnimation(close);
-            flSearch.startAnimation(close);
+            flTestFrame.startAnimation(close);
             flBut.startAnimation(anticlock);
             flAdd.setClickable(false);
-            flSearch.setClickable(false);
+            flTestFrame.setClickable(false);
             isOpen = false;
         }
         else {
             flAdd.startAnimation(open);
-            flSearch.startAnimation(open);
+            flTestFrame.startAnimation(open);
             flBut.startAnimation(clock);
             flAdd.setClickable(true);
-            flSearch.setClickable(true);
+            flTestFrame.setClickable(true);
             isOpen = true;
         }
         switch(view.getId()){
 
+            //caso de REGISTRAR un usuario
             case R.id.flAddUser:
                 //Toast.makeText(this.getActivity(),"Button is clicked", Toast.LENGTH_SHORT).show();
                 //Toast.makeText(getApplicationContext(),"Button is clicked", Toast.LENGTH_LONG).show();
@@ -188,11 +187,47 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
                 }
                 break;
 
-            case R.id.flSearchUser:
+            //caso de ENVIAR TRAMA DE PRUEBA
+            case R.id.flTestFrameUser:
                 //Toast.makeText(this.getActivity(),"Button is clicked", Toast.LENGTH_SHORT).show();
                 //Toast.makeText(getApplicationContext(),"Button is clicked", Toast.LENGTH_LONG).show();
-                changeFragment.onChange(OnChangeFragment.SEARCH);
+                //changeFragment.onChange(OnChangeFragment.SEARCH);
+
+                idUsuario = edTxtID.getText().toString();
+
+                if (idUsuario.length() == 16) {
+                    byte[] idUsuarioBytes = hexStringToByteArray(idUsuario);
+
+                    byte[] frame2Send = new byte[15];
+
+                    frame2Send[0] = 0x24;// $
+                    frame2Send[1] = 0x40;// @
+                    frame2Send[2] = 0x0F;// length
+                    frame2Send[3] = 0x09;// Tipo
+                    frame2Send[4] = 0x01;// Suponiendo 1 como origen PC
+                    frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
+                    frame2Send[6] = idUsuarioBytes[0];
+                    frame2Send[7] = idUsuarioBytes[1];
+                    frame2Send[8] = idUsuarioBytes[2];
+                    frame2Send[9] = idUsuarioBytes[3];
+                    frame2Send[10] = idUsuarioBytes[4];
+                    frame2Send[11] = idUsuarioBytes[5];
+                    frame2Send[12] = idUsuarioBytes[6];
+                    frame2Send[13] = idUsuarioBytes[7];
+                    frame2Send[14] = calcularCRC(frame2Send);
+
+                    tvRtaListNewUser.setText("");
+                    buff="";
+
+                    sendMessage(frame2Send);
+
+                } else {
+                    toastIngresarId();
+                }
+
                 break;
+
+
         }
     }
 
@@ -221,7 +256,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
         // Check that there's actually something to send
         if (message.length > 0) {
 
-            MainActivity.mCommandService.write(message);
+            activity.writeMessage(message);
 
         }
     }
@@ -247,4 +282,47 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
 
         } catch (Exception e) {}
     }
+
+    public void setMsg(String msg){
+        tvRtaListNewUser.setText(msg);
+    }
+
+   public void getCualquierCosa(){
+
+       idUsuario = edTxtID.getText().toString();
+
+       if (idUsuario.length() == 16) {
+           byte[] idUsuarioBytes = hexStringToByteArray(idUsuario);
+
+           byte[] frame2Send = new byte[15];
+
+           frame2Send[0] = 0x24;// $
+           frame2Send[1] = 0x40;// @
+           frame2Send[2] = 0x0F;// length
+           frame2Send[3] = 0x08;// Tipo
+           frame2Send[4] = 0x01;// Suponiendo 1 como origen PC
+           frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
+           frame2Send[6] = idUsuarioBytes[0];
+           frame2Send[7] = idUsuarioBytes[1];
+           frame2Send[8] = idUsuarioBytes[2];
+           frame2Send[9] = idUsuarioBytes[3];
+           frame2Send[10] = idUsuarioBytes[4];
+           frame2Send[11] = idUsuarioBytes[5];
+           frame2Send[12] = idUsuarioBytes[6];
+           frame2Send[13] = idUsuarioBytes[7];
+           frame2Send[14] = calcularCRC(frame2Send);
+
+           tvRtaListNewUser.setText("");
+           buff="";
+
+           sendMessage(frame2Send);
+
+       } else {
+           toastIngresarId();
+       }
+       return;
+
+
+   }
+
 }
