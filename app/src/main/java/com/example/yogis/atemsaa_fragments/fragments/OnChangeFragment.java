@@ -23,13 +23,12 @@ public interface OnChangeFragment {
     int PLCTU = 9;
     int PLCMC = 10;
     int CLOCK = 11;
-    int RF = 12;
-    int GPRS = 13;
+    int GPRS = 12;
 
-    int HOLA = 14;
+    int HOLA = 13;
 
-    int NEWUSER = 15;
-    int NEWSETTINGS = 16;
+    int NEWUSER = 14;
+    int NEWSETTINGS = 15;
 
 
 

@@ -24,6 +24,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.yogis.atemsaa_fragments.fragments.ClockSettingsFragment;
+import com.example.yogis.atemsaa_fragments.fragments.GprsSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ListUserFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MenuFragment;
 import com.example.yogis.atemsaa_fragments.fragments.NewSettingsFragment;
@@ -93,6 +95,10 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
     TestFrameFragment test;
     PlcMmsSettingsFragment plcmms;
     PlcTuSettingsFragment plctu;
+
+    ClockSettingsFragment fclock;
+    GprsSettingsFragment fgprs;
+
     NewUserFragment newUser;
     NewSettingsFragment newSettings;
     ToolBarFragment hola;
@@ -101,6 +107,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
     private static final int MENUPPAL = 0;
     private static final int MENUSEARCH = 1;
+    private static final int MENUCLOCKGPRS = 2;
+    private static final int MENUGPRS = 3;
+
     //private static final int HIDE = 2;
     Menu menuActionBar;
     int state;
@@ -125,6 +134,10 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
         test = new TestFrameFragment();
         plcmms = new PlcMmsSettingsFragment();
         plctu = new PlcTuSettingsFragment();
+
+        fclock = new ClockSettingsFragment();
+        fgprs = new GprsSettingsFragment();
+
         newUser = new NewUserFragment();
         newSettings = new NewSettingsFragment();
 
@@ -231,7 +244,12 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
             menu.clear();
             inflater.inflate(R.menu.menu_main,menu);
             inflater.inflate(R.menu.menu_main_search, menu);
-       }
+       }else if (state == MENUCLOCKGPRS)
+        {
+            menu.clear();
+            inflater.inflate(R.menu.menu_main,menu);
+            inflater.inflate(R.menu.menu_main_settings, menu);
+        }
 
         return super.onPrepareOptionsMenu(menu);
     }
@@ -284,8 +302,16 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
             case R.id.action_search_user:
 
                newUser.getSearchUser();
+                return true;
 
+            case R.id.action_settings_clock:
 
+                onChange(CLOCK);
+                return true;
+
+            case R.id.action_settings_gprs:
+
+                onChange(GPRS);
                 return true;
 
             default:
@@ -426,9 +452,14 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 break;
             case SETTINGS :
                 putFragment(newSettings, fragment);
+                showMenuSettings();
                 break;
             case NEWUSER:
                 putFragment(newUser, fragment);
+                showMenuSearch();
+                break;
+            case NEWSETTINGS:
+                putFragment(newSettings, fragment);
                 showMenuSearch();
                 break;
 
@@ -455,13 +486,10 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 putFragment(plcmms, fragment);
                 break;
             case CLOCK :
-                putFragment(plcmms, fragment);
-                break;
-            case RF :
-                putFragment(hola, fragment);
+                putFragment(fclock, fragment);
                 break;
             case GPRS :
-                putFragment(hola, fragment);
+                putFragment(fgprs, fragment);
                 break;
             case HOLA :
                 putFragment(hola, fragment);
@@ -482,11 +510,17 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 break;
             case SETTINGS:
                 putFragment(menu, MENU);
+                showMenuPpal();
                 break;
             case NEWUSER:
                 putFragment(menu, MENU);
                 showMenuPpal();
                 break;
+            case NEWSETTINGS:
+                putFragment(newSettings, MENU);
+                showMenuSettings();
+                break;
+
 
             case SEARCH:
                 putFragment(newUser, NEWUSER);
@@ -511,13 +545,10 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 putFragment(settings, SETTINGS);
                 break;
             case CLOCK:
-                putFragment(settings, SETTINGS);
-                break;
-            case RF:
-                putFragment(settings, SETTINGS);
+                putFragment(newSettings, SETTINGS);
                 break;
             case GPRS:
-                putFragment(settings, USER);
+                putFragment(newSettings, SETTINGS);
                 break;
             case HOLA:
                 putFragment(settings, NEWUSER);
@@ -533,8 +564,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
         ft.commit();
     }
 
-
-
     private void showMenuSearch() {
         state = MENUSEARCH;
         onPrepareOptionsMenu(menuActionBar);
@@ -542,6 +571,11 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
     private void showMenuPpal() {
         state = MENUPPAL;
+        onPrepareOptionsMenu(menuActionBar);
+    }
+
+    private void showMenuSettings() {
+        state = MENUCLOCKGPRS;
         onPrepareOptionsMenu(menuActionBar);
     }
 
