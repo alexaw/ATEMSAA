@@ -514,4 +514,8 @@ public class PlcMmsSettingsFragment extends Fragment {
         } catch (Exception e) {}
     }
 
+    public void setMsg(String msg){
+        tvRtaMmsSettings.setText(msg);
+    }
+
 }

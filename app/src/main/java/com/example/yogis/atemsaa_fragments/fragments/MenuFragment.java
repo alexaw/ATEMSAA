@@ -71,12 +71,6 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         switch(view.getId()){
             case R.id.btn_menu_usuarios:
                 changeFragment.onChange(OnChangeFragment.USER);
-                break;
-            case R.id.btn_menu_configuracion:
-                changeFragment.onChange(OnChangeFragment.SETTINGS);
-                break;
-            case R.id.btn_menu_reportes:
-                changeFragment.onChange(OnChangeFragment.NEWUSER);
 
                 byte[] frame2Send = new byte[7];
 
@@ -91,6 +85,13 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 
                 sendMessage(frame2Send);
 
+                break;
+
+            case R.id.btn_menu_configuracion:
+                changeFragment.onChange(OnChangeFragment.SETTINGS);
+                break;
+            case R.id.btn_menu_reportes:
+                changeFragment.onChange(OnChangeFragment.REPORT);
                 break;
         }
     }
