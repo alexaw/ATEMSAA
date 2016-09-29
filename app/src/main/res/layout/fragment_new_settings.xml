@@ -16,7 +16,7 @@
 
 
             <EditText
-                android:id="@+id/id_settings_user"
+                android:id="@+id/id_new_settings_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="ID:"

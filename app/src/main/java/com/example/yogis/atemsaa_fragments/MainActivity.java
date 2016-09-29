@@ -401,8 +401,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
                         ///Ahora esto!!!!! noooooo
                         //list.setMsg(buff);
-                        newUser.setMsg(buff);
-                        //newSettings.setMsg(buff);
+                        //newUser.setMsg(buff);
+                        newSettings.setMsg(buff);
+
                         break;
                 }
             }
@@ -454,11 +455,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 putFragment(newSettings, fragment);
                 showMenuSettings();
                 break;
-            case NEWUSER:
-                putFragment(newUser, fragment);
-                showMenuSearch();
-                break;
-            case NEWSETTINGS:
+            case REPORT:
                 putFragment(newSettings, fragment);
                 showMenuSearch();
                 break;
@@ -512,13 +509,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 putFragment(menu, MENU);
                 showMenuPpal();
                 break;
-            case NEWUSER:
+            case REPORT:
                 putFragment(menu, MENU);
-                showMenuPpal();
-                break;
-            case NEWSETTINGS:
-                putFragment(newSettings, MENU);
-                showMenuSettings();
+                showMenuSearch();
                 break;
 
 

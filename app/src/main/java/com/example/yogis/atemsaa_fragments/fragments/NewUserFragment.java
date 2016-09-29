@@ -235,11 +235,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
 
             case R.id.fl_Opc:
 
-
-
                 new AlertDialog.Builder(view.getContext())
-
-
                         .setTitle(getString(R.string.txt_options))
                         .setMessage("")
                         .setNegativeButton(getString(R.string.txt_clear), new DialogInterface.OnClickListener() {
@@ -261,17 +257,12 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
                                         ""+horaActual.getMinutes()+""+horaActual.getSeconds();
 
                                 writeFile("atemsaa"+fecha+".csv", buff);
-
                             }
 
                         })
                         .show();
 
                 break;
-
-
-
-
         }
     }
 

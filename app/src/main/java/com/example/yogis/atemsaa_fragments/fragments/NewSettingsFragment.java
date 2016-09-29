@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +32,7 @@ import java.util.Date;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewSettingsFragment extends Fragment {
+public class NewSettingsFragment extends Fragment implements View.OnClickListener {
 
     //se inicializan todos los objetos
     TextView tvRtaNewSettings;
@@ -44,6 +45,14 @@ public class NewSettingsFragment extends Fragment {
     byte gantxBytes, ganrxBytes, tasatxBytes, retxBytes;
 
     OnChangeFragment changeFragment;
+
+    String idUsuario;
+    static String estadoUsuario = "1";
+
+
+    EditText edTxtID;
+
+
 
 
     public NewSettingsFragment() {
@@ -60,12 +69,27 @@ public class NewSettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View vista5 = inflater.inflate(R.layout.fragment_new_settings, container, false);
+        View vistaStgs = inflater.inflate(R.layout.fragment_new_settings, container, false);
+
+        // Capturo el contenido del editText donde van los ID
+        edTxtID = (EditText) vistaStgs.findViewById(R.id.id_new_settings_user);
+
+        //textView donde se muestra las respuesta de las consultas
+        tvRtaNewSettings=(TextView)vistaStgs.findViewById(R.id.txt_view_rta_settings);
+        tvRtaNewSettings.setText("");
+
+        //se recuperan los botones de la interfaz de Settings
+        btnCheckSettings = (Button) vistaStgs.findViewById(R.id.btn_verificar_configuracion);
+        btnRecord = (Button) vistaStgs.findViewById(R.id.btn_configuracion);
+
+        btnCheckSettings.setOnClickListener(this);
+        btnRecord.setOnClickListener(this);
+
 
         //declaro todos los spinner
 
         //Spinner Ganancia de transmision
-        ganTransmision = (Spinner) vista5.findViewById(R.id.ganancia_transmision_spinner);
+        ganTransmision = (Spinner) vistaStgs.findViewById(R.id.ganancia_transmision_spinner);
 
         listaGtx = new ArrayList<String>();
         listaGtx.add("55 mVpp");
@@ -88,7 +112,7 @@ public class NewSettingsFragment extends Fragment {
         ganTransmision.setAdapter(adaptador3);
 
         //Spinner Ganancia de recepcion
-        ganRecepcion = (Spinner) vista5.findViewById(R.id.ganancia_recepcion_spinner);
+        ganRecepcion = (Spinner) vistaStgs.findViewById(R.id.ganancia_recepcion_spinner);
 
         listaGrx = new ArrayList<String>();
         listaGrx.add("5 mVrms");
@@ -103,7 +127,7 @@ public class NewSettingsFragment extends Fragment {
         ganRecepcion.setAdapter(adaptador4);
 
         //Spinner Retardo de transmision
-        retTransmision = (Spinner) vista5.findViewById(R.id.retardo_transmision_spinner);
+        retTransmision = (Spinner) vistaStgs.findViewById(R.id.retardo_transmision_spinner);
 
         listaRetardoTx = new ArrayList<String>();
         listaRetardoTx.add("100 ms");
@@ -116,7 +140,7 @@ public class NewSettingsFragment extends Fragment {
         retTransmision.setAdapter(adaptador5);
 
         //Spinner Tasa de transmision
-        tasaTransmision = (Spinner) vista5.findViewById(R.id.tasa_transmision_spinner);
+        tasaTransmision = (Spinner) vistaStgs.findViewById(R.id.tasa_transmision_spinner);
 
         listaTasaTx = new ArrayList<String>();
         listaTasaTx.add("600 bps");
@@ -127,7 +151,7 @@ public class NewSettingsFragment extends Fragment {
         tasaTransmision.setAdapter(adaptador6);
 
         //Spinner Hora de encuesta
-        horaEncuesta = (Spinner) vista5.findViewById(R.id.hora_encuesta_spinner);
+        horaEncuesta = (Spinner) vistaStgs.findViewById(R.id.hora_encuesta_spinner);
 
         listaHoraEncuesta = new ArrayList<String>();
         listaHoraEncuesta.add("00");
@@ -157,9 +181,6 @@ public class NewSettingsFragment extends Fragment {
         ArrayAdapter<String> adaptador7 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listaHoraEncuesta);
         adaptador7.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         horaEncuesta.setAdapter(adaptador7);
-
-        //textView donde se muestra la respuesta a la busqueda del usuario (Search User)
-        tvRtaNewSettings=(TextView)vista5.findViewById(R.id.txt_view_rta_settings);
 
         //aqui van todos los estados de los spinner!!!
 
@@ -228,11 +249,67 @@ public class NewSettingsFragment extends Fragment {
             }
         });
 
-        //Boton de Verificar la configuracion del PLC-MMS
+        return vistaStgs;
+    }
 
-        btnCheckSettings = (Button) vista5.findViewById(R.id.btn_verificar_configuracion);
-        btnCheckSettings.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+    public static byte[] hexStringToByteArray(String s) {
+        int len = s.length();
+        byte[] data = new byte[len / 2];
+        for (int i = 0; i < len; i += 2) {
+            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
+                    + Character.digit(s.charAt(i + 1), 16));
+        }
+        return data;
+    }
+
+    public void toastIngresarId() {
+        Toast.makeText(this.getContext(), getString(R.string.txt_verificar_ID), Toast.LENGTH_SHORT).show();
+    }
+
+    private void sendMessage(byte[] message) {
+
+        // Check that we're actually connected before trying anything
+        if (MainActivity.mCommandService.getState() != BluetoothCommandService.STATE_CONNECTED) {
+            Toast.makeText(this.getActivity(), getString(R.string.txt_not_connect_yet), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Check that there's actually something to send
+        if (message.length > 0) {
+            MainActivity.mCommandService.write(message);
+        }
+    }
+
+    private byte calcularCRC(byte[] frame2send) {
+        Byte CRC = (byte) (frame2send[2]);
+        for (int i = 3; i <= frame2send.length - 1; i++) {
+            CRC = (byte) (CRC ^ frame2send[i]);
+        }
+        Log.e("CRCCCCCC", CRC.toString());
+        return CRC;
+    }
+
+    public void writeFile(String filename, String textfile) {
+        try {
+
+            File file = new File(Environment.getExternalStorageDirectory(), filename );
+            OutputStreamWriter outw = new OutputStreamWriter(new FileOutputStream(file));
+            outw.write(textfile);
+            outw.close();
+        } catch (Exception e) {}
+    }
+
+    public void setMsg(String msg){
+        tvRtaNewSettings.setText(msg);
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+
+            //caso de CHECK SETTINGS
+            case R.id.btn_verificar_configuracion:
 
                 byte []frame2Send = new byte[7];
 
@@ -249,22 +326,16 @@ public class NewSettingsFragment extends Fragment {
 
                 sendMessage(frame2Send);
 
-            }
-        });
+                break;
 
-//Boton de Grabar la configuracion del PLC-MMS
-        btnRecord = (Button) vista5.findViewById(R.id.btn_configuracion);
-        btnRecord.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
+            case R.id.btn_configuracion:
                 // Capturo el contenido del editText donde van los ID
-                TextView et_id = (TextView) vista5.findViewById(R.id.id_settings_user);
-                String id_usuario = et_id.getText().toString();
+                idUsuario = edTxtID.getText().toString();
 
                 //Capturo el valor del spinner 'ganancia de transmision'
-                String ganancia_transmision_elegida = gananciaTransmisionSpinner;
+                String gananciaTransmisionElegida = gananciaTransmisionSpinner;
 
-                switch (ganancia_transmision_elegida){
+                switch (gananciaTransmisionElegida){
                     case "55 mVpp":
                         gantxBytes = 0x00;
                         break;
@@ -327,9 +398,9 @@ public class NewSettingsFragment extends Fragment {
                 }
 
                 //Capturo el valor del spinner 'ganancia de recepcion'
-                String ganancia_recepcion_elegida = gananciaRecepcionSpinner;
+                String gananciaRecepcionElegida = gananciaRecepcionSpinner;
 
-                switch (ganancia_recepcion_elegida){
+                switch (gananciaRecepcionElegida){
                     case "5 mVrms":
                         ganrxBytes = 0x01;
                         break;
@@ -360,9 +431,9 @@ public class NewSettingsFragment extends Fragment {
                 }
 
                 //Capturo el valor del spinner 'retardo de transmision'
-                String retardo_transmision_elegida = retardoTransmisionSpinner;
+                String retardoTransmisionElegida = retardoTransmisionSpinner;
 
-                switch (retardo_transmision_elegida){
+                switch (retardoTransmisionElegida){
                     case "100 ms":
                         retxBytes = 0x01;
                         break;
@@ -385,9 +456,9 @@ public class NewSettingsFragment extends Fragment {
                 }
 
                 //Capturo el valor del spinner 'tasa de transmision'
-                String tasa_transmision_elegida = tasaTransmisionSpinner;
+                String tasaTransmisionElegida = tasaTransmisionSpinner;
 
-                switch (tasa_transmision_elegida){
+                switch (tasaTransmisionElegida){
                     case "600 bps":
                         tasatxBytes = 0x00;
                         break;
@@ -402,130 +473,42 @@ public class NewSettingsFragment extends Fragment {
                 }
 
                 //Capturo el valor del spinner 'hora de encuesta'
-                int hora_encuesta_spinner_int = Integer.parseInt(horaEncuestaSpinner);
-                String horaenc = Integer.toHexString(hora_encuesta_spinner_int);
+                int horaEncuestaSpinnerInt = Integer.parseInt(horaEncuestaSpinner);
+                String horaenc = Integer.toHexString(horaEncuestaSpinnerInt);
                 if (horaenc.length() == 1){horaenc = "0"+horaenc;}
-                byte[] horaenc_bytes = hexStringToByteArray(horaenc);
+                byte[] horaencBytes = hexStringToByteArray(horaenc);
 
-                if (id_usuario.length() == 8) {
+                if (idUsuario.length() == 8) {
+                    byte[] idUsuarioBytes = hexStringToByteArray(idUsuario);
 
-                    byte[] frame2Send = new byte[16];
+                    byte[] frame2send = new byte[16];
 
-                    byte[] id_usuario_bytes = hexStringToByteArray(id_usuario);
 
-                    frame2Send[0] = 0x24;// $
-                    frame2Send[1] = 0x40;// @
-                    frame2Send[2] = 0x10;// length
-                    frame2Send[3] = 0x11;// Tipo
-                    frame2Send[4] = 0x01;// Suponiendo 1 como origen PC
-                    frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
-                    frame2Send[6] = id_usuario_bytes[0];
-                    frame2Send[7] = id_usuario_bytes[1];
-                    frame2Send[8] = id_usuario_bytes[2];
-                    frame2Send[9] = id_usuario_bytes[3];
-                    frame2Send[10] = tasatxBytes;//tasa de transmision
-                    frame2Send[11] = gantxBytes;//ganancia de transmision
-                    frame2Send[12] = ganrxBytes;//ganancia de recepcion
-                    frame2Send[13] = retxBytes;//retardo de transmision
-                    frame2Send[14] = horaenc_bytes[0];//hora de encuesta
-                    frame2Send[15] = calcularCRC(frame2Send);
+                    frame2send[0] = 0x24;// $
+                    frame2send[1] = 0x40;// @
+                    frame2send[2] = 0x10;// length
+                    frame2send[3] = 0x11;// Tipo
+                    frame2send[4] = 0x01;// Suponiendo 1 como origen PC
+                    frame2send[5] = 0x02;// Suponiendo 2 como destino PLC
+                    frame2send[6] = idUsuarioBytes[0];
+                    frame2send[7] = idUsuarioBytes[1];
+                    frame2send[8] = idUsuarioBytes[2];
+                    frame2send[9] = idUsuarioBytes[3];
+                    frame2send[10] = tasatxBytes;//tasa de transmision
+                    frame2send[11] = gantxBytes;//ganancia de transmision
+                    frame2send[12] = ganrxBytes;//ganancia de recepcion
+                    frame2send[13] = retxBytes;//retardo de transmision
+                    frame2send[14] = horaencBytes[0];//hora de encuesta
+                    frame2send[15] = calcularCRC(frame2send);
 
-                    sendMessage(frame2Send);
+                    sendMessage(frame2send);
 
                 } else {
                     toastIngresarId();
                 }
 
-            }
-        });
+                break;
 
-        //Para limpiar la pantalla o descargar archivos
-        tvRtaNewSettings.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                new AlertDialog.Builder(v.getContext())
-                        .setTitle(getString(R.string.txt_options))
-                        .setMessage("")
-                        .setNegativeButton(getString(R.string.txt_clear), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dlg, int sumthin) {
-                                // Limpio los textView
-                                tvRtaNewSettings.setText("");
-                                buff="";
-                            }
-                        })
-                        .setPositiveButton(getString(R.string.txt_download), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dlg, int sumthin) {
-
-                                Date horaActual=new Date();
-
-                                String fecha=(horaActual.getYear()+1900)+""+(horaActual.getMonth()+1)+
-                                        ""+horaActual.getDate()+""+horaActual.getHours()+
-                                        ""+horaActual.getMinutes()+""+horaActual.getSeconds();
-
-                                writeFile("atemsaa"+fecha+".csv", buff);
-
-                            }
-                        })
-                        .show();
-            }
-        });
-        return vista5;
-
-
-
-    }
-
-    public static byte[] hexStringToByteArray(String s) {
-        int len = s.length();
-        byte[] data = new byte[len / 2];
-        for (int i = 0; i < len; i += 2) {
-            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
-                    + Character.digit(s.charAt(i + 1), 16));
-        }
-        return data;
-    }
-
-    public void toastIngresarId() {
-        Toast.makeText(this.getContext(), getString(R.string.txt_verificar_ID), Toast.LENGTH_SHORT).show();
-    }
-
-    private void sendMessage(byte[] message) {
-
-        // Check that we're actually connected before trying anything
-        if (MainActivity.mCommandService.getState() != BluetoothCommandService.STATE_CONNECTED) {
-            Toast.makeText(this.getActivity(), getString(R.string.txt_not_connect_yet), Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // Check that there's actually something to send
-        if (message.length > 0) {
-            MainActivity.mCommandService.write(message);
         }
     }
-
-    private byte calcularCRC(byte[] frame2send) {
-        Byte CRC = (byte) (frame2send[2]);
-        for (int i = 3; i <= frame2send.length - 1; i++) {
-            CRC = (byte) (CRC ^ frame2send[i]);
-        }
-        Log.e("CRCCCCCC", CRC.toString());
-        return CRC;
-    }
-
-    public void writeFile(String filename, String textfile) {
-        try {
-
-            File file = new File(Environment.getExternalStorageDirectory(), filename );
-            OutputStreamWriter outw = new OutputStreamWriter(new FileOutputStream(file));
-            outw.write(textfile);
-            outw.close();
-        } catch (Exception e) {}
-    }
-
-    public void setMsg(String msg){
-        tvRtaNewSettings.setText(msg);
-    }
-
-
-
 }
