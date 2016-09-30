@@ -41,6 +41,9 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
     ArrayList listaGtx, listaGrx, listaRetardoTx, listaTasaTx, listaHoraEncuesta;
     String gananciaTransmisionSpinner, gananciaRecepcionSpinner, retardoTransmisionSpinner, tasaTransmisionSpinner, horaEncuestaSpinner;
     String buff = "";
+
+    MainActivity activity;
+
     byte[] readBuf;
     byte gantxBytes, ganrxBytes, tasatxBytes, retxBytes;
 
@@ -63,6 +66,7 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
     public void onAttach(Context context) {
         super.onAttach(context);
         changeFragment = (OnChangeFragment) context;
+        activity = (MainActivity) context;
     }
 
     @Override
@@ -276,7 +280,7 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
 
         // Check that there's actually something to send
         if (message.length > 0) {
-            MainActivity.mCommandService.write(message);
+            activity.writeMessage(message);
         }
     }
 
