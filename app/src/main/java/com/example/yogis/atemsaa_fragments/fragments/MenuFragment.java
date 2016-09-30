@@ -77,18 +77,8 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
                 case R.id.btn_menu_usuarios:
                     changeFragment.onChange(OnChangeFragment.USER);
 
-                    byte[] frame2Send = new byte[7];
+                    listUser();
 
-                    frame2Send[0] = 0x24;// $
-                    frame2Send[1] = 0x40;// @
-                    frame2Send[2] = 0x07;// length
-                    frame2Send[3] = 0x06;// Tipo
-                    frame2Send[4] = 0x01;// Suponiendo 1 como origen PC
-                    frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
-                    //se calcula el CRC
-                    frame2Send[6] = calcularCRC(frame2Send);
-
-                    sendMessage(frame2Send);
 
                     break;
 
@@ -105,6 +95,21 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
                     break;
             }
         }
+    }
+
+    private void listUser() {
+        byte[] frame2Send = new byte[7];
+
+        frame2Send[0] = 0x24;// $
+        frame2Send[1] = 0x40;// @
+        frame2Send[2] = 0x07;// length
+        frame2Send[3] = 0x06;// Tipo
+        frame2Send[4] = 0x01;// Suponiendo 1 como origen PC
+        frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
+        //se calcula el CRC
+        frame2Send[6] = calcularCRC(frame2Send);
+
+        sendMessage(frame2Send);
     }
 
     private void sendMessage(byte[] message) {

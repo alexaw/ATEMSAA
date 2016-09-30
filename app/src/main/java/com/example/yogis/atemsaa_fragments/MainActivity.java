@@ -21,6 +21,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +49,8 @@ import java.io.OutputStreamWriter;
 
 
 public class MainActivity extends AppCompatActivity implements OnChangeFragment {
+
+    static int band=0;
 
     public static Context appContext;
     private boolean bol = false;
@@ -108,6 +111,8 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
     NewUserFragment newUser;
     NewSettingsFragment newSettings;
     ToolBarFragment hola;
+
+
 
     ActionBar myToolbar;
 
@@ -407,15 +412,23 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                         String readMessage = new String(readBuf);
                         buff = buff + readMessage;
 
-                        ///Ahora esto!!!!! noooooo
-                        //list.setMsg(buff);
-                        newUser.setMsg(buff);
-                        //newSettings.setMsg(buff);
-
+                        //LLAMA LAS RESPUESTAS DE LOS TEXTVIEW
+                        answerTextView();
                         break;
                 }
             }
         };
+
+    private void answerTextView() {
+        switch (band){
+            case 1:
+                newUser.setMsg(buff);
+                break;
+            case 2:
+                newSettings.setMsg(buff);
+                break;
+        }
+    }
 
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -455,10 +468,12 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 break;
             case USER :
                 putFragment(newUser, fragment);
+                band = 1;
                 showMenuSearch();
                 break;
             case SETTINGS :
                 putFragment(newSettings, fragment);
+                band = 2;
                 showMenuSettings();
                 break;
             case REPORT:
