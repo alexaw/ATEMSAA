@@ -407,8 +407,8 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
                         ///Ahora esto!!!!! noooooo
                         //list.setMsg(buff);
-                        //newUser.setMsg(buff);
-                        newSettings.setMsg(buff);
+                        newUser.setMsg(buff);
+                        //newSettings.setMsg(buff);
 
                         break;
                 }
