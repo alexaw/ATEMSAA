@@ -366,6 +366,8 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
                             case BluetoothCommandService.STATE_LISTEN:
 
+                                setStatus(R.string.title_not_connected);
+
                                 break;
 
                             case BluetoothCommandService.STATE_NONE:
@@ -444,8 +446,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 }
         }
     }
-
-
 
     @Override
     public void onChange(int fragment) {
