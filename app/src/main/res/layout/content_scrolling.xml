@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/fragment_new_settings"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/id_new_settings_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID:"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/txt_mms_parametros"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/subtitle_parametros_PLC"
+            android:textSize="17sp"
+            android:gravity="center"
+            android:layout_marginBottom="15dp"
+            />
+
+        <TextView
+            android:id="@+id/txt_gan_tx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/spinner_gan_tx"
+            android:layout_marginBottom="1dp"
+            />
+
+        <Spinner
+            android:id="@+id/ganancia_transmision_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/txt_gan_rx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/spinner_gan_rx"
+            android:layout_marginBottom="1dp"
+            android:paddingTop="12dp"
+            />
+
+        <Spinner
+            android:id="@+id/ganancia_recepcion_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/txt_ret_tx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/spinner_ret_tx"
+            android:layout_marginBottom="1dp"
+            android:paddingTop="12dp"
+            />
+
+        <Spinner
+            android:id="@+id/retardo_transmision_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/txt_tasa_tx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/spinner_tasa_tx"
+            android:layout_marginBottom="1dp"
+            android:paddingTop="12dp"
+            />
+
+        <Spinner
+            android:id="@+id/tasa_transmision_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/txt_hora_encuesta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/spinner_hora_encuesta"
+            android:layout_marginBottom="1dp"
+            android:paddingTop="12dp"
+            />
+
+        <Spinner
+            android:id="@+id/hora_encuesta_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="30dp"
+            />
+
+
+
+        <Button
+            android:id="@+id/btn_verificar_configuracion"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:text="@string/button_ver_config"
+            android:layout_marginBottom="10dp"
+            />
+
+        <Button
+            android:id="@+id/btn_configuracion"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:text="@string/button_grabar"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/txt_rta_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/respuesta_usr"
+            />
+
+
+
+
+        <TextView
+            android:id="@+id/txt_view_rta_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="" />
+
+    </LinearLayout>
+
+
+
+</android.support.v4.widget.NestedScrollView>

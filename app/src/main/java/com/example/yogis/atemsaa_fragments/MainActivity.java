@@ -354,7 +354,10 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                                 menuItemConnectDisconnect.setActionView(null);
                                 //menuItemConnectDisconnect.setIcon(R.drawable.ic_bluetooth_on);
                                 menuItemConnectDisconnect.setTitle(R.string.title_disconnect);
+
                                 flagConnectDisconnect = true;
+
+
 
                                 //se env�a la confirmacion de que se estableci�n la conexion bt
                                 //String strTemp1 = "Bluetooth Connection Enabled...";
