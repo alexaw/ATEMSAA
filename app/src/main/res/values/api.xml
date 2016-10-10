@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="loading">Cargando…</string>
+
+    <string name="url_base">http://localhost:8080/</string>
+    <string name="url_plc_mms">entidades.plcmms</string>
+
+    <string name="error_timeout">El servidor no responde</string>
+    <string name="error_no_internet">No tiene acceso a internet</string>
+    <string name="error_404">Recurso no encontrado</string>
+    <string name="error_500">Error del servidor</string>
+    <string name="error_401">No authorizado</string>
+    <string name="error_unknown">Error desconocido</string>
+</resources>

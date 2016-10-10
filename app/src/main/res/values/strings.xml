@@ -109,6 +109,15 @@
     <string name="show_2">Mostrar menu 2</string>
     <string name="action_search">Buscar</string>
     <string name="action_ok">Todo 10</string>
+    <string name="txt_date_time">Set the date and time</string>
+    <string name="txt_day">Day:</string>
+    <string name="txt_month">Month:</string>
+    <string name="txt_year">Year:</string>
+    <string name="txt_hour">Hour:</string>
+    <string name="txt_minute">Minute:</string>
+    <string name="txt_second">Second:</string>
+    <string name="txt_set_clock">Set clock</string>
+    <string name="txt_check_clock">Check clock</string>
 
 
 </resources>
