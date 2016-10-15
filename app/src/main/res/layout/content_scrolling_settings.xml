@@ -13,14 +13,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <EditText
-            android:id="@+id/id_new_settings_user"
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
+
+
+
+
+        <TextView
+            android:id="@+id/txt_rta_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ID:"
-            android:layout_marginBottom="10dp"
+            android:text="Datos actuales en el PLC_MMS"
             />
+
+        <TextView
+            android:id="@+id/txt_view_rta_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:background="@drawable/rectangle_green"
+            android:padding="10dp"/>
 
         <TextView
             android:id="@+id/txt_mms_parametros"
@@ -42,7 +55,7 @@
 
         <Spinner
             android:id="@+id/ganancia_transmision_spinner"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             />
 
@@ -57,7 +70,7 @@
 
         <Spinner
             android:id="@+id/ganancia_recepcion_spinner"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             />
 
@@ -72,7 +85,7 @@
 
         <Spinner
             android:id="@+id/retardo_transmision_spinner"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             />
 
@@ -87,7 +100,7 @@
 
         <Spinner
             android:id="@+id/tasa_transmision_spinner"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             />
 
@@ -102,9 +115,8 @@
 
         <Spinner
             android:id="@+id/hora_encuesta_spinner"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:paddingBottom="30dp"
             />
 
 
@@ -129,21 +141,7 @@
             android:layout_marginBottom="10dp"
             />
 
-        <TextView
-            android:id="@+id/txt_rta_user"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/respuesta_usr"
-            />
 
-
-
-
-        <TextView
-            android:id="@+id/txt_view_rta_settings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="" />
 
     </LinearLayout>
 

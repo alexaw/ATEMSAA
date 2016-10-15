@@ -6,11 +6,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -35,7 +38,12 @@ import java.util.Date;
 public class NewSettingsFragment extends Fragment implements View.OnClickListener {
 
     //se inicializan todos los objetos
-    TextView tvRtaNewSettings;
+
+    FloatingActionButton flMore, flPlcMms, flPlcTu, flPlcMc;
+    Animation open, close, clock, anticlock;
+    boolean isOpen = false;
+
+    TextView tvRtaNewSettings, txtPlcMms, txtPlcTu, txtPlcMc;
     Button btnCheckSettings, btnRecord;
     Spinner ganTransmision, ganRecepcion, retTransmision, tasaTransmision, horaEncuesta;
     ArrayList listaGtx, listaGrx, listaRetardoTx, listaTasaTx, listaHoraEncuesta;
@@ -76,7 +84,7 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
         View vistaStgs = inflater.inflate(R.layout.fragment_new_settings, container, false);
 
         // Capturo el contenido del editText donde van los ID
-        edTxtID = (EditText) vistaStgs.findViewById(R.id.id_new_settings_user);
+
 
         //textView donde se muestra las respuesta de las consultas
         tvRtaNewSettings=(TextView)vistaStgs.findViewById(R.id.txt_view_rta_settings);
@@ -88,6 +96,26 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
 
         btnCheckSettings.setOnClickListener(this);
         btnRecord.setOnClickListener(this);
+
+
+        flMore= (FloatingActionButton) vistaStgs.findViewById(R.id.fl_more);
+        flPlcMms= (FloatingActionButton) vistaStgs.findViewById(R.id.fl_plc_mms);
+        flPlcTu= (FloatingActionButton) vistaStgs.findViewById(R.id.fl_plc_tu);
+        flPlcMc= (FloatingActionButton) vistaStgs.findViewById(R.id.fl_plc_mc);
+
+        txtPlcMms= (TextView) vistaStgs.findViewById(R.id.txt_plc_mms);
+        txtPlcTu= (TextView) vistaStgs.findViewById(R.id.txt_plc_tu);
+        txtPlcMc= (TextView) vistaStgs.findViewById(R.id.txt_plc_mc);
+
+        open = AnimationUtils.loadAnimation(vistaStgs.getContext(),R.anim.open);
+        close = AnimationUtils.loadAnimation(vistaStgs.getContext(),R.anim.close);
+        clock = AnimationUtils.loadAnimation(vistaStgs.getContext(),R.anim.rorate_clock);
+        anticlock = AnimationUtils.loadAnimation(vistaStgs.getContext(),R.anim.rotate_anticlock);
+
+        flMore.setOnClickListener(this);
+        flPlcMms.setOnClickListener(this);
+        flPlcTu.setOnClickListener(this);
+        flPlcMc.setOnClickListener(this);
 
 
         //declaro todos los spinner
@@ -310,6 +338,55 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
+
+        if (isOpen){
+
+            flPlcMms.startAnimation(close);
+            txtPlcMms.startAnimation(close);
+
+            flPlcTu.startAnimation(close);
+            txtPlcTu.startAnimation(close);
+
+            flPlcMc.startAnimation(close);
+            txtPlcMc.startAnimation(close);
+
+            flMore.startAnimation(anticlock);
+
+            flPlcMms.setClickable(false);
+            txtPlcMms.setClickable(false);
+
+            flPlcTu.setClickable(false);
+            txtPlcTu.setClickable(false);
+
+            flPlcMc.setClickable(false);
+            txtPlcMc.setClickable(false);
+
+            isOpen = false;
+        }
+        else {
+
+            flPlcMms.startAnimation(open);
+            txtPlcMms.startAnimation(open);
+
+            flPlcTu.startAnimation(open);
+            txtPlcTu.startAnimation(open);
+
+            flPlcMc.startAnimation(open);
+            txtPlcMc.startAnimation(open);
+
+            flMore.startAnimation(clock);
+
+            flPlcMms.setClickable(true);
+            txtPlcMms.setClickable(false);
+
+            flPlcTu.setClickable(true);
+            txtPlcTu.setClickable(false);
+
+            flPlcMc.setClickable(true);
+            txtPlcMc.setClickable(false);
+
+            isOpen = true;
+        }
         switch (view.getId()) {
 
             //caso de CHECK SETTINGS

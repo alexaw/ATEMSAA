@@ -32,7 +32,7 @@
         />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fl_Add_User"
+        android:id="@+id/fl_add_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -57,7 +57,7 @@
         />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fl_Test_Frame_User"
+        android:id="@+id/fl_test_frame_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -82,7 +82,7 @@
         />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fl_Opc"
+        android:id="@+id/fl_opc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -108,7 +108,7 @@
         />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fl_More"
+        android:id="@+id/fl_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

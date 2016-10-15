@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.yogis.atemsaa_fragments.Login.LoginActivity;
 import com.example.yogis.atemsaa_fragments.fragments.ClockSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.GprsSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ListUserFragment;
@@ -314,6 +315,13 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 }
                 return true;
 
+            case R.id.btn_sign_off:
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+
+                return true;
+
             case R.id.action_search_user:
 
                newUser.getSearchUser();
@@ -474,6 +482,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 putFragment(menu, fragment);
                 break;
             case USER :
+
                 putFragment(newUser, fragment);
                 band = 1;
                 showMenuSearch();

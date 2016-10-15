@@ -70,10 +70,10 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
         tvRtaListNewUser.setText("");
 
 
-        flMore = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_More);
-        flAdd = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_Add_User);
-        flTestFrame = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_Test_Frame_User);
-        flOpc = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_Opc);
+        flMore = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_more);
+        flAdd = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_add_user);
+        flTestFrame = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_test_frame_user);
+        flOpc = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_opc);
 
         txtOpc = (TextView) vistaUsr.findViewById(R.id.txt_opc);
         txtAdd = (TextView) vistaUsr.findViewById(R.id.txt_add_user);
@@ -149,7 +149,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
         switch(view.getId()){
 
             //caso de REGISTRAR un usuario
-            case R.id.fl_Add_User:
+            case R.id.fl_add_user:
                 //Toast.makeText(this.getActivity(),"Button is clicked", Toast.LENGTH_SHORT).show();
                 //Toast.makeText(getApplicationContext(),"Button is clicked", Toast.LENGTH_LONG).show();
                 //changeFragment.onChange(OnChangeFragment.NEWUSER);
@@ -194,7 +194,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
                 break;
 
             //caso de ENVIAR TRAMA DE PRUEBA
-            case R.id.fl_Test_Frame_User:
+            case R.id.fl_test_frame_user:
                 //Toast.makeText(this.getActivity(),"Button is clicked", Toast.LENGTH_SHORT).show();
                 //Toast.makeText(getApplicationContext(),"Button is clicked", Toast.LENGTH_LONG).show();
                 //changeFragment.onChange(OnChangeFragment.SEARCH);
@@ -233,7 +233,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
 
                 break;
 
-            case R.id.fl_Opc:
+            case R.id.fl_opc:
 
                 new AlertDialog.Builder(view.getContext())
                         .setTitle(getString(R.string.txt_options))
