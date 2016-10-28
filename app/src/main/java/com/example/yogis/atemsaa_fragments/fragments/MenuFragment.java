@@ -69,9 +69,9 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
 
-        //if (MainActivity.mCommandService.getState() == BluetoothCommandService.STATE_CONNECTED) {
+        if (MainActivity.mCommandService.getState() == BluetoothCommandService.STATE_CONNECTED) {
 
-            if (MainActivity.mCommandService.getState() != BluetoothCommandService.STATE_CONNECTED) {
+            //if (MainActivity.mCommandService.getState() != BluetoothCommandService.STATE_CONNECTED) {
 
 
                 Toast.makeText(this.getActivity(), "Por favor conectarse a un dispositivo", Toast.LENGTH_SHORT).show();

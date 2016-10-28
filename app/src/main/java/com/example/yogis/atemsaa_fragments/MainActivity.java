@@ -2,6 +2,7 @@ package com.example.yogis.atemsaa_fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
@@ -126,6 +127,11 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
     //private static final int HIDE = 2;
     Menu menuActionBar;
     int state;
+
+
+    private int year, month, day;
+    private static final  int TIPO_DIALOGO = 0;
+    private static DatePickerDialog.OnDateSetListener oyenteSelectorFecha;
 
 
 
@@ -482,7 +488,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 putFragment(menu, fragment);
                 break;
             case USER :
-
                 putFragment(newUser, fragment);
                 band = 1;
                 showMenuSearch();
@@ -521,9 +526,11 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 break;
             case CLOCK :
                 putFragment(fclock, fragment);
+                showMenuPpal();
                 break;
             case GPRS :
                 putFragment(fgprs, fragment);
+                showMenuPpal();
                 break;
             case HOLA :
                 putFragment(hola, fragment);
@@ -576,9 +583,11 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                 break;
             case CLOCK:
                 putFragment(newSettings, SETTINGS);
+                showMenuSettings();
                 break;
             case GPRS:
                 putFragment(newSettings, SETTINGS);
+                showMenuSettings();
                 break;
             case HOLA:
                 putFragment(settings, NEWUSER);
