@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+
+    <item android:id="@+id/connect_disconnect"
+        android:icon="@android:drawable/ic_menu_mylocation"
+        android:title="@string/title_disconnect"
+        android:showAsAction="never"
+        tools:ignore="AppCompatResource" />
+
+    <item android:id="@+id/btn_sign_off"
+        android:icon="@android:drawable/ic_menu_mylocation"
+        android:title="@string/title_sign_off"
+        android:showAsAction="never"
+        tools:ignore="AppCompatResource" />
+</menu>

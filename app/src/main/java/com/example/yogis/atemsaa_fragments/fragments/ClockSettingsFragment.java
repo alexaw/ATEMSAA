@@ -7,8 +7,13 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,34 +35,32 @@ import java.util.Date;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ClockSettingsFragment extends DialogFragment implements View.OnClickListener  {
+public class ClockSettingsFragment extends DialogFragment  {
 
     //se inicializan todos los objetos
-
-
-    TextView tvRtaClockSettings;
-    Button btnCheckClock, btnSetClock;
-    Spinner daySet, monthSet, yearSet, hourSet, minuteSet, secondSet;
-    ArrayList listaDay, listaMonth, listaYear, listaHour, listaMinute, listaSecond;
-    String daySpinner, monthSpinner, yearSpinner, hourSpinner, minuteSpinner, secondSpinner;
-    String buff = "";
-
-    MainActivity activity;
-
-    byte[] readBuf;
-    byte gantxBytes, ganrxBytes, tasatxBytes, retxBytes;
-
-    OnChangeFragment changeFragment;
-
-    String idUsuario;
-    static String estadoUsuario = "1";
-
-
-    EditText campoFecha;
-
     private int year, month, day;
-    private static final  int TIPO_DIALOGO = 0;
     private static DatePickerDialog.OnDateSetListener oyenteSelectorFecha;
+
+    public static void showDateDialog(AppCompatActivity activity, DateSelectedListener dateSelectedListener){
+
+        FragmentManager fragmentManager = activity.getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentByTag("dialog");
+
+        if(fragment != null){
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.remove(fragment);
+        }
+
+        ClockSettingsFragment clockFragment = new ClockSettingsFragment();
+        clockFragment.show(activity.getSupportFragmentManager(), "dialog");
+    }
+
+    public interface DateSelectedListener
+    {
+        void onDateSelected(String date, int year, int month, int day);
+    }
+
+    DateSelectedListener dateSelectedListener;
 
     public ClockSettingsFragment() {
         // Required empty public constructor
@@ -66,27 +69,17 @@ public class ClockSettingsFragment extends DialogFragment implements View.OnClic
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        changeFragment = (OnChangeFragment) context;
-        activity = (MainActivity) context;
+        this.dateSelectedListener = (DateSelectedListener) context;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View vistaClock = inflater.inflate(R.layout.fragment_clock_settings, container, false);
-
-        campoFecha = (EditText) vistaClock.findViewById(R.id.editFecha);
-        btnCheckClock = (Button) vistaClock.findViewById(R.id.btn_clock);
-        btnCheckClock.setOnClickListener(this);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         Calendar calendario = Calendar.getInstance();
         year = calendario.get(Calendar.YEAR);
         month = calendario.get(Calendar.MONTH)+1;
         day = calendario.get(Calendar.DAY_OF_MONTH);
-
-        mostrarFecha();
-
 
         oyenteSelectorFecha = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -95,46 +88,16 @@ public class ClockSettingsFragment extends DialogFragment implements View.OnClic
                 month = i1;
                 day = i2;
 
-                mostrarFecha();
+                dateSelectedListener.onDateSelected(year+"/"+month+"/"+day, year, month, day);
             }
         };
-
-
-        return vistaClock;
     }
 
+
+    @NonNull
     @Override
-    public void onClick(View view) {
-        switch(view.getId()) {
-
-            case R.id.btn_clock:
-                mostrarCalendario(view);
-
-        }
-
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        return new DatePickerDialog(getContext(), oyenteSelectorFecha, year, month, day);
     }
-
-    public  void mostrarFecha(){
-
-        campoFecha.setText(year+"/"+month+"/"+day);
-    }
-
-
-
-    protected Dialog onCreateDialog(int id){
-        switch (id) {
-            case 0:
-                return new DatePickerDialog(this.getActivity(), oyenteSelectorFecha, year, month, day);
-
-        }
-        return null;
-    }
-
-    public void mostrarCalendario(View control){
-
-        onCreateDialog(TIPO_DIALOGO);
-    }
-
-
 
 }

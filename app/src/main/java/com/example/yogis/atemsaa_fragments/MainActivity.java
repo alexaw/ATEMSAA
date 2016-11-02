@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
     // Member object for Bluetooth Command Service
     public static BluetoothCommandService mCommandService = null;
 
-    private MenuItem menuItemConnectDisconnect;
+    private Menu  optMenu;
 
     //private FrameManager frameManager;
     private boolean flagConnectDisconnect = false;
@@ -129,9 +129,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
     int state;
 
 
-    private int year, month, day;
-    private static final  int TIPO_DIALOGO = 0;
-    private static DatePickerDialog.OnDateSetListener oyenteSelectorFecha;
 
 
 
@@ -164,6 +161,8 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
         newSettings = new NewSettingsFragment();
 
         hola = new ToolBarFragment();
+
+
 
         currentFragment = MENU;
         putFragment(menu, MENU);
@@ -255,11 +254,14 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
     public boolean onPrepareOptionsMenu(Menu menu) {
 
         MenuInflater inflater = getMenuInflater();
-
+        optMenu = menu;
 
         if(state == MENUPPAL){
             menu.clear();
-            inflater.inflate(R.menu.menu_main,menu);
+            if(flagConnectDisconnect)
+                inflater.inflate(R.menu.menu_main,menu);
+            else
+                inflater.inflate(R.menu.menu_main_off, menu);
            // menu.clear();
         }else if (state == MENUSEARCH)
         {
@@ -282,8 +284,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
         switch (item.getItemId()) {
             case R.id.connect_disconnect:
                 // Launch the ScanDevicesActivity to see devices and do scan
-                menuItemConnectDisconnect = item;
-
                 if (flagConnectDisconnect) {
                     new AlertDialog.Builder(this)
                             .setTitle(R.string.txt_caution)
@@ -297,8 +297,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                                 public void onClick(DialogInterface dlg, int sumthin) {
 
                                     if (mCommandService != null) {
-
-                                        menuItemConnectDisconnect.setActionView(R.layout.progress_bar);
                                         //String strTemp = "Bluetooth Connection Lost...";
                                         //mCommandService.write(strTemp.getBytes());
                                         try {
@@ -369,13 +367,13 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
 
                                 //le coloco el nombre en el actionBar
                                 setStatus(getString(R.string.title_connected_to) + " " + mConnectedDeviceName);
-                                menuItemConnectDisconnect.setActionView(null);
+
                                 //menuItemConnectDisconnect.setIcon(R.drawable.ic_bluetooth_on);
-                                menuItemConnectDisconnect.setTitle(R.string.title_disconnect);
+
 
                                 flagConnectDisconnect = true;
 
-
+                                onPrepareOptionsMenu(optMenu);
 
                                 //se env�a la confirmacion de que se estableci�n la conexion bt
                                 //String strTemp1 = "Bluetooth Connection Enabled...";
@@ -402,12 +400,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                                 setStatus(R.string.title_not_connected);
                                 flagConnectDisconnect = false;
 
-                                if (menuItemConnectDisconnect != null) {
-                                    menuItemConnectDisconnect.setActionView(null);
-                                    //menuItemConnectDisconnect.setIcon(R.drawable.ic_bluetooth_off);
-                                    menuItemConnectDisconnect.setTitle(R.string.title_connect);
-                                }
-
+                                onPrepareOptionsMenu(optMenu);
                                 break;
                         }
 
@@ -465,7 +458,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
                     // Attempt to connect to the device
                     mCommandService.connect(device);
                     //Activate Progress Bar
-                    menuItemConnectDisconnect.setActionView(R.layout.progress_bar);
+
                 }
                 break;
             case REQUEST_ENABLE_BT:
@@ -623,6 +616,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
         buff = "";
         mCommandService.write(msg);
     }
+
 
 
 }

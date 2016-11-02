@@ -18,6 +18,20 @@
         >
 
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="yyyy/mm/dd"
+            android:id="@+id/editFecha" />
+
+        <ImageView
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:clickable="true"
+            android:onClick="mostrarCalendario"
+            />
+
 
 
         <TextView
