@@ -36,7 +36,7 @@ import java.util.Date;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewSettingsFragment extends Fragment implements View.OnClickListener, ClockSettingsFragment.DateSelectedListener {
+public class NewSettingsFragment extends Fragment implements View.OnClickListener {
 
     //se inicializan todos los objetos
 
@@ -50,15 +50,6 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
     ArrayList listaGtx, listaGrx, listaRetardoTx, listaTasaTx, listaHoraEncuesta;
     String gananciaTransmisionSpinner, gananciaRecepcionSpinner, retardoTransmisionSpinner, tasaTransmisionSpinner, horaEncuestaSpinner;
     String buff = "";
-    TextView campoFecha;
-
-    private int year, month, day;
-    private static final  int TIPO_DIALOGO = 0;
-    private static DatePickerDialog.OnDateSetListener oyenteSelectorFecha;
-
-
-
-
 
     MainActivity activity;
 
@@ -127,7 +118,7 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
         flPlcTu.setOnClickListener(this);
         flPlcMc.setOnClickListener(this);
 
-        campoFecha = (TextView) vistaStgs.findViewById(R.id.editFecha);
+
 
         //declaro todos los spinner
 
@@ -605,15 +596,12 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
     }
 
 
-    public void mostrarCalendario(View control){
 
-        ClockSettingsFragment.showDateDialog(this.activity, this);
 
-    }
 
-    @Override
-    public void onDateSelected(String date, int year, int month, int day) {
-        campoFecha.setText(date);
-    }
+
+
+
+
 
 }

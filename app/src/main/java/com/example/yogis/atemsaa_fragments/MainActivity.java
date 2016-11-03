@@ -51,7 +51,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
 
-public class MainActivity extends AppCompatActivity implements OnChangeFragment {
+public class MainActivity extends AppCompatActivity implements OnChangeFragment, ClockSettingsFragment.DateSelectedListener {
 
     static int band=0;
 
@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
     Menu menuActionBar;
     int state;
 
+    TextView  campoFecha;
 
 
 
@@ -138,6 +139,8 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
         setContentView(R.layout.activity_main);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        campoFecha = (TextView) findViewById(R.id.editFecha);
 
 
         appContext = getApplicationContext();
@@ -161,7 +164,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
         newSettings = new NewSettingsFragment();
 
         hola = new ToolBarFragment();
-
 
 
         currentFragment = MENU;
@@ -617,6 +619,15 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment 
         mCommandService.write(msg);
     }
 
+    public void mostrarCalendario(View control){
 
+        ClockSettingsFragment.showDateDialog(this, this);
+
+    }
+
+    @Override
+    public void onDateSelected(String date, int year, int month, int day) {
+        campoFecha.setText(date);
+    }
 
 }

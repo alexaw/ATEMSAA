@@ -41,6 +41,9 @@ public class ClockSettingsFragment extends DialogFragment  {
     private int year, month, day;
     private static DatePickerDialog.OnDateSetListener oyenteSelectorFecha;
 
+    MainActivity activity;
+
+
     public static void showDateDialog(AppCompatActivity activity, DateSelectedListener dateSelectedListener){
 
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
@@ -78,7 +81,7 @@ public class ClockSettingsFragment extends DialogFragment  {
 
         Calendar calendario = Calendar.getInstance();
         year = calendario.get(Calendar.YEAR);
-        month = calendario.get(Calendar.MONTH)+1;
+        month = calendario.get(Calendar.MONTH);
         day = calendario.get(Calendar.DAY_OF_MONTH);
 
         oyenteSelectorFecha = new DatePickerDialog.OnDateSetListener() {
@@ -88,7 +91,7 @@ public class ClockSettingsFragment extends DialogFragment  {
                 month = i1;
                 day = i2;
 
-                dateSelectedListener.onDateSelected(year+"/"+month+"/"+day, year, month, day);
+                dateSelectedListener.onDateSelected(year+"/"+(month+1)+"/"+day, year, month, day);
             }
         };
     }
