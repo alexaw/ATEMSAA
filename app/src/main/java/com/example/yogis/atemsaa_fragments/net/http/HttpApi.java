@@ -5,7 +5,7 @@ import android.content.Context;
 import android.support.annotation.StringRes;
 
 import com.example.yogis.atemsaa_fragments.R;
-import com.example.yogis.atemsaa_fragments.utl.Qk;
+import com.example.yogis.atemsaa_fragments.url.Qk;
 import com.google.gson.Gson;
 
 /**

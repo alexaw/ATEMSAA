@@ -1,4 +1,4 @@
-package com.example.yogis.atemsaa_fragments.net.api.PlcMms;
+package com.example.yogis.atemsaa_fragments.net.api.Cliente;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -14,42 +14,40 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 /**
- * Created by yogis on 10/10/2016.
+ * Created by yogis on 1/12/2016.
  */
-public class PlcMmsApi extends HttpApi{
-
+public class ClienteApi extends HttpApi{
 
     //region REQUEST & CALLBACK
     private static final int GET_ALL = 0;
     private static final int ADD = 1;
 
-    public interface OnPlcMmsList{
-        void onPlcMmsList(List<PlcMms> data);
+    public interface OnClienteList{
+        void onClienteList(List<Cliente> data);
     }
 
-    OnPlcMmsList onPlcMmsList;
+    OnClienteList onClienteList;
     //endregion
 
 
-    public PlcMmsApi(Context context, ProgressDialog loading) {
+    public ClienteApi(Context context, ProgressDialog loading) {
         super(context, loading);
     }
 
-    public void getAll(OnPlcMmsList onPlcMmsList){
-        this.onPlcMmsList = onPlcMmsList;
-        String url = makeUrl(R.string.url_plc_mms);
-        executeRequest(GET_ALL, HttpAsyncTask.GET, makeUrl(R.string.url_plc_mms));
+    public void getAll(OnClienteList onClienteList){
+        this.onClienteList = onClienteList;
+        executeRequest(GET_ALL, HttpAsyncTask.GET, makeUrl(R.string.url_cliente));
     }
 
     private void processAll(Response res){
 
-        Type type = new TypeToken< List<PlcMms>>(){}.getType();
-        List<PlcMms> data =  gson.fromJson(res.msg, type);
-        onPlcMmsList.onPlcMmsList(data);
+        Type type = new TypeToken< List<Cliente>>(){}.getType();
+        List<Cliente> data =  gson.fromJson(res.msg, type);
+        onClienteList.onClienteList(data);
     }
 
-    public void add(PlcMms plcMms){
-        executeRequest(ADD, HttpAsyncTask.POST, makeUrl(R.string.url_plc_mms), gson.toJson(plcMms));
+    public void add(Cliente cliente){
+        executeRequest(ADD, HttpAsyncTask.POST, makeUrl(R.string.url_cliente), gson.toJson(cliente));
     }
 
     private void processAdd(Response res){
@@ -58,6 +56,7 @@ public class PlcMmsApi extends HttpApi{
 
     @Override
     protected void processResponse(Response res) {
+
         switch (res.request){
             case GET_ALL:
                 processAll(res);

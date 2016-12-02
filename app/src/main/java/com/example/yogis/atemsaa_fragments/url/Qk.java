@@ -1,4 +1,4 @@
-package com.example.yogis.atemsaa_fragments.utl;
+package com.example.yogis.atemsaa_fragments.url;
 
 import android.app.ProgressDialog;
 import android.content.Context;

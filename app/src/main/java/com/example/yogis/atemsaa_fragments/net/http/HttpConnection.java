@@ -37,6 +37,7 @@ public class HttpConnection {
         HttpURLConnection con = (HttpURLConnection) u.openConnection();
         con.setDoInput(true);
         con.setRequestProperty("Content-Type","application/json");
+        con.setRequestProperty("Accept","application/json");
         con.setRequestMethod(method);
         con.setConnectTimeout(CON_TIMEOUT);
         con.setConnectTimeout(READ_TIMEOUT);

@@ -13,11 +13,15 @@ import android.widget.Toast;
 
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
+import com.example.yogis.atemsaa_fragments.net.api.PlcMms.PlcMms;
+import com.example.yogis.atemsaa_fragments.net.api.PlcMms.PlcMmsApi;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.List;
+
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, PlcMmsApi.OnPlcMmsList {
 
 
     //1. Se crean las variables que retienen la informaciion
@@ -25,6 +29,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     String sUsr, sPass;
     Button in;
     TextView link;
+    PlcMmsApi api;
 
 
 
@@ -45,6 +50,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         link.setOnClickListener(this);
 
+        api= new PlcMmsApi(this, null);
+        api.getAll(this);
 
     }
 
@@ -72,9 +79,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             toast.show();
                         }
 
-
-
-
                 break;
 
             case R.id.linkReg:
@@ -92,8 +96,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Log.i("Login","Entro en onResume");
     }
 
-
-
     @Override
     protected void onStop() {
         Log.i("Login","Entro en onStop");
@@ -110,5 +112,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onDestroy() {
         Log.i("Login","Entro en onDestroy");
         super.onDestroy();
+    }
+
+    @Override
+    public void onPlcMmsList(List<PlcMms> data) {
+        Log.i("tamanio", ""+data.size());
     }
 }

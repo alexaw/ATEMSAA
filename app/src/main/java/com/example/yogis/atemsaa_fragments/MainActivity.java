@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yogis.atemsaa_fragments.Login.LoginActivity;
+import com.example.yogis.atemsaa_fragments.fragments.ClientFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ClockSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.GprsSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ListUserFragment;
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     NewSettingsFragment newSettings;
     ToolBarFragment hola;
 
-
+    ClientFragment client;
 
     ActionBar myToolbar;
 
@@ -164,6 +165,8 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
         newSettings = new NewSettingsFragment();
 
         hola = new ToolBarFragment();
+
+        client = new ClientFragment();
 
 
         currentFragment = MENU;
@@ -261,9 +264,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
         if(state == MENUPPAL){
             menu.clear();
             if(flagConnectDisconnect)
-                inflater.inflate(R.menu.menu_main,menu);
+                inflater.inflate(R.menu.menu_main_off,menu);
             else
-                inflater.inflate(R.menu.menu_main_off, menu);
+                inflater.inflate(R.menu.menu_main, menu);
            // menu.clear();
         }else if (state == MENUSEARCH)
         {
@@ -480,7 +483,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     public void onChange(int fragment) {
         switch (fragment){
             case MENU :
-                putFragment(menu, fragment);
+                putFragment(client, fragment);
                 break;
             case USER :
                 putFragment(newUser, fragment);
