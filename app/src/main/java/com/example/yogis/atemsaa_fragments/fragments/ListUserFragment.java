@@ -33,13 +33,6 @@ import java.util.Date;
  */
 public class ListUserFragment extends Fragment {
 
-    // Name of the connected device
-    private String mConnectedDeviceName = null;
-    // Local Bluetooth adapter
-    private BluetoothAdapter mBluetoothAdapter = null;
-    // Member object for Bluetooth Command Service
-    private BluetoothCommandService mCommandService = null;
-
     //se inicializan todos los objetos
     Button btnListUser;
     TextView tvRtaListUser;

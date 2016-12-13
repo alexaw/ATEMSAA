@@ -29,10 +29,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yogis.atemsaa_fragments.Login.LoginActivity;
+import com.example.yogis.atemsaa_fragments.fragments.AmarreTrafoFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ClientFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ClockSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.GprsSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ListUserFragment;
+import com.example.yogis.atemsaa_fragments.fragments.MenuBaseDatosFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MenuFragment;
 import com.example.yogis.atemsaa_fragments.fragments.NewSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.NewUserFragment;
@@ -117,6 +119,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     ToolBarFragment hola;
 
     ClientFragment client;
+    MenuBaseDatosFragment menuBD;
+    AmarreTrafoFragment amarreTrafo;
+
 
     ActionBar myToolbar;
 
@@ -167,6 +172,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
         hola = new ToolBarFragment();
 
         client = new ClientFragment();
+        menuBD = new MenuBaseDatosFragment();
+        amarreTrafo = new AmarreTrafoFragment();
+
 
 
         currentFragment = MENU;
@@ -483,7 +491,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     public void onChange(int fragment) {
         switch (fragment){
             case MENU :
-                putFragment(client, fragment);
+                putFragment(menu, fragment);
                 break;
             case USER :
                 putFragment(newUser, fragment);
@@ -497,6 +505,10 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 break;
             case REPORT:
                 putFragment(newSettings, fragment);
+                showMenuSearch();
+                break;
+            case BASEDATOS:
+                putFragment(menuBD, fragment);
                 showMenuSearch();
                 break;
 
@@ -533,6 +545,12 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
             case HOLA :
                 putFragment(hola, fragment);
                 break;
+            case AMARRETRAFO :
+                putFragment(amarreTrafo, fragment);
+                break;
+            case CLIENTE :
+                putFragment(client, fragment);
+                break;
         }
     }
 
@@ -552,6 +570,10 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 showMenuPpal();
                 break;
             case REPORT:
+                putFragment(menu, MENU);
+                showMenuSearch();
+                break;
+            case BASEDATOS:
                 putFragment(menu, MENU);
                 showMenuSearch();
                 break;
@@ -589,6 +611,12 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 break;
             case HOLA:
                 putFragment(settings, NEWUSER);
+                break;
+            case AMARRETRAFO:
+                putFragment(menuBD, BASEDATOS);
+                break;
+            case CLIENTE:
+                putFragment(menuBD, BASEDATOS);
                 break;
 
         }

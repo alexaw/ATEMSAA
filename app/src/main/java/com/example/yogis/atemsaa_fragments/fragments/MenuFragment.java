@@ -35,7 +35,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 
     OnChangeFragment changeFragment;
 
-    Button menuUsuarios, menuConfiguracion, menuReportes;
+    Button menuUsuarios, menuConfiguracion, menuReportes, menuBaseDatos;
 
     public MenuFragment() {}
 
@@ -62,6 +62,9 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 
         menuReportes = (Button) v.findViewById(R.id.btn_menu_reportes);
         menuReportes.setOnClickListener(this);
+
+        menuBaseDatos = (Button) v.findViewById(R.id.btn_menu_base_datos);
+        menuBaseDatos.setOnClickListener(this);
 
         return v;
     }
@@ -101,8 +104,6 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
                     frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
                     frame2Send[6] = calcularCRC(frame2Send);
 
-
-
                     sendMessage(frame2Send);
 
                     break;
@@ -110,6 +111,12 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
                 case R.id.btn_menu_reportes:
 
                     changeFragment.onChange(OnChangeFragment.REPORT);
+
+                    break;
+
+                case R.id.btn_menu_base_datos:
+
+                    changeFragment.onChange(OnChangeFragment.BASEDATOS);
 
                     break;
             }

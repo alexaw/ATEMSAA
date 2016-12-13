@@ -7,7 +7,7 @@ import com.example.yogis.atemsaa_fragments.net.api.Cliente.Cliente;
 import com.example.yogis.atemsaa_fragments.net.api.Cliente.ClienteApi;
 import com.example.yogis.atemsaa_fragments.net.api.PlcMms.PlcMms;
 import com.example.yogis.atemsaa_fragments.net.api.PlcMms.PlcMmsApi;
-import com.example.yogis.atemsaa_fragments.url.Qk;
+import com.example.yogis.atemsaa_fragments.util.Qk;
 
 import java.util.List;
 

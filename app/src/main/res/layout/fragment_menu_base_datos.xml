@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.MenuBaseDatosFragment"
+    android:id="@+id/menu_baseDeDatos">
+
+    <Button
+        android:id="@+id/btn_menu_trafo"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@mipmap/ic_user"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/txt_amarre_trafo"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/title_trafo"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn_menu_trafo"
+        android:layout_marginBottom="30dp"
+        />
+
+    <Button
+        android:id="@+id/btn_menu_client"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@mipmap/ic_settings"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txt_amarre_trafo"
+        />
+
+    <TextView
+        android:id="@+id/txt_amarre_cliente"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/title_cliente"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn_menu_client"
+        android:layout_marginBottom="30dp"
+        />
+
+
+
+
+
+</RelativeLayout>

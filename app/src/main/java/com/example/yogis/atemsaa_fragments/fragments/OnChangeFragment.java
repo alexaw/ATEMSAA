@@ -12,6 +12,7 @@ public interface OnChangeFragment {
     int SETTINGS = 2;
     int REPORT = 3;
 
+
     //UserFragment
     int SEARCH = 4;
     int LIST = 5;
@@ -29,6 +30,11 @@ public interface OnChangeFragment {
 
     int NEWUSER = 14;
     int NEWSETTINGS = 15;
+
+
+    int BASEDATOS = 15;
+    int AMARRETRAFO = 16;
+    int CLIENTE = 17;
 
 
 

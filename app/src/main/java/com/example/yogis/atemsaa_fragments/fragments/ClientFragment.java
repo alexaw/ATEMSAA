@@ -1,6 +1,7 @@
 package com.example.yogis.atemsaa_fragments.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
 import com.example.yogis.atemsaa_fragments.net.api.Cliente.Cliente;
 import com.example.yogis.atemsaa_fragments.net.api.Cliente.ClienteApi;
@@ -20,11 +22,19 @@ import java.util.List;
 public class ClientFragment extends Fragment implements ClienteApi.OnClienteList {
 
     ClienteApi clienteApi;
-
+    MainActivity activity;
+    OnChangeFragment changeFragment;
 
 
     public ClientFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        changeFragment = (OnChangeFragment) context;
+        activity = (MainActivity) context;
     }
 
 
@@ -36,7 +46,6 @@ public class ClientFragment extends Fragment implements ClienteApi.OnClienteList
 
         clienteApi= new ClienteApi(getActivity(), null);
         clienteApi.getAll(this);
-
 
 
         return vista6;

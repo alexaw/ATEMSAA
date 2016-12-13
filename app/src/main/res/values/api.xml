@@ -3,10 +3,9 @@
 
     <string name="loading">Cargando…</string>
 
-    <string name="url_base">http://10.0.2.2:8080/WebApplication2/webresources/</string>
+    <string name="url_base">http://192.168.0.109:8080/WebApplication2/webresources/</string>
     <string name="url_plc_mms">entidades.plcmms</string>
     <string name="url_cliente">entidades.cliente</string>
-
 
     <string name="error_timeout">El servidor no responde</string>
     <string name="error_no_internet">No tiene acceso a internet</string>
@@ -14,4 +13,5 @@
     <string name="error_500">Error del servidor</string>
     <string name="error_401">No autorizado</string>
     <string name="error_unknown">Error desconocido</string>
+
 </resources>
