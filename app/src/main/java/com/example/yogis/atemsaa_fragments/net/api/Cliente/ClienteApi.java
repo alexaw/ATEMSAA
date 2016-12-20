@@ -8,7 +8,11 @@ import com.example.yogis.atemsaa_fragments.net.api.PlcMms.PlcMms;
 import com.example.yogis.atemsaa_fragments.net.http.HttpApi;
 import com.example.yogis.atemsaa_fragments.net.http.HttpAsyncTask;
 import com.example.yogis.atemsaa_fragments.net.http.Response;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -66,4 +70,6 @@ public class ClienteApi extends HttpApi{
                 break;
         }
     }
+
+
 }

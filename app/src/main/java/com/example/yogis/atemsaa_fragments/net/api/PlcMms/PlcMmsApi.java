@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by yogis on 10/10/2016.
  */
-public class PlcMmsApi extends HttpApi{
+public class PlcMmsApi extends HttpApi {
 
 
     //region REQUEST & CALLBACK

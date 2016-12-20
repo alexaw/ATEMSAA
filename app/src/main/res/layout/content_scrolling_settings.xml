@@ -35,8 +35,6 @@
 
             />
 
-
-
         <TextView
             android:id="@+id/txt_rta_user"
             android:layout_width="match_parent"

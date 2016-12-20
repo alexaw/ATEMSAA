@@ -10,7 +10,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/title_paired_devices"
+        android:id="@+id/title_amarre_cliente"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Consultar amarre del cliente para saber si está o no vinculado al trafo."
@@ -22,12 +22,13 @@
         android:text="Consultar"
         />
     <TextView
-        android:id="@+id/txt_rta_user"
+        android:id="@+id/txt_rta_cliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/respuesta_usr"
         />
     <TextView
+        android:id="@+id/txt_lista_cliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
