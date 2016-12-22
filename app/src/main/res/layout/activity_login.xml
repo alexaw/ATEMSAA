@@ -51,10 +51,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txt_register_here"
-        android:textColor="#2240bc"
+        android:textColor="#0fffffff"
         android:textStyle="bold"
         android:layout_gravity="center"
         android:paddingTop="20dp"
         />
+
+
 
 </LinearLayout>

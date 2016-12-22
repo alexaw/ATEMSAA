@@ -21,7 +21,7 @@ import com.parse.ParseUser;
 
 import java.util.List;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener, PlcMmsApi.OnPlcMmsList {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     //1. Se crean las variables que retienen la informaciion
@@ -29,7 +29,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     String sUsr, sPass;
     Button in;
     TextView link;
-    PlcMmsApi api;
 
 
 
@@ -43,15 +42,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         pass = (EditText) findViewById(R.id.pass);
         in = (Button) findViewById(R.id.btn_log);
 
-        link = (TextView) findViewById(R.id.linkReg);
-
         //3. Se implementa los eventos
         in.setOnClickListener(this);
 
+       link = (TextView) findViewById(R.id.linkReg);
         link.setOnClickListener(this);
 
-        api= new PlcMmsApi(this, null);
-        api.getAll(this);
 
     }
 
@@ -86,6 +82,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intent);
                 finish();
                 break;
+
+
+
         }
 
     }
@@ -114,8 +113,4 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onDestroy();
     }
 
-    @Override
-    public void onPlcMmsList(List<PlcMms> data) {
-        Log.i("tamanio", ""+data.size());
-    }
 }

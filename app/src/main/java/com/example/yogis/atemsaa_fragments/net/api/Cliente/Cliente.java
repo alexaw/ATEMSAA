@@ -7,6 +7,10 @@ public class Cliente {
 
     String cedula, nombres, apellidos, direccion, barrio, estrato, email, celular;
 
+
+    public Cliente() {
+    }
+
     public String getCedula() {
         return cedula;
     }

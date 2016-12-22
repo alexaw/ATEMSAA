@@ -15,6 +15,10 @@ public class HttpAsyncTask extends AsyncTask<String,Integer,Response>{
     public static final int PUT = 2;
     public static final int DELETE = 3;
 
+    public HttpAsyncTask() {
+
+    }
+
     public interface OnResponseRecived{
         void onResponse(Response res);
     }

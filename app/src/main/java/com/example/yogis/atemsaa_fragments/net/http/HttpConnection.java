@@ -1,7 +1,13 @@
 package com.example.yogis.atemsaa_fragments.net.http;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -47,7 +53,8 @@ public class HttpConnection {
 
         con.connect();
 
-        //ENViANDOAL SERVIDOR
+
+        //ENVIANDO AL SERVIDOR
         if(json!=null){
             OutputStreamWriter writer  = new OutputStreamWriter(con.getOutputStream());
             writer.write(json);
@@ -57,6 +64,7 @@ public class HttpConnection {
 
         //RECIBIR RESPUESTA
         InputStreamReader reader = new InputStreamReader(con.getInputStream());
+
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         int ch;
@@ -65,12 +73,14 @@ public class HttpConnection {
             out.write(ch);
         }
 
+
         Response response = new Response();
         response.msg = new String(out.toByteArray());
         response.error = Response.NO_ERROR;
         response.code = con.getResponseCode();
 
         return response;
+
 
 
     }

@@ -3,88 +3,151 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.yogis.atemsaa_fragments.fragments.MenuFragment"
-
     android:id="@+id/menu_principal">
 
-    <Button
-        android:id="@+id/btn_menu_usuarios"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@mipmap/ic_user"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        />
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="*"
+        >
 
-    <TextView
-        android:id="@+id/txt_user"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:text="@string/title_users"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/btn_menu_usuarios"
-        android:layout_marginBottom="30dp"
-        />
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
 
-    <Button
-        android:id="@+id/btn_menu_configuracion"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@mipmap/ic_settings"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/txt_user"
-        />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
 
-    <TextView
-        android:id="@+id/txt_set"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:text="@string/title_settings"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/btn_menu_configuracion"
-        android:layout_marginBottom="30dp"
-        />
+                <Button
+                    android:id="@+id/btn_menu_usuarios"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@mipmap/ic_user"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    />
 
-    <Button
-        android:id="@+id/btn_menu_reportes"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@mipmap/ic_reportes"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/txt_set"
-        />
+                <TextView
+                    android:id="@+id/txt_user"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_users"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/btn_menu_usuarios"
+                    android:layout_marginBottom="30dp"
+                    />
 
-    <TextView
-        android:id="@+id/txt_rep"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:text="@string/title_reports"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/btn_menu_reportes"
-        android:layout_marginBottom="30dp"
-        />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
 
-    <Button
-        android:id="@+id/btn_menu_base_datos"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@mipmap/ic_reportes"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/txt_rep"
-        />
+                <Button
+                    android:id="@+id/btn_menu_configuracion"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@mipmap/ic_settings"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/txt_user"
+                    />
 
-    <TextView
-        android:id="@+id/txt_bd"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="@string/title_base_datos"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/btn_menu_base_datos"
-        android:layout_marginBottom="30dp"
-        />
+                <TextView
+                    android:id="@+id/txt_set"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_settings"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/btn_menu_configuracion"
+                    android:layout_marginBottom="30dp"
+                    />
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
+
+                <Button
+                    android:id="@+id/btn_menu_reportes"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@mipmap/ic_reportes"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/txt_set"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_rep"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_reports"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/btn_menu_reportes"
+                    android:layout_marginBottom="30dp"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
+
+                <Button
+                    android:id="@+id/btn_menu_base_datos"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@mipmap/ic_reportes"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/txt_rep"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_bd"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_base_datos"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/btn_menu_base_datos"
+                    android:layout_marginBottom="30dp"
+                    />
+
+            </LinearLayout>
+        </TableRow>
+
+    </TableLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

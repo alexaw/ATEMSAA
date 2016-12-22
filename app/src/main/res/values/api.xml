@@ -4,7 +4,7 @@
     <string name="loading">Cargando…</string>
 
     <string name="url_base">http://wmyserver.sytes.net:8080/mcd-ami-saa/webresources/</string>
-    <string name="url_plc_mms">entidades.plcmms</string>
+    <string name="url_plc_mms">PlcMms</string>
     <string name="url_cliente">Cliente</string>
 
 
