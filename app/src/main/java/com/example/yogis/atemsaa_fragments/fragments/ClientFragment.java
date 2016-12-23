@@ -4,6 +4,8 @@ package com.example.yogis.atemsaa_fragments.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
+import com.example.yogis.atemsaa_fragments.adapters.ClientAdapter;
 import com.example.yogis.atemsaa_fragments.net.api.Cliente.Cliente;
 import com.example.yogis.atemsaa_fragments.net.api.Cliente.ClienteApi;
 import com.example.yogis.atemsaa_fragments.net.http.HttpApi;
@@ -43,8 +46,8 @@ public class ClientFragment extends Fragment implements ClienteApi.OnClienteList
 
     Button btnListClient;
     TextView tvRtaListClient;
-    StringBuilder result;
-
+    RecyclerView recyclerView;
+    ClientAdapter adapter;
 
 
 
@@ -72,6 +75,11 @@ public class ClientFragment extends Fragment implements ClienteApi.OnClienteList
         clienteApi= new ClienteApi(getActivity(), null);
         clienteApi.getAll(this);
 
+        recyclerView = (RecyclerView) vista6.findViewById(R.id.recycler_cliente);
+        adapter = new ClientAdapter(getLayoutInflater(null));
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
 
 
 
@@ -83,48 +91,14 @@ public class ClientFragment extends Fragment implements ClienteApi.OnClienteList
     @Override
     public void onClienteList(List<Cliente> data) {
         Log.i("tamanio cliente", ""+data.size());
-
-
-        Gson gson = new GsonBuilder().create();
-
-
-        try {
-            JSONObject rtaJSON = new JSONObject(data.toString());
-            String resultJSON = rtaJSON.getString("");
-            ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-
-
-            if (resultJSON=="1"){
-                JSONArray clientJSON = rtaJSON.getJSONArray("");
-                for (int i = 0 ; i < clientJSON.length() ; i++){
-                    String client = clientJSON.getString(i);
-                    Cliente cli =  gson.fromJson(client, Cliente.class);
-                    clientes.add(cli);
-                    tvRtaListClient.setText(cli.getCedula());
-                    tvRtaListClient.setText(cli.getNombres());
-                    tvRtaListClient.setText(cli.getApellidos());
-                    tvRtaListClient.setText(cli.getDireccion());
-                    tvRtaListClient.setText(cli.getBarrio());
-
-                }
-            }
-
-        }catch (Exception e){}
-
-
-    }
+        adapter.setData(data);
+           }
 
     @Override
     public void onClick(View view) {
 
         switch (view.getId()) {
             case R.id.btn_consulta:
-
-
-
-
-
-
 
                 tvRtaListClient.setText("");
                 break;

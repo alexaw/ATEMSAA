@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <TextView
+        style="@style/TextAppearance.AppCompat.Title"
+        android:id="@+id/idPlcMms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="ID PLC-MMS"
+        />
+    <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/estadoPlcMms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Estado"
+        />
+    <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/macPlcMms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="MAC"
+        />
+    <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/idTrafo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="ID trafo"
+        />
+    <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/gtxPlcMms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="GTx"
+        />
+
+    <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/grxPlcMms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="GRx"
+        />
+    <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/retardoPlcMms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Retardo Tx"
+        />
+
+    <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/tasaPlcMms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Tasa Tx"
+        />
+
+
+</LinearLayout>

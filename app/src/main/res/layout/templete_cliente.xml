@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <TextView
+        style="@style/TextAppearance.AppCompat.Title"
+        android:id="@+id/cedula"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Cedula"
+        />
+    <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/nombres"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Nombres"
+        />
+    <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/apellidos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Apellidos"
+        />
+    <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/direccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Direccion"
+        />
+    <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/barrio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Barrio"
+        />
+    <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/celular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Celular"
+        />
+
+
+
+</LinearLayout>

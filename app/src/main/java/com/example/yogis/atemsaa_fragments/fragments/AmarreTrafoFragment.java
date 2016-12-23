@@ -4,6 +4,8 @@ package com.example.yogis.atemsaa_fragments.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
+import com.example.yogis.atemsaa_fragments.adapters.PlcMmsAdapter;
 import com.example.yogis.atemsaa_fragments.net.api.Cliente.ClienteApi;
 import com.example.yogis.atemsaa_fragments.net.api.PlcMms.PlcMms;
 import com.example.yogis.atemsaa_fragments.net.api.PlcMms.PlcMmsApi;
@@ -30,6 +33,9 @@ public class AmarreTrafoFragment extends Fragment implements PlcMmsApi.OnPlcMmsL
 
     Button btnListPlcMms;
     TextView tvRtaListPlcMms;
+
+    RecyclerView recyclerView;
+    PlcMmsAdapter adapter;
 
 
     public AmarreTrafoFragment() {
@@ -56,6 +62,10 @@ public class AmarreTrafoFragment extends Fragment implements PlcMmsApi.OnPlcMmsL
         plcMmsApi= new PlcMmsApi(getActivity(), null);
         plcMmsApi.getAll(this);
 
+        recyclerView = (RecyclerView) vista6.findViewById(R.id.recycler_plcmms);
+        adapter = new PlcMmsAdapter(getLayoutInflater(null));
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
         return vista6;    }
@@ -63,6 +73,7 @@ public class AmarreTrafoFragment extends Fragment implements PlcMmsApi.OnPlcMmsL
     @Override
     public void onPlcMmsList(List<PlcMms> data) {
         Log.i("tamanio amarre trafo", ""+data.size());
+        adapter.setData(data);
 
     }
 
