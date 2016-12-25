@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +21,9 @@ import android.widget.Toast;
 import com.example.yogis.atemsaa_fragments.BluetoothCommandService;
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
+
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -33,7 +35,9 @@ import java.util.Date;
  */
 public class NewUserFragment extends Fragment implements View.OnClickListener {
 
-    FloatingActionButton flMore, flAdd, flTestFrame, flOpc;
+    FloatingActionsMenu flMore;
+    FloatingActionButton flAdd, flTestFrame, flOpc;
+
     Animation open, close, clock, anticlock;
     boolean isOpen = false;
 
@@ -70,12 +74,13 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
         tvRtaListNewUser.setText("");
 
 
-        flMore = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_more);
+        flMore = (FloatingActionsMenu) vistaUsr.findViewById(R.id.fl_more);
+
         flAdd = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_add_user);
         flTestFrame = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_test_frame_user);
         flOpc = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_opc);
 
-        txtOpc = (TextView) vistaUsr.findViewById(R.id.txt_opc);
+        /*txtOpc = (TextView) vistaUsr.findViewById(R.id.txt_opc);
         txtAdd = (TextView) vistaUsr.findViewById(R.id.txt_add_user);
         txtTest = (TextView) vistaUsr.findViewById(R.id.txt_test_frame);
 
@@ -84,10 +89,11 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
         clock = AnimationUtils.loadAnimation(vistaUsr.getContext(),R.anim.rorate_clock);
         anticlock = AnimationUtils.loadAnimation(vistaUsr.getContext(),R.anim.rotate_anticlock);
 
-        flMore.setOnClickListener(this);
+*/
         flAdd.setOnClickListener(this);
         flTestFrame.setOnClickListener(this);
         flOpc.setOnClickListener(this);
+
 
         // Capturo el contenido del editText donde van los ID
         edTxtID = (EditText) vistaUsr.findViewById(R.id.id_list_newuser);
@@ -97,8 +103,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-
-        if (isOpen){
+        /* if (isOpen){
 
             flAdd.startAnimation(close);
             txtAdd.startAnimation(close);
@@ -146,10 +151,16 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
 
             isOpen = true;
         }
+
+        */
         switch(view.getId()){
+
 
             //caso de REGISTRAR un usuario
             case R.id.fl_add_user:
+
+                flMore.collapse();
+
                 //Toast.makeText(this.getActivity(),"Button is clicked", Toast.LENGTH_SHORT).show();
                 //Toast.makeText(getApplicationContext(),"Button is clicked", Toast.LENGTH_LONG).show();
                 //changeFragment.onChange(OnChangeFragment.NEWUSER);
@@ -195,6 +206,8 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
 
             //caso de ENVIAR TRAMA DE PRUEBA
             case R.id.fl_test_frame_user:
+
+                flMore.collapse();
                 //Toast.makeText(this.getActivity(),"Button is clicked", Toast.LENGTH_SHORT).show();
                 //Toast.makeText(getApplicationContext(),"Button is clicked", Toast.LENGTH_LONG).show();
                 //changeFragment.onChange(OnChangeFragment.SEARCH);
@@ -235,6 +248,8 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
 
             case R.id.fl_opc:
 
+                flMore.collapse();
+
                 new AlertDialog.Builder(view.getContext())
                         .setTitle(getString(R.string.txt_options))
                         .setMessage("")
@@ -263,6 +278,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
                         .show();
 
                 break;
+
         }
     }
 

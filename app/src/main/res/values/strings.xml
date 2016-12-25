@@ -122,6 +122,8 @@
 
     <string name="title_trafo">Amarre Trafo</string>
     <string name="title_cliente">Amarre Cliente</string>
+    <string name="txt_data_base">Data base</string>
+    <string name="title_data_base">Data base</string>
 
 
 </resources>
