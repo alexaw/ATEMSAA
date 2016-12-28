@@ -14,7 +14,7 @@
         android:id="@+id/title_paired_devices"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Consultar amarre del trafo. Verificar vínculos [MAC] al trafo asignado."
+        android:text="Consultar PLC-MMS registrados en la base de datos"
         android:paddingLeft="5dp"
         />
     <Button android:id="@+id/btn_consulta"

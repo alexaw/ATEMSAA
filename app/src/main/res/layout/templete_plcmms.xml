@@ -3,21 +3,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:padding="15dp"
+    android:background="@drawable/rectangle_red">
 
     <TextView
-        style="@style/TextAppearance.AppCompat.Title"
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ID PLC-MMS: "
+        android:textColor="@color/colorRed"
+        />
+    <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
         android:id="@+id/idPlcMms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="ID PLC-MMS"
+        android:paddingLeft="10dp"
+        />
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Estado: "
+        android:textColor="@color/colorRed"
         />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
         android:id="@+id/estadoPlcMms"
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
         tools:text="Estado"
+        android:paddingLeft="10dp"
+        />
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MAC: "
+        android:textColor="@color/colorRed"
         />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
@@ -25,6 +50,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="MAC"
+        android:paddingLeft="10dp"
+        />
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ID Trafo: "
+        android:textColor="@color/colorRed"
         />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
@@ -32,6 +65,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="ID trafo"
+        android:paddingLeft="10dp"
+        />
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ganancia de transmision: "
+        android:textColor="@color/colorRed"
         />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
@@ -39,14 +80,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="GTx"
+        android:paddingLeft="10dp"
         />
-
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ganacia de recepcion: "
+        android:textColor="@color/colorRed"
+        />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
         android:id="@+id/grxPlcMms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="GRx"
+        android:paddingLeft="10dp"
+        />
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Retardo de transmision: "
+        android:textColor="@color/colorRed"
         />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
@@ -54,15 +110,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Retardo Tx"
+        android:paddingLeft="10dp"
         />
-
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tasa de transmision: "
+        android:textColor="@color/colorRed"
+        />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
         android:id="@+id/tasaPlcMms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Tasa Tx"
+        android:paddingLeft="10dp"
         />
-
-
 </LinearLayout>

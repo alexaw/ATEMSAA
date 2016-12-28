@@ -98,6 +98,8 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
                     frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
                     frame2Send[6] = calcularCRC(frame2Send);
                     sendMessage(frame2Send);
+
+
                     break;
 
                 case R.id.btn_menu_reportes:

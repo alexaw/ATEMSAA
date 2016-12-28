@@ -1,54 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:background="@drawable/rectangle_red"
+    >
 
     <TextView
-        style="@style/TextAppearance.AppCompat.Title"
-        android:id="@+id/cedula"
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:id="@+id/txt_cedula"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cedula: "
+        android:textColor="@color/colorRed"
+        />
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:id="@+id/cedula"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Cedula"
+        android:paddingLeft="10dp"
         />
     <TextView
-        style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/nombres"
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:id="@+id/txt_nombres"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombres: "
+        android:textColor="@color/colorRed"
+        />
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:id="@+id/nombres"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Nombres"
+        android:paddingLeft="10dp"
         />
     <TextView
-        style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/apellidos"
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:id="@+id/txt_apellidos"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apellidos: "
+        android:textColor="@color/colorRed"
+        />
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:id="@+id/apellidos"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Apellidos"
+        android:paddingLeft="10dp"
         />
     <TextView
-        style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/direccion"
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:id="@+id/txt_direccion"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Direccion: "
+        android:textColor="@color/colorRed"
+        />
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:id="@+id/direccion"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Direccion"
+        android:paddingLeft="10dp"
         />
     <TextView
-        style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/barrio"
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:id="@+id/txt_barrio"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Barrio: "
+        android:textColor="@color/colorRed"
+        />
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:id="@+id/barrio"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Barrio"
+        android:paddingLeft="10dp"
         />
     <TextView
-        style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/celular"
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:id="@+id/txt_celular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Celular"
+        android:text="Celular: "
+        android:textColor="@color/colorRed"
         />
-
-
-
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:id="@+id/celular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Celular"
+        android:paddingLeft="10dp"
+        />
 </LinearLayout>

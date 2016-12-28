@@ -32,6 +32,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,7 +47,7 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
     Animation open, close, clock, anticlock;
     boolean isOpen = false;
 
-    TextView tvRtaNewSettings, txtPlcMms, txtPlcTu, txtPlcMc;
+    TextView tvRtaNewSettings, txtPlcMms, txtPlcTu, txtPlcMc, tvRtaClock;
     Button btnCheckSettings, btnRecord;
     Spinner ganTransmision, ganRecepcion, retTransmision, tasaTransmision, horaEncuesta;
     ArrayList listaGtx, listaGrx, listaRetardoTx, listaTasaTx, listaHoraEncuesta;
@@ -91,6 +92,9 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
 
         //textView donde se muestra las respuesta de las consultas
         tvRtaNewSettings=(TextView)vistaStgs.findViewById(R.id.txt_view_rta_settings);
+        tvRtaNewSettings.setText("");
+
+        tvRtaClock= (TextView) vistaStgs.findViewById(R.id.txt_view_rta_clock);
         tvRtaNewSettings.setText("");
 
         //se recuperan los botones de la interfaz de Settings
@@ -599,12 +603,52 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
 
             case R.id.fl_plc_mms:
                 flMore.collapse();
+
+                frame2Send = new byte[7];
+
+                frame2Send[0] = 0x24;
+                frame2Send[1] = 0x40;
+                frame2Send[2] = 0x07;
+                frame2Send[3] = 0x02;
+                frame2Send[4] = 0x01;
+                frame2Send[5] = 0x02;
+                frame2Send[6] = calcularCRC(frame2Send);
+
+                tvRtaNewSettings.setText("");
+                buff="";
+
+                sendMessage(frame2Send);
+
                 break;
             case R.id.fl_plc_tu:
                 flMore.collapse();
+                frame2Send = new byte[7];
+
+                frame2Send[0] = 0x24;
+                frame2Send[1] = 0x40;
+                frame2Send[2] = 0x07;
+                frame2Send[3] = 0x13;
+                frame2Send[4] = 0x01;
+                frame2Send[5] = 0x02;
+                frame2Send[6] = calcularCRC(frame2Send);
+
+                tvRtaNewSettings.setText("");
+                buff="";
+
+                sendMessage(frame2Send);
                 break;
             case R.id.fl_plc_mc:
                 flMore.collapse();
+
+                Date horaActual=new Date();
+
+                String fecha=(horaActual.getYear()+1900)+""+(horaActual.getMonth()+1)+""+horaActual.getDate()+""+horaActual.getHours()+""+horaActual.getMinutes()+""+horaActual.getSeconds();
+
+                writeFile("atemsaa"+fecha+".csv",buff);
+                tvRtaNewSettings.setText("");
+
+                buff="";
+
                 break;
 
         }

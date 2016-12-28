@@ -6,6 +6,7 @@
     <color name="colorGray">#ebecea</color>
     <color name="colorOrange">#FFFF8700</color>
     <color name="colorBlue">#3842B4</color>
+    <color name="colorRed">#C50000</color>
     <color name="colorBluePressed">#4d5bff</color>
     <color name="colorBlueSemiTrans">#8c3842b4</color>
     <color name="colorGreen">#34BF49</color>
