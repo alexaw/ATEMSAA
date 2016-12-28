@@ -104,7 +104,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 
                 case R.id.btn_menu_reportes:
 
-                    //changeFragment.onChange(OnChangeFragment.REPORT);
+                    changeFragment.onChange(OnChangeFragment.REPORT);
 
                     break;
 

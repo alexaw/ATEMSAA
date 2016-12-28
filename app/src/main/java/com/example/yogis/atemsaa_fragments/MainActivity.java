@@ -36,6 +36,7 @@ import com.example.yogis.atemsaa_fragments.fragments.GprsSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ListUserFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MenuBaseDatosFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MenuFragment;
+import com.example.yogis.atemsaa_fragments.fragments.NewReportsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.NewSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.NewUserFragment;
 import com.example.yogis.atemsaa_fragments.fragments.OnChangeFragment;
@@ -116,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
 
     NewUserFragment newUser;
     NewSettingsFragment newSettings;
+    NewReportsFragment newReports;
     ToolBarFragment hola;
 
     ClientFragment client;
@@ -168,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
 
         newUser = new NewUserFragment();
         newSettings = new NewSettingsFragment();
+        newReports = new NewReportsFragment();
 
         hola = new ToolBarFragment();
 
@@ -454,6 +457,10 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
             case 2:
                 newSettings.setMsg(buff);
                 break;
+            case 3:
+                newReports.setMsg(buff);
+                break;
+
         }
     }
 
@@ -504,7 +511,8 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 showMenuSettings();
                 break;
             case REPORT:
-                putFragment(newSettings, fragment);
+                putFragment(newReports, fragment);
+                band = 3;
                 showMenuSearch();
                 break;
             case BASEDATOS:
@@ -618,6 +626,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
             case CLIENTE:
                 putFragment(menuBD, BASEDATOS);
                 break;
+            case PARCIAL:
+                putFragment(newReports, NEWREPORTS);
+                break;
 
         }
     }
@@ -660,5 +671,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     public void onDateSelected(String date, int year, int month, int day) {
         campoFecha.setText(date);
     }
+
 
 }
