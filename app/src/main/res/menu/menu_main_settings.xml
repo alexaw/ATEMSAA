@@ -6,6 +6,7 @@
         android:title="@string/title_reloj"
         android:icon="@mipmap/ic_clock"
         app:showAsAction="always"
+
         />
 
     <item android:id="@+id/action_settings_gprs"

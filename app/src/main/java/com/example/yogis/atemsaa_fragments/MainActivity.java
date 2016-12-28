@@ -346,6 +346,8 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
 
             case R.id.action_settings_clock:
 
+                ClockSettingsFragment.showDateDialog(this, this);
+
                 onChange(CLOCK);
                 return true;
 
