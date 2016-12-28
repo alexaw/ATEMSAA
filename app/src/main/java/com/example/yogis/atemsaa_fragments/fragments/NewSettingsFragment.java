@@ -1,20 +1,19 @@
 package com.example.yogis.atemsaa_fragments.fragments;
 
 
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
+
 import android.content.Context;
-import android.content.DialogInterface;
+
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.design.widget.FloatingActionButton;
+
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,6 +25,8 @@ import android.widget.Toast;
 import com.example.yogis.atemsaa_fragments.BluetoothCommandService;
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -40,11 +41,13 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
 
     //se inicializan todos los objetos
 
-    FloatingActionButton flMore, flPlcMms, flPlcTu, flPlcMc;
+    FloatingActionButton flPlcMms, flPlcTu, flPlcMc;
+    FloatingActionsMenu flMore;
+
     Animation open, close, clock, anticlock;
     boolean isOpen = false;
 
-    TextView tvRtaNewSettings, txtPlcMms, txtPlcTu, txtPlcMc;
+    TextView tvRtaNewSettings, txtPlcMms, txtPlcTu, txtPlcMc, tvRtaClock;
     Button btnCheckSettings, btnRecord;
     Spinner ganTransmision, ganRecepcion, retTransmision, tasaTransmision, horaEncuesta;
     ArrayList listaGtx, listaGrx, listaRetardoTx, listaTasaTx, listaHoraEncuesta;
@@ -91,6 +94,9 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
         tvRtaNewSettings=(TextView)vistaStgs.findViewById(R.id.txt_view_rta_settings);
         tvRtaNewSettings.setText("");
 
+        tvRtaClock= (TextView) vistaStgs.findViewById(R.id.txt_view_rta_clock);
+        tvRtaNewSettings.setText("");
+
         //se recuperan los botones de la interfaz de Settings
         btnCheckSettings = (Button) vistaStgs.findViewById(R.id.btn_verificar_configuracion);
         btnRecord = (Button) vistaStgs.findViewById(R.id.btn_configuracion);
@@ -99,21 +105,22 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
         btnRecord.setOnClickListener(this);
 
 
-        flMore= (FloatingActionButton) vistaStgs.findViewById(R.id.fl_more);
+        flMore= (FloatingActionsMenu) vistaStgs.findViewById(R.id.fl_more);
         flPlcMms= (FloatingActionButton) vistaStgs.findViewById(R.id.fl_plc_mms);
         flPlcTu= (FloatingActionButton) vistaStgs.findViewById(R.id.fl_plc_tu);
         flPlcMc= (FloatingActionButton) vistaStgs.findViewById(R.id.fl_plc_mc);
 
-        txtPlcMms= (TextView) vistaStgs.findViewById(R.id.txt_plc_mms);
+
+        /*txtPlcMms= (TextView) vistaStgs.findViewById(R.id.txt_plc_mms);
         txtPlcTu= (TextView) vistaStgs.findViewById(R.id.txt_plc_tu);
         txtPlcMc= (TextView) vistaStgs.findViewById(R.id.txt_plc_mc);
 
         open = AnimationUtils.loadAnimation(vistaStgs.getContext(),R.anim.open);
         close = AnimationUtils.loadAnimation(vistaStgs.getContext(),R.anim.close);
         clock = AnimationUtils.loadAnimation(vistaStgs.getContext(),R.anim.rorate_clock);
-        anticlock = AnimationUtils.loadAnimation(vistaStgs.getContext(),R.anim.rotate_anticlock);
+        anticlock = AnimationUtils.loadAnimation(vistaStgs.getContext(),R.anim.rotate_anticlock);*/
 
-        flMore.setOnClickListener(this);
+
         flPlcMms.setOnClickListener(this);
         flPlcTu.setOnClickListener(this);
         flPlcMc.setOnClickListener(this);
@@ -341,7 +348,7 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View view) {
 
-        if (isOpen){
+    /*    if (isOpen){
 
             flPlcMms.startAnimation(close);
             txtPlcMms.startAnimation(close);
@@ -389,6 +396,8 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
 
             isOpen = true;
         }
+        */
+
         switch (view.getId()) {
 
             //caso de CHECK SETTINGS
@@ -589,6 +598,56 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
                 } else {
                     toastIngresarId();
                 }
+
+                break;
+
+            case R.id.fl_plc_mms:
+                flMore.collapse();
+
+                frame2Send = new byte[7];
+
+                frame2Send[0] = 0x24;
+                frame2Send[1] = 0x40;
+                frame2Send[2] = 0x07;
+                frame2Send[3] = 0x02;
+                frame2Send[4] = 0x01;
+                frame2Send[5] = 0x02;
+                frame2Send[6] = calcularCRC(frame2Send);
+
+                tvRtaNewSettings.setText("");
+                buff="";
+
+                sendMessage(frame2Send);
+
+                break;
+            case R.id.fl_plc_tu:
+                flMore.collapse();
+                frame2Send = new byte[7];
+
+                frame2Send[0] = 0x24;
+                frame2Send[1] = 0x40;
+                frame2Send[2] = 0x07;
+                frame2Send[3] = 0x13;
+                frame2Send[4] = 0x01;
+                frame2Send[5] = 0x02;
+                frame2Send[6] = calcularCRC(frame2Send);
+
+                tvRtaNewSettings.setText("");
+                buff="";
+
+                sendMessage(frame2Send);
+                break;
+            case R.id.fl_plc_mc:
+                flMore.collapse();
+
+                Date horaActual=new Date();
+
+                String fecha=(horaActual.getYear()+1900)+""+(horaActual.getMonth()+1)+""+horaActual.getDate()+""+horaActual.getHours()+""+horaActual.getMinutes()+""+horaActual.getSeconds();
+
+                writeFile("atemsaa"+fecha+".csv",buff);
+                tvRtaNewSettings.setText("");
+
+                buff="";
 
                 break;
 

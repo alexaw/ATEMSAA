@@ -100,7 +100,7 @@ public class ClientFragment extends Fragment implements ClienteApi.OnClienteList
         switch (view.getId()) {
             case R.id.btn_consulta:
 
-                tvRtaListClient.setText("");
+
                 break;
         }
     }

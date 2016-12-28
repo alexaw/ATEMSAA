@@ -1,103 +1,66 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:padding="5dp"
     tools:context="com.example.yogis.atemsaa_fragments.fragments.NewSettingsFragment">
 
         <include layout="@layout/content_scrolling_settings" />
 
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fl_plc_mms"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="260dp"
-            android:src="@mipmap/ic_transformador"
-            android:elevation="6dp"
-            app:pressedTranslationZ="12dp"
-            app:backgroundTint="@color/colorGreen"
-            android:visibility="invisible"
-            />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/txt_plc_mms"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PLC_MMS"
-            android:layout_gravity="bottom|end"
-            android:layout_marginRight="70dp"
-            android:layout_marginBottom="270dp"
-            android:visibility="invisible"
-            />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fl_plc_tu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="180dp"
-            android:src="@mipmap/ic_medidor"
-            android:elevation="6dp"
-            app:pressedTranslationZ="12dp"
-            app:backgroundTint="@color/colorGreen"
-            android:visibility="invisible"
-            />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/txt_plc_tu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PLC_TU"
-            android:layout_gravity="bottom|end"
-            android:layout_marginRight="70dp"
-            android:layout_marginBottom="190dp"
-            android:visibility="invisible"
-            />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fl_plc_mc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="100dp"
-            android:src="@mipmap/ic_armario"
-            android:elevation="6dp"
-            app:pressedTranslationZ="12dp"
-            app:backgroundTint="@color/colorGreen"
-            android:visibility="invisible"
-            />
-
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/txt_plc_mc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PLC_TU"
-            android:layout_gravity="bottom|end"
-            android:layout_marginRight="70dp"
-            android:layout_marginBottom="110dp"
-            android:visibility="invisible"
-            />
-        <android.support.design.widget.FloatingActionButton
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
             android:id="@+id/fl_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:src="@mipmap/ic_mas"
-            android:elevation="6dp"
-            app:pressedTranslationZ="6dp"
-            app:backgroundTint="@color/colorGreen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            fab:fab_addButtonColorNormal="@color/colorGreen"
+            fab:fab_addButtonColorPressed="@color/colorGreenPressed"
+            fab:fab_addButtonPlusIconColor="@color/colorGray"
+            fab:fab_labelStyle="@style/menu_labels_style"
 
-            />
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
+            >
 
-        </android.support.design.widget.CoordinatorLayout>
+                <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fl_plc_mms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    fab:fab_colorNormal="@color/colorGreen"
+                    fab:fab_title="PLC_MMS"
+                    fab:fab_colorPressed="@color/colorGreenPressed"
+                    fab:fabSize="mini"
+                    fab:fab_icon="@mipmap/ic_transformador"
+                    />
+
+                <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fl_plc_tu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    fab:fab_colorNormal="@color/colorGreen"
+                    fab:fab_title="PLC_TU"
+                    fab:fab_colorPressed="@color/colorGreenPressed"
+                    fab:fabSize="mini"
+                    fab:fab_icon="@mipmap/ic_medidor"
+                    />
+
+                <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fl_plc_mc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    fab:fab_colorNormal="@color/colorGreen"
+                    fab:fabSize="mini"
+                    fab:fab_title="PLC_MC"
+                    fab:fab_colorPressed="@color/colorGreenPressed"
+                    fab:fab_icon="@mipmap/ic_armario"
+                    />
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+        </RelativeLayout>
 
 
 

@@ -4,33 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp"
-    tools:context="com.example.yogis.atemsaa_fragments.fragments.NewUserFragment"
+    tools:context="com.example.yogis.atemsaa_fragments.fragments.NewReportsFragment">
 
-    >
-
-    <EditText
-        android:id="@+id/id_list_newuser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="ID:"
-        android:layout_marginBottom="50dp"
-        />
 
     <TextView
-        android:id="@+id/txt_rta_newuser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/respuesta_usr"
-        android:layout_marginTop="50dp"
-        />
-
-    <TextView
-        android:id="@+id/txt_view_rta_list_newusr"
+        android:id="@+id/txt_view_rta_newreports"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
         android:layout_marginTop="100dp"
-        android:background="@drawable/rectangle_blue"
+        android:background="@drawable/rentangle_orange"
         android:padding="10dp"
         />
 
@@ -43,8 +26,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        fab:fab_addButtonColorNormal="@color/colorBlue"
-        fab:fab_addButtonColorPressed="@color/colorBluePressed"
+        fab:fab_addButtonColorNormal="@color/colorOrange"
+        fab:fab_addButtonColorPressed="@color/colorOrangePressed"
         fab:fab_addButtonPlusIconColor="@color/colorGray"
         fab:fab_labelStyle="@style/menu_labels_style"
 
@@ -54,23 +37,23 @@
         >
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fl_add_user"
+            android:id="@+id/fl_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/colorBlue"
-            fab:fab_title="Agregar"
-            fab:fab_colorPressed="@color/colorBluePressed"
+            fab:fab_colorNormal="@color/colorOrange"
+            fab:fab_title="Listar Reportes"
+            fab:fab_colorPressed="@color/colorOrangePressed"
             fab:fabSize="mini"
             fab:fab_icon="@mipmap/ic_add_user"
             />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fl_test_frame_user"
+            android:id="@+id/fl_parcial"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/colorBlue"
-            fab:fab_title="Prueba"
-            fab:fab_colorPressed="@color/colorBluePressed"
+            fab:fab_colorNormal="@color/colorOrange"
+            fab:fab_title="Reporte parcial"
+            fab:fab_colorPressed="@color/colorOrangePressed"
             fab:fabSize="mini"
             fab:fab_icon="@mipmap/ic_test"
             />
@@ -79,13 +62,14 @@
             android:id="@+id/fl_opc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/colorBlue"
+            fab:fab_colorNormal="@color/colorOrange"
             fab:fabSize="mini"
             fab:fab_title="Opciones"
-            fab:fab_colorPressed="@color/colorBluePressed"
+            fab:fab_colorPressed="@color/colorOrangePressed"
             fab:fab_icon="@mipmap/ic_opc"
             />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
 
 </RelativeLayout>

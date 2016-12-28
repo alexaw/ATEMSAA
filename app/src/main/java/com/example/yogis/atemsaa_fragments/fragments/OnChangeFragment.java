@@ -36,6 +36,9 @@ public interface OnChangeFragment {
     int AMARRETRAFO = 16;
     int CLIENTE = 17;
 
+    //ReportsFragments
+    int NEWREPORTS = 18;
+    int PARCIAL=19;
 
 
     void onChange(int fragment);

@@ -114,7 +114,7 @@
                     android:id="@+id/btn_menu_base_datos"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:background="@mipmap/ic_reportes"
+                    android:background="@mipmap/ic_bd"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/txt_rep"
                     />
@@ -123,7 +123,7 @@
                     android:id="@+id/txt_bd"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_base_datos"
+                    android:text="@string/title_data_base"
                     android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/btn_menu_base_datos"
@@ -132,23 +132,5 @@
 
             </LinearLayout>
         </TableRow>
-
     </TableLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </RelativeLayout>
