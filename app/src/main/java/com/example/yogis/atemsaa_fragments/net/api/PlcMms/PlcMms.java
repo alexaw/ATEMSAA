@@ -5,7 +5,19 @@ package com.example.yogis.atemsaa_fragments.net.api.PlcMms;
  */
 public class PlcMms {
 
-    String idPlcMms, macPlcMms, versionFw, estado, gtx, grx, bps,rtx, numeroCelular;
+    String idPlcMms;
+    String macPlcMms;
+    String versionFw;
+    String estado;
+    String gtx;
+    String grx;
+    String bps;
+    String rtx;
+    String numeroCelular;
+
+
+
+
 
     public String getIdPlcMms() {
         return idPlcMms;
@@ -78,4 +90,6 @@ public class PlcMms {
     public void setNumeroCelular(String numeroCelular) {
         this.numeroCelular = numeroCelular;
     }
+
+
 }

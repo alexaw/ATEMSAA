@@ -52,21 +52,7 @@
         tools:text="MAC"
         android:paddingLeft="10dp"
         />
-    <TextView
-        style="@style/Base.TextAppearance.AppCompat.Body2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ID Trafo: "
-        android:textColor="@color/colorRed"
-        />
-    <TextView
-        style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/idTrafo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="ID trafo"
-        android:paddingLeft="10dp"
-        />
+
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
