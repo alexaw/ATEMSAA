@@ -4,6 +4,8 @@ package com.example.yogis.atemsaa_fragments.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
+import com.example.yogis.atemsaa_fragments.adapters.ProductoAdapter;
 import com.example.yogis.atemsaa_fragments.net.api.Producto.Producto;
 import com.example.yogis.atemsaa_fragments.net.api.Producto.ProductoApi;
 
@@ -24,6 +27,9 @@ public class ProductoBDFragment extends Fragment implements ProductoApi.OnProduc
     ProductoApi productoApi;
     MainActivity activity;
     OnChangeFragment changeFragment;
+
+    RecyclerView recyclerView;
+    ProductoAdapter adapter;
 
 
     public ProductoBDFragment() {
@@ -46,12 +52,18 @@ public class ProductoBDFragment extends Fragment implements ProductoApi.OnProduc
         productoApi = new ProductoApi(getActivity(), null);
         productoApi.getAll(this);
 
+        recyclerView = (RecyclerView) vistaProducto.findViewById(R.id.recycler_producto);
+        adapter = new ProductoAdapter(getLayoutInflater(null));
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         return vistaProducto;
     }
 
     @Override
     public void onProductoList(List<Producto> data) {
         Log.i("tamanio producto", ""+data.size());
+        adapter.setData(data);
 
     }
 }

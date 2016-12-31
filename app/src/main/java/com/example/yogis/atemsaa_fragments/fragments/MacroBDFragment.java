@@ -4,6 +4,8 @@ package com.example.yogis.atemsaa_fragments.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
+import com.example.yogis.atemsaa_fragments.adapters.MacroAdapter;
 import com.example.yogis.atemsaa_fragments.net.api.Macro.Macro;
 import com.example.yogis.atemsaa_fragments.net.api.Macro.MacroApi;
 
@@ -24,6 +27,9 @@ public class MacroBDFragment extends Fragment implements MacroApi.OnMacroList {
     MacroApi macroApi;
     MainActivity activity;
     OnChangeFragment changeFragment;
+
+    RecyclerView recyclerView;
+    MacroAdapter adapter;
 
 
     public MacroBDFragment() {
@@ -47,6 +53,10 @@ public class MacroBDFragment extends Fragment implements MacroApi.OnMacroList {
         macroApi = new MacroApi(getActivity(), null);
         macroApi.getAll(this);
 
+        recyclerView = (RecyclerView) vistaMacro.findViewById(R.id.recycler_macro);
+        adapter = new MacroAdapter(getLayoutInflater(null));
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         return vistaMacro;
     }
@@ -54,6 +64,7 @@ public class MacroBDFragment extends Fragment implements MacroApi.OnMacroList {
     @Override
     public void onMacroList(List<Macro> data) {
         Log.i("tamanio macro", ""+data.size());
+        adapter.setData(data);
 
     }
 }

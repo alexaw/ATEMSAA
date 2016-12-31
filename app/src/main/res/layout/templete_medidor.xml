@@ -4,21 +4,22 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="15dp"
-    android:background="@drawable/rectangle_red">
+    android:background="@drawable/rectangle_red"
+    >
 
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ID PLC-MMS: "
+        android:text="ID Medidor: "
         android:textColor="@color/colorRed"
         />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/idPlcMms"
+        android:id="@+id/idMedidor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="ID PLC-MMS"
+        tools:text="Estado medidor"
         android:paddingLeft="10dp"
         />
     <TextView
@@ -30,88 +31,73 @@
         />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/estadoPlcMms"
+        android:id="@+id/estadoMedidor"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Estado medidor"
+        android:paddingLeft="10dp"
+        />
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tipo: "
+        android:textColor="@color/colorRed"
+        />
+    <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/tipoMedidor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Tipo"
+        android:paddingLeft="10dp"
+        />
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modelo: "
+        android:textColor="@color/colorRed"
+        />
+    <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/modeloMedidor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Modelo"
+        android:paddingLeft="10dp"
+        />
 
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Estado"
+        android:text="Marca: "
+        android:textColor="@color/colorRed"
+        />
+    <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/marcaMedidor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Marca"
         android:paddingLeft="10dp"
         />
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MAC: "
+        android:text="Clase: "
         android:textColor="@color/colorRed"
         />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/macPlcMms"
+        android:id="@+id/claseMedidor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="MAC"
+        tools:text="Clase"
         android:paddingLeft="10dp"
         />
 
-    <TextView
-        style="@style/Base.TextAppearance.AppCompat.Body2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ganancia de transmision: "
-        android:textColor="@color/colorRed"
-        />
-    <TextView
-        style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/gtxPlcMms"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="GTx"
-        android:paddingLeft="10dp"
-        />
-    <TextView
-        style="@style/Base.TextAppearance.AppCompat.Body2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ganacia de recepcion: "
-        android:textColor="@color/colorRed"
-        />
-    <TextView
-        style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/grxPlcMms"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="GRx"
-        android:paddingLeft="10dp"
-        />
-    <TextView
-        style="@style/Base.TextAppearance.AppCompat.Body2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Retardo de transmision: "
-        android:textColor="@color/colorRed"
-        />
-    <TextView
-        style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/retardoPlcMms"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Retardo Tx"
-        android:paddingLeft="10dp"
-        />
-    <TextView
-        style="@style/Base.TextAppearance.AppCompat.Body2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tasa de transmision: "
-        android:textColor="@color/colorRed"
-        />
-    <TextView
-        style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/tasaPlcMms"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Tasa Tx"
-        android:paddingLeft="10dp"
-        />
 
 </LinearLayout>

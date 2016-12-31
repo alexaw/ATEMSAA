@@ -11,23 +11,22 @@
         android:id="@+id/title_amarre_cliente"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Consultar clientes registrados en la base de datos"
-        android:paddingLeft="5dp"
-        />
-    <Button android:id="@+id/btn_consulta"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Consultar"
+        android:text="Consultar CLIENTES registrados en la base de datos"
+        android:paddingTop="5dp"
         />
     <TextView
         android:id="@+id/txt_rta_cliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/respuesta_usr"
+        android:paddingLeft="5dp"
+        android:paddingTop="10dp"
         />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_cliente"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:paddingTop="10dp"
+        />
 
 </LinearLayout>

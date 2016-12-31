@@ -4,6 +4,8 @@ package com.example.yogis.atemsaa_fragments.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
+import com.example.yogis.atemsaa_fragments.adapters.TrafoAdapter;
 import com.example.yogis.atemsaa_fragments.net.api.Trafo.Trafo;
 import com.example.yogis.atemsaa_fragments.net.api.Trafo.TrafoApi;
 
@@ -24,6 +27,9 @@ public class TrafoBDFragment extends Fragment implements TrafoApi.OnTrafoList {
     TrafoApi trafoApi;
     MainActivity activity;
     OnChangeFragment changeFragment;
+
+    RecyclerView recyclerView;
+    TrafoAdapter adapter;
 
 
     public TrafoBDFragment() {
@@ -47,12 +53,18 @@ public class TrafoBDFragment extends Fragment implements TrafoApi.OnTrafoList {
         trafoApi = new TrafoApi(getActivity(), null);
         trafoApi.getAll(this);
 
+        recyclerView = (RecyclerView) vistaTrafo.findViewById(R.id.recycler_trafo);
+        adapter = new TrafoAdapter(getLayoutInflater(null));
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         return vistaTrafo;
     }
 
     @Override
     public void onTrafoList(List<Trafo> data) {
         Log.i("tamanio Trafo", ""+data.size());
+        adapter.setData(data);
 
     }
 }

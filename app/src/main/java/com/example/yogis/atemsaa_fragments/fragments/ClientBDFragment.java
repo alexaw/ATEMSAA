@@ -31,7 +31,6 @@ public class ClientBDFragment extends Fragment implements ClienteApi.OnClienteLi
     MainActivity activity;
     OnChangeFragment changeFragment;
 
-    Button btnListClient;
     TextView tvRtaListClient;
     RecyclerView recyclerView;
     ClientAdapter adapter;
@@ -56,8 +55,6 @@ public class ClientBDFragment extends Fragment implements ClienteApi.OnClienteLi
         // Inflate the layout for this fragment
         final View vistaClient = inflater.inflate(R.layout.fragment_client_bd, container, false);
 
-        btnListClient = (Button) vistaClient.findViewById(R.id.btn_consulta);
-        btnListClient.setOnClickListener(this);
 
         clienteApi= new ClienteApi(getActivity(), null);
         clienteApi.getAll(this);
@@ -80,10 +77,7 @@ public class ClientBDFragment extends Fragment implements ClienteApi.OnClienteLi
     public void onClick(View view) {
 
         switch (view.getId()) {
-            case R.id.btn_consulta:
 
-
-                break;
         }
     }
 }

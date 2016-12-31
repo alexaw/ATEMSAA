@@ -10,15 +10,15 @@
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ID PLC-MMS: "
+        android:text="ID PLC-TU: "
         android:textColor="@color/colorRed"
         />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/idPlcMms"
+        android:id="@+id/idPlcTu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="ID PLC-MMS"
+        tools:text="ID PLC-TU"
         android:paddingLeft="10dp"
         />
     <TextView
@@ -30,9 +30,8 @@
         />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/estadoPlcMms"
+        android:id="@+id/estadoPlcTu"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
         tools:text="Estado"
         android:paddingLeft="10dp"
@@ -46,7 +45,7 @@
         />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/macPlcMms"
+        android:id="@+id/macPlcTu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="MAC"
@@ -62,7 +61,7 @@
         />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/gtxPlcMms"
+        android:id="@+id/gtxPlcTu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="GTx"
@@ -77,7 +76,7 @@
         />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/grxPlcMms"
+        android:id="@+id/grxPlcTu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="GRx"
@@ -92,7 +91,7 @@
         />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/retardoPlcMms"
+        android:id="@+id/retardoPlcTu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Retardo Tx"
@@ -107,7 +106,7 @@
         />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/tasaPlcMms"
+        android:id="@+id/tasaPlcTu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Tasa Tx"

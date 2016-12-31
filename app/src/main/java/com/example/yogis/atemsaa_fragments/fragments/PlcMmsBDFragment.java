@@ -30,7 +30,6 @@ public class PlcMmsBDFragment extends Fragment implements PlcMmsApi.OnPlcMmsList
     MainActivity activity;
     OnChangeFragment changeFragment;
 
-    Button btnListPlcMms;
     TextView tvRtaListPlcMms;
 
     RecyclerView recyclerView;
@@ -55,9 +54,6 @@ public class PlcMmsBDFragment extends Fragment implements PlcMmsApi.OnPlcMmsList
         // Inflate the layout for this fragment
         final View vista6 = inflater.inflate(R.layout.fragment_plc_mms_bd, container, false);
 
-        btnListPlcMms = (Button) vista6.findViewById(R.id.btn_consulta);
-        btnListPlcMms.setOnClickListener(this);
-
         plcMmsApi= new PlcMmsApi(getActivity(), null);
         plcMmsApi.getAll(this);
 
@@ -71,7 +67,7 @@ public class PlcMmsBDFragment extends Fragment implements PlcMmsApi.OnPlcMmsList
 
     @Override
     public void onPlcMmsList(List<PlcMms> data) {
-        Log.i("tamanio amarre trafo", ""+data.size());
+        Log.i("tamanio PLC-MMS", ""+data.size());
         adapter.setData(data);
 
     }
@@ -79,9 +75,7 @@ public class PlcMmsBDFragment extends Fragment implements PlcMmsApi.OnPlcMmsList
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_consulta:
 
-                break;
         }
 
     }

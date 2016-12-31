@@ -4,6 +4,8 @@ package com.example.yogis.atemsaa_fragments.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
+import com.example.yogis.atemsaa_fragments.adapters.PlcTuAdapter;
 import com.example.yogis.atemsaa_fragments.net.api.PlcTu.PlcTu;
 import com.example.yogis.atemsaa_fragments.net.api.PlcTu.PlcTuApi;
 
@@ -24,6 +27,9 @@ public class PlcTuBDFragment extends Fragment implements PlcTuApi.OnPlcTuList {
     PlcTuApi plcTuApi;
     MainActivity activity;
     OnChangeFragment changeFragment;
+
+    RecyclerView recyclerView;
+    PlcTuAdapter adapter;
 
 
     public PlcTuBDFragment() {
@@ -47,12 +53,18 @@ public class PlcTuBDFragment extends Fragment implements PlcTuApi.OnPlcTuList {
         plcTuApi = new PlcTuApi(getActivity(), null);
         plcTuApi.getAll(this);
 
+        recyclerView = (RecyclerView) vistaPlcTu.findViewById(R.id.recycler_plctu);
+        adapter = new PlcTuAdapter(getLayoutInflater(null));
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         return vistaPlcTu;
     }
 
     @Override
     public void onPlcTuList(List<PlcTu> data) {
         Log.i("tamanio PLC-TU", ""+data.size());
+        adapter.setData(data);
 
     }
 }

@@ -5,7 +5,15 @@ package com.example.yogis.atemsaa_fragments.net.api.Macro;
  */
 public class Macro {
 
-    String estado, tipo, modelo, marca, clase;
+    String idMacro, estado, tipo, modelo, marca, clase;
+
+    public String getIdMacro() {
+        return idMacro;
+    }
+
+    public void setIdMacro(String idMacro) {
+        this.idMacro = idMacro;
+    }
 
     public String getEstado() {
         return estado;
