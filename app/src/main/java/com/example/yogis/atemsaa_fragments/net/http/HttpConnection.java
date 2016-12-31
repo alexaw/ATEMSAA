@@ -41,14 +41,19 @@ public class HttpConnection {
 
         URL u = new URL(url);
         HttpURLConnection con = (HttpURLConnection) u.openConnection();
+
+        //Se especifica que van a llegar datos
         con.setDoInput(true);
+
         con.setRequestProperty("Content-Type","application/json");
         con.setRequestProperty("Accept","application/json");
         con.setRequestMethod(method);
         con.setConnectTimeout(CON_TIMEOUT);
         con.setConnectTimeout(READ_TIMEOUT);
 
+        //si envio datos
         if(json != null)
+            //especifico que envío datos
             con.setDoOutput(true);
 
         con.connect();

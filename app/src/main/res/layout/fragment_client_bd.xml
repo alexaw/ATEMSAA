@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    tools:context="com.example.yogis.atemsaa_fragments.fragments.ClientFragment"
+    tools:context=".fragments.ClientBDFragment"
     android:orientation="vertical"
     android:id="@+id/stackContent">
 

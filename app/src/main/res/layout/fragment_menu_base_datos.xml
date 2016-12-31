@@ -5,45 +5,243 @@
     tools:context=".fragments.MenuBaseDatosFragment"
     android:id="@+id/menu_baseDeDatos">
 
-    <Button
-        android:id="@+id/btn_menu_trafo"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@mipmap/ic_bd2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        />
 
-    <TextView
-        android:id="@+id/txt_amarre_trafo"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="PLC-MMS en la BD"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/btn_menu_trafo"
-        android:layout_marginBottom="30dp"
-        />
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="*"
+        >
 
-    <Button
-        android:id="@+id/btn_menu_client"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@mipmap/ic_bd2"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/txt_amarre_trafo"
-        />
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
 
-    <TextView
-        android:id="@+id/txt_amarre_cliente"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Clientes en la BD"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/btn_menu_client"
-        android:layout_marginBottom="30dp"
-        />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
+
+                <Button
+                    android:id="@+id/btn_menu_plcMMS_bd"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@mipmap/ic_bd2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_plcMMS_bd"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="PLC-MMS en la BD"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="30dp"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
+
+                <Button
+                    android:id="@+id/btn_menu_client_bd"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@mipmap/ic_bd2"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_cliente_bd"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Clientes en la BD"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="30dp"
+                    />
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
+
+                <Button
+                    android:id="@+id/btn_menu_plcMC_bd"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@mipmap/ic_bd2"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_plcMC_bd"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="PLC-MC en la BD"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="30dp"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
+
+                <Button
+                    android:id="@+id/btn_menu_plcTU_bd"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@mipmap/ic_bd"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_plcTU_bd"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="PLC-TU en la BD"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="30dp"
+                    />
+
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
+
+                <Button
+                    android:id="@+id/btn_menu_macro_bd"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@mipmap/ic_bd2"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_macro_bd"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Macros en la BD"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="30dp"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
+
+                <Button
+                    android:id="@+id/btn_menu_medidor_bd"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@mipmap/ic_bd"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_medidor_bd"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Medidores en la BD"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="30dp"
+                    />
+
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
+
+                <Button
+                    android:id="@+id/btn_menu_producto_bd"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@mipmap/ic_bd2"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_producto_bd"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Productos en la BD"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="30dp"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
+
+                <Button
+                    android:id="@+id/btn_menu_trafo_bd"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@mipmap/ic_bd"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_trafo_bd"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Trafo en la BD"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="30dp"
+                    />
+
+            </LinearLayout>
+        </TableRow>
+
+    </TableLayout>
 
 
 

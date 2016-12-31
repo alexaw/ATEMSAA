@@ -16,9 +16,6 @@ public class PlcMms {
     String numeroCelular;
 
 
-
-
-
     public String getIdPlcMms() {
         return idPlcMms;
     }

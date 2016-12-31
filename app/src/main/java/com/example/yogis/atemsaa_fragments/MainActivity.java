@@ -2,23 +2,18 @@ package com.example.yogis.atemsaa_fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,8 +24,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yogis.atemsaa_fragments.Login.LoginActivity;
-import com.example.yogis.atemsaa_fragments.fragments.AmarreTrafoFragment;
-import com.example.yogis.atemsaa_fragments.fragments.ClientFragment;
+import com.example.yogis.atemsaa_fragments.fragments.MacroBDFragment;
+import com.example.yogis.atemsaa_fragments.fragments.MedidorBDFragment;
+import com.example.yogis.atemsaa_fragments.fragments.PlcMcBDFragment;
+import com.example.yogis.atemsaa_fragments.fragments.PlcMmsBDFragment;
+import com.example.yogis.atemsaa_fragments.fragments.ClientBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ClockSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.GprsSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ListUserFragment;
@@ -41,18 +39,16 @@ import com.example.yogis.atemsaa_fragments.fragments.NewSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.NewUserFragment;
 import com.example.yogis.atemsaa_fragments.fragments.OnChangeFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcMmsSettingsFragment;
+import com.example.yogis.atemsaa_fragments.fragments.PlcTuBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcTuSettingsFragment;
+import com.example.yogis.atemsaa_fragments.fragments.ProductoBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.RegisterUserFragment;
 import com.example.yogis.atemsaa_fragments.fragments.SearchUserFragment;
 import com.example.yogis.atemsaa_fragments.fragments.SettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.TestFrameFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ToolBarFragment;
+import com.example.yogis.atemsaa_fragments.fragments.TrafoBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.UserFragment;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 
 
 public class MainActivity extends AppCompatActivity implements OnChangeFragment, ClockSettingsFragment.DateSelectedListener {
@@ -120,9 +116,15 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     NewReportsFragment newReports;
     ToolBarFragment hola;
 
-    ClientFragment client;
     MenuBaseDatosFragment menuBD;
-    AmarreTrafoFragment amarreTrafo;
+    ClientBDFragment clientBD;
+    PlcMmsBDFragment plcMmsBD;
+    MacroBDFragment macroBD;
+    MedidorBDFragment medidorBD;
+    PlcMcBDFragment plcMcBD;
+    PlcTuBDFragment plcTuBD;
+    ProductoBDFragment productoBD;
+    TrafoBDFragment trafoBD;
 
 
     ActionBar myToolbar;
@@ -174,9 +176,16 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
 
         hola = new ToolBarFragment();
 
-        client = new ClientFragment();
         menuBD = new MenuBaseDatosFragment();
-        amarreTrafo = new AmarreTrafoFragment();
+        clientBD = new ClientBDFragment();
+        plcMmsBD = new PlcMmsBDFragment();
+        macroBD = new MacroBDFragment();
+        medidorBD = new MedidorBDFragment();
+        plcMcBD = new PlcMcBDFragment();
+        plcTuBD = new PlcTuBDFragment();
+        productoBD = new ProductoBDFragment();
+        trafoBD = new TrafoBDFragment();
+
 
 
 
@@ -555,11 +564,29 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
             case HOLA :
                 putFragment(hola, fragment);
                 break;
-            case AMARRETRAFO :
-                putFragment(amarreTrafo, fragment);
+            case PLCMMSBD :
+                putFragment(plcMmsBD, fragment);
                 break;
-            case CLIENTE :
-                putFragment(client, fragment);
+            case CLIENTEBD :
+                putFragment(clientBD, fragment);
+                break;
+            case MACROBD :
+                putFragment(macroBD, fragment);
+                break;
+            case MEDIDORBD :
+                putFragment(medidorBD, fragment);
+                break;
+            case PLCMCBD :
+                putFragment(plcMcBD, fragment);
+                break;
+            case PLCTUBD :
+                putFragment(plcTuBD, fragment);
+                break;
+            case PRODUCTOBD :
+                putFragment(productoBD, fragment);
+                break;
+            case TRAFOBD :
+                putFragment(trafoBD, fragment);
                 break;
         }
     }
@@ -622,10 +649,28 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
             case HOLA:
                 putFragment(settings, NEWUSER);
                 break;
-            case AMARRETRAFO:
+            case PLCMMSBD:
                 putFragment(menuBD, BASEDATOS);
                 break;
-            case CLIENTE:
+            case CLIENTEBD:
+                putFragment(menuBD, BASEDATOS);
+                break;
+            case MACROBD:
+                putFragment(menuBD, BASEDATOS);
+                break;
+            case MEDIDORBD:
+                putFragment(menuBD, BASEDATOS);
+                break;
+            case PLCMCBD:
+                putFragment(menuBD, BASEDATOS);
+                break;
+            case PLCTUBD:
+                putFragment(menuBD, BASEDATOS);
+                break;
+            case PRODUCTOBD:
+                putFragment(menuBD, BASEDATOS);
+                break;
+            case TRAFOBD:
                 putFragment(menuBD, BASEDATOS);
                 break;
             case PARCIAL:

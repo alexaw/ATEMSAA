@@ -33,12 +33,18 @@ public interface OnChangeFragment {
 
 
     int BASEDATOS = 15;
-    int AMARRETRAFO = 16;
-    int CLIENTE = 17;
+    int PLCMMSBD = 16;
+    int CLIENTEBD = 17;
+    int MACROBD = 18;
+    int MEDIDORBD = 19;
+    int PLCMCBD = 20;
+    int PLCTUBD = 21;
+    int PRODUCTOBD = 22;
+    int TRAFOBD = 23;
 
     //ReportsFragments
-    int NEWREPORTS = 18;
-    int PARCIAL=19;
+    int NEWREPORTS = 24;
+    int PARCIAL=25;
 
 
     void onChange(int fragment);

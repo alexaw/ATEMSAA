@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
 import com.example.yogis.atemsaa_fragments.adapters.PlcMmsAdapter;
-import com.example.yogis.atemsaa_fragments.net.api.Cliente.ClienteApi;
 import com.example.yogis.atemsaa_fragments.net.api.PlcMms.PlcMms;
 import com.example.yogis.atemsaa_fragments.net.api.PlcMms.PlcMmsApi;
 
@@ -25,7 +24,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AmarreTrafoFragment extends Fragment implements PlcMmsApi.OnPlcMmsList, View.OnClickListener {
+public class PlcMmsBDFragment extends Fragment implements PlcMmsApi.OnPlcMmsList, View.OnClickListener {
 
     PlcMmsApi plcMmsApi;
     MainActivity activity;
@@ -38,7 +37,7 @@ public class AmarreTrafoFragment extends Fragment implements PlcMmsApi.OnPlcMmsL
     PlcMmsAdapter adapter;
 
 
-    public AmarreTrafoFragment() {
+    public PlcMmsBDFragment() {
         // Required empty public constructor
     }
 
@@ -54,7 +53,7 @@ public class AmarreTrafoFragment extends Fragment implements PlcMmsApi.OnPlcMmsL
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View vista6 = inflater.inflate(R.layout.fragment_amarre_trafo, container, false);
+        final View vista6 = inflater.inflate(R.layout.fragment_plc_mms_bd, container, false);
 
         btnListPlcMms = (Button) vista6.findViewById(R.id.btn_consulta);
         btnListPlcMms.setOnClickListener(this);
