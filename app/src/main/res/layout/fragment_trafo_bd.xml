@@ -13,7 +13,7 @@
         android:id="@+id/title_trafo_bd"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Consultar CLIENTES registrados en la base de datos"
+        android:text="Consultar TRANSFORMADORES registrados en la base de datos"
         android:paddingTop="5dp"
         />
     <TextView

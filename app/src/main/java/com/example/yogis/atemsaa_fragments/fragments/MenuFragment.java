@@ -77,40 +77,43 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
             return;
         }
 
-        if (MainActivity.mCommandService.getState() != BluetoothCommandService.STATE_CONNECTED) {
+        if (MainActivity.mCommandService.getState() == BluetoothCommandService.STATE_CONNECTED) {
+
+            //if (MainActivity.mCommandService.getState() != BluetoothCommandService.STATE_CONNECTED) {
                 Toast.makeText(this.getActivity(), "Por favor conectarse a un dispositivo", Toast.LENGTH_SHORT).show();
-        }else {
-            switch (view.getId()) {
-                case R.id.btn_menu_usuarios:
-                    changeFragment.onChange(OnChangeFragment.USER);
-                    listUser();
-                    break;
+            }else {
+                switch (view.getId()) {
+                    case R.id.btn_menu_usuarios:
+                        changeFragment.onChange(OnChangeFragment.USER);
+                        listUser();
+                        break;
 
-                case R.id.btn_menu_configuracion:
-                    changeFragment.onChange(OnChangeFragment.SETTINGS);
+                    case R.id.btn_menu_configuracion:
+                        changeFragment.onChange(OnChangeFragment.SETTINGS);
 
-                    byte []frame2Send = new byte[7];
-                    frame2Send[0] = 0x24;// $
-                    frame2Send[1] = 0x40;// @
-                    frame2Send[2] = 0x07;// length
-                    frame2Send[3] = 0x07;// Tipo
-                    frame2Send[4] = 0x01;// Suponiendo 1 como origen PC
-                    frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
-                    frame2Send[6] = calcularCRC(frame2Send);
-                    sendMessage(frame2Send);
-
-
-                    break;
-
-                case R.id.btn_menu_reportes:
-
-                    changeFragment.onChange(OnChangeFragment.REPORT);
-
-                    break;
+                        byte []frame2Send = new byte[7];
+                        frame2Send[0] = 0x24;// $
+                        frame2Send[1] = 0x40;// @
+                        frame2Send[2] = 0x07;// length
+                        frame2Send[3] = 0x07;// Tipo
+                        frame2Send[4] = 0x01;// Suponiendo 1 como origen PC
+                        frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
+                        frame2Send[6] = calcularCRC(frame2Send);
+                        sendMessage(frame2Send);
 
 
+                        break;
+
+                    case R.id.btn_menu_reportes:
+
+                        changeFragment.onChange(OnChangeFragment.REPORT);
+
+                        break;
+
+
+                }
             }
-        }
+
     }
 
     private void listUser() {

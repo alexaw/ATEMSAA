@@ -116,7 +116,7 @@
                     android:id="@+id/btn_menu_plcTU_bd"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:background="@mipmap/ic_bd"
+                    android:background="@mipmap/ic_bd2"
                     android:layout_centerHorizontal="true"
                     />
 
@@ -173,7 +173,7 @@
                     android:id="@+id/btn_menu_medidor_bd"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:background="@mipmap/ic_bd"
+                    android:background="@mipmap/ic_bd2"
                     android:layout_centerHorizontal="true"
                     />
 
@@ -230,7 +230,7 @@
                     android:id="@+id/btn_menu_trafo_bd"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:background="@mipmap/ic_bd"
+                    android:background="@mipmap/ic_bd2"
                     android:layout_centerHorizontal="true"
                     />
 
