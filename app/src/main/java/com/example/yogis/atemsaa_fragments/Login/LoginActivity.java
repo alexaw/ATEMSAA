@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
+import com.example.yogis.atemsaa_fragments.net.api.Login.LoginApi;
 import com.example.yogis.atemsaa_fragments.net.api.PlcMms.PlcMms;
 import com.example.yogis.atemsaa_fragments.net.api.PlcMms.PlcMmsApi;
 import com.parse.LogInCallback;
@@ -21,7 +22,7 @@ import com.parse.ParseUser;
 
 import java.util.List;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginApi.OnLoginApp {
 
 
     //1. Se crean las variables que retienen la informaciion
@@ -30,6 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button in;
     TextView link;
 
+    LoginApi loginApi;
 
 
     @Override
@@ -45,8 +47,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //3. Se implementa los eventos
         in.setOnClickListener(this);
 
-       link = (TextView) findViewById(R.id.linkReg);
+        link = (TextView) findViewById(R.id.linkReg);
         link.setOnClickListener(this);
+
+        loginApi = new LoginApi(this, null);
+        loginApi.getAll(this);
 
 
     }
@@ -59,9 +64,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 sUsr = usr.getText().toString();
                 sPass = pass.getText().toString();
 
+               
+
                 if(sUsr.equals("admin")&&sPass.equals("123")){
                             //8. Se hace la navegacion hacia el Main, se describe la accion del intent
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+
 
                             //9. Se manda al metodo start
                             startActivity(intent);
@@ -113,4 +122,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onDestroy();
     }
 
+    @Override
+    public void onLoginApp(String data) {
+        Log.i("funciona login", "Consulta");
+    }
 }

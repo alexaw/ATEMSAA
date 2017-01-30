@@ -19,7 +19,6 @@
             fab:fab_addButtonColorPressed="@color/colorGreenPressed"
             fab:fab_addButtonPlusIconColor="@color/colorGray"
             fab:fab_labelStyle="@style/menu_labels_style"
-
             android:layout_marginBottom="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginEnd="16dp"
