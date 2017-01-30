@@ -18,12 +18,10 @@ import java.lang.reflect.Type;
 public class LoginApi extends HttpApi{
 
     //region REQUEST & CALLBACK
-    private static final int GET_ALL = 0;
-    private static final int ADD = 1;
-
-
+    private static final int LOGIN = 0;
+    
     public interface OnLoginApp {
-        void onLoginApp (String data);
+        void onLoginApp (boolean respuesta);
     }
 
     OnLoginApp onLoginApp;
@@ -36,36 +34,27 @@ public class LoginApi extends HttpApi{
     }
 
 
-    public void getAll(OnLoginApp onLoginApp){
+    public void login(String usr, String pass, OnLoginApp onLoginApp){
         this.onLoginApp = onLoginApp;
-        String url = makeUrl(R.string.url_login);
-        executeRequest(GET_ALL, HttpAsyncTask.GET, makeUrl(R.string.url_login)+"pruebas"+"&contrasenia="+"gonzalo");
+        String url = makeUrl(R.string.url_login, usr, pass);
+        executeRequest(LOGIN, HttpAsyncTask.GET, url);
     }
 
-    private void processAll(Response res){
+    private void processLogin(Response res){
         Login login = gson.fromJson(res.msg, Login.class);
+        onLoginApp(login.getRespuesta())
     }
 
 
-    public void add(Login login){
-        executeRequest(ADD, HttpAsyncTask.POST, makeUrl(R.string.url_login), gson.toJson(login));
-    }
-
-
-    private void processAdd(Response res){
-
-    }
+   
 
     @Override
     protected void processResponse(Response res) {
 
         switch (res.request){
-            case GET_ALL:
-                processAll(res);
-                break;
-            case ADD:
-
-                break;
+            case LOGIN:
+                processLogin(res);
+                break;          
         }
 
     }
