@@ -16,6 +16,7 @@ import com.example.yogis.atemsaa_fragments.R;
 import com.example.yogis.atemsaa_fragments.net.api.Login.LoginApi;
 import com.example.yogis.atemsaa_fragments.net.api.PlcMms.PlcMms;
 import com.example.yogis.atemsaa_fragments.net.api.PlcMms.PlcMmsApi;
+import com.example.yogis.atemsaa_fragments.net.http.Response;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -51,7 +52,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         link.setOnClickListener(this);
 
         loginApi = new LoginApi(this, null);
-        loginApi.getAll(this);
+
 
 
     }
@@ -64,25 +65,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 sUsr = usr.getText().toString();
                 sPass = pass.getText().toString();
 
-               
-
-                if(sUsr.equals("admin")&&sPass.equals("123")){
-                            //8. Se hace la navegacion hacia el Main, se describe la accion del intent
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                loginApi.login(sUsr,sPass,this);
 
 
 
-                            //9. Se manda al metodo start
-                            startActivity(intent);
-
-                            //10. Se finaliza el activity cuando se da el boton de atras
-                            finish();
-                        }
-                        else
-                        {
-                            Toast toast = Toast.makeText(getApplication(), "Error, Ingrese de nuevo los datos", Toast.LENGTH_SHORT);
-                            toast.show();
-                        }
 
                 break;
 
@@ -122,8 +108,31 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onDestroy();
     }
 
+
     @Override
-    public void onLoginApp(String data) {
-        Log.i("funciona login", "Consulta");
+    public void onLoginApp(boolean respuesta) {
+        Log.i("Login","funciona login");
+
+
+        if(respuesta == true){
+            //8. Se hace la navegacion hacia el Main, se describe la accion del intent
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+
+
+            //9. Se manda al metodo start
+            startActivity(intent);
+
+            //10. Se finaliza el activity cuando se da el boton de atras
+            finish();
+        }
+        else
+        {
+            Toast toast = Toast.makeText(getApplication(), "Error, Ingrese de nuevo los datos", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+
+
     }
 }

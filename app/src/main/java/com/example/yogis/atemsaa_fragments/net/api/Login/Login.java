@@ -5,7 +5,7 @@ package com.example.yogis.atemsaa_fragments.net.api.Login;
  */
 public class Login {
 
-    Boolean respuesta;
+    boolean respuesta;
 
     public Boolean getRespuesta() {
         return respuesta;
