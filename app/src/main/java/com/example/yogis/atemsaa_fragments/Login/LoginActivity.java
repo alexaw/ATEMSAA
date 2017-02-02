@@ -67,9 +67,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 loginApi.login(sUsr,sPass,this);
 
-
-
-
                 break;
 
             case R.id.linkReg:
@@ -77,9 +74,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intent);
                 finish();
                 break;
-
-
-
         }
 
     }
@@ -118,8 +112,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //8. Se hace la navegacion hacia el Main, se describe la accion del intent
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
-
-
             //9. Se manda al metodo start
             startActivity(intent);
 
@@ -131,7 +123,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Toast toast = Toast.makeText(getApplication(), "Error, Ingrese de nuevo los datos", Toast.LENGTH_SHORT);
             toast.show();
         }
-
 
 
     }

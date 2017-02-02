@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.yogis.atemsaa_fragments.fragments.MeterFragment"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/btn_menu_new_meter"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@mipmap/ic_user"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/txt_new_meter"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/title_new_meter"
+        android:gravity="center"
+        android:layout_marginBottom="30dp"
+        />
+
+    <Button
+        android:id="@+id/btn_menu_energy_reading"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@mipmap/ic_user"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/txt_energy_reading"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/title_energy_reading"
+        android:gravity="center"
+        android:layout_marginBottom="30dp"
+        />
+
+    <Button
+        android:id="@+id/btn_menu_meter_PLCMC"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@mipmap/ic_user"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/txt_meter_PLCMC"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/title_meter_PLCMC"
+        android:gravity="center"
+        android:layout_marginBottom="30dp"
+        />
+
+</LinearLayout>

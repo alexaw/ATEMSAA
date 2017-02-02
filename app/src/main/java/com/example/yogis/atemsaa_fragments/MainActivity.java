@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.example.yogis.atemsaa_fragments.Login.LoginActivity;
 import com.example.yogis.atemsaa_fragments.fragments.MacroBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MedidorBDFragment;
+import com.example.yogis.atemsaa_fragments.fragments.MeterFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcMcBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcMmsBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ClientBDFragment;
@@ -114,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     NewUserFragment newUser;
     NewSettingsFragment newSettings;
     NewReportsFragment newReports;
+    MeterFragment meter;
     ToolBarFragment hola;
 
     MenuBaseDatosFragment menuBD;
@@ -173,6 +175,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
         newUser = new NewUserFragment();
         newSettings = new NewSettingsFragment();
         newReports = new NewReportsFragment();
+        meter = new MeterFragment();
 
         hola = new ToolBarFragment();
 
@@ -521,8 +524,13 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 band = 2;
                 showMenuSettings();
                 break;
-            case REPORT:
+            case NEWREPORTS:
                 putFragment(newReports, fragment);
+                band = 3;
+                showMenuSearch();
+                break;
+            case METER:
+                putFragment(meter, fragment);
                 band = 3;
                 showMenuSearch();
                 break;
@@ -606,7 +614,11 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 putFragment(menu, MENU);
                 showMenuPpal();
                 break;
-            case REPORT:
+            case NEWREPORTS:
+                putFragment(menu, MENU);
+                showMenuSearch();
+                break;
+            case METER:
                 putFragment(menu, MENU);
                 showMenuSearch();
                 break;

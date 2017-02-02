@@ -35,7 +35,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 
     OnChangeFragment changeFragment;
 
-    Button menuUsuarios, menuConfiguracion, menuReportes, menuBaseDatos;
+    Button menuUsuarios, menuConfiguracion, menuReports, menuMeter, menuBaseDatos;
 
     public MenuFragment() {}
 
@@ -60,8 +60,11 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         menuConfiguracion = (Button) v.findViewById(R.id.btn_menu_configuracion);
         menuConfiguracion.setOnClickListener(this);
 
-        menuReportes = (Button) v.findViewById(R.id.btn_menu_reportes);
-        menuReportes.setOnClickListener(this);
+        menuReports = (Button) v.findViewById(R.id.btn_menu_reports);
+        menuReports.setOnClickListener(this);
+
+        menuMeter = (Button) v.findViewById(R.id.btn_menu_meter);
+        menuMeter.setOnClickListener(this);
 
         menuBaseDatos = (Button) v.findViewById(R.id.btn_menu_base_datos);
         menuBaseDatos.setOnClickListener(this);
@@ -104,9 +107,15 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 
                         break;
 
-                    case R.id.btn_menu_reportes:
+                    case R.id.btn_menu_reports:
 
-                        changeFragment.onChange(OnChangeFragment.REPORT);
+                        changeFragment.onChange(OnChangeFragment.NEWREPORTS);
+
+                        break;
+
+                    case R.id.btn_menu_meter:
+
+                        changeFragment.onChange(OnChangeFragment.METER);
 
                         break;
 

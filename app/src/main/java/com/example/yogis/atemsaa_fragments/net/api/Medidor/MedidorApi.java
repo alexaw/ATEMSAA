@@ -35,7 +35,7 @@ public class MedidorApi extends HttpApi {
 
     public void getAll(OnMedidorList onMedidorList){
         this.onMedidorList = onMedidorList;
-        executeRequest(GET_ALL, HttpAsyncTask.GET, makeUrl(R.string.url_medidor));
+        executeRequest(GET_ALL, HttpAsyncTask.GET, makeUrl(R.string.url_meter));
     }
 
     private void processAll(Response res){
@@ -45,7 +45,7 @@ public class MedidorApi extends HttpApi {
     }
 
     public void add(Medidor medidor){
-        executeRequest(ADD, HttpAsyncTask.POST, makeUrl(R.string.url_medidor), gson.toJson(medidor));
+        executeRequest(ADD, HttpAsyncTask.POST, makeUrl(R.string.url_meter), gson.toJson(medidor));
     }
 
     private void processAdd(Response res){

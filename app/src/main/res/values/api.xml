@@ -5,12 +5,12 @@
 
     <string name="url_base">http://wmyserver.sytes.net:8080/mcd-ami-saa/webresources/</string>
     <string name="url_plc_mms">PlcMms</string>
-    <string name="url_cliente">Cliente</string>
+    <string name="url_client">Cliente</string>
     <string name="url_macro">Macro</string>
-    <string name="url_medidor">Medidor</string>
+    <string name="url_meter">Medidor</string>
     <string name="url_plc_mc">PlcMc</string>
     <string name="url_plc_tu">PlcTu</string>
-    <string name="url_producto">Producto</string>
+    <string name="url_product">Producto</string>
     <string name="url_trafo">Trafo</string>
 
     <string name="url_login">Login/login?nombreUsuario=%1$s&amp;contrasenia=%2$s</string>

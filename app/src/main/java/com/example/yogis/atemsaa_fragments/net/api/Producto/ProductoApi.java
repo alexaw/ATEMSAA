@@ -34,7 +34,7 @@ public class ProductoApi extends HttpApi {
 
     public void getAll(OnProductoList onProductoList){
         this.onProductoList = onProductoList;
-        executeRequest(GET_ALL, HttpAsyncTask.GET, makeUrl(R.string.url_producto));
+        executeRequest(GET_ALL, HttpAsyncTask.GET, makeUrl(R.string.url_product));
     }
 
     private void processAll(Response res){
@@ -44,7 +44,7 @@ public class ProductoApi extends HttpApi {
     }
 
     public void add(Producto producto){
-        executeRequest(ADD, HttpAsyncTask.POST, makeUrl(R.string.url_producto), gson.toJson(producto));
+        executeRequest(ADD, HttpAsyncTask.POST, makeUrl(R.string.url_product), gson.toJson(producto));
     }
 
     private void processAdd(Response res){

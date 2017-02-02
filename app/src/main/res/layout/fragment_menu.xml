@@ -84,7 +84,7 @@
                 >
 
                 <Button
-                    android:id="@+id/btn_menu_reportes"
+                    android:id="@+id/btn_menu_reports"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:background="@mipmap/ic_reportes"
@@ -111,6 +111,40 @@
                 >
 
                 <Button
+                    android:id="@+id/btn_menu_meter"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@mipmap/ic_bd"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/txt_rep"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_meter"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_meter"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/btn_menu_base_datos"
+                    android:layout_marginBottom="30dp"
+                    />
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
+
+                <Button
                     android:id="@+id/btn_menu_base_datos"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
@@ -123,7 +157,7 @@
                     android:id="@+id/txt_bd"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_data_base"
+                    android:text="@string/txt_data_base"
                     android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/btn_menu_base_datos"

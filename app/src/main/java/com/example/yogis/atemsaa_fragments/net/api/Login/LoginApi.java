@@ -44,8 +44,6 @@ public class LoginApi extends HttpApi{
         Login login = gson.fromJson(res.msg, Login.class);
         onLoginApp.onLoginApp(login.getRespuesta());
 
-
-
     }
 
 

@@ -18,6 +18,7 @@ public interface OnChangeFragment {
     int LIST = 5;
     int REGISTER = 6;
     int TEST = 7;
+    int METER = 26;
 
     //SettingsFragment
     int PLCMMS = 8;

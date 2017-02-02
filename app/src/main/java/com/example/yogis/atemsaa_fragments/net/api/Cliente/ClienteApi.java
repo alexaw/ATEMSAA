@@ -40,7 +40,7 @@ public class ClienteApi extends HttpApi{
 
     public void getAll(OnClienteList onClienteList){
         this.onClienteList = onClienteList;
-        executeRequest(GET_ALL, HttpAsyncTask.GET, makeUrl(R.string.url_cliente));
+        executeRequest(GET_ALL, HttpAsyncTask.GET, makeUrl(R.string.url_client));
     }
 
     private void processAll(Response res){
@@ -51,7 +51,7 @@ public class ClienteApi extends HttpApi{
     }
 
     public void add(Cliente cliente){
-        executeRequest(ADD, HttpAsyncTask.POST, makeUrl(R.string.url_cliente), gson.toJson(cliente));
+        executeRequest(ADD, HttpAsyncTask.POST, makeUrl(R.string.url_client), gson.toJson(cliente));
     }
 
     private void processAdd(Response res){

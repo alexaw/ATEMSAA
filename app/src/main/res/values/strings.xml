@@ -93,7 +93,7 @@
     <string name="button_setting_PLC_MMS">Settings PLC-MMS</string>
 
     //Nombre de los TextView de respuesta
-    <string name="respuesta_usr">RESPUESTA:</string>
+    <string name="respuesta_usr">ANSWER:</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -104,12 +104,6 @@
     <string name="txt_register_here">Register here</string>
     <string name="txt_log_in">Log in</string>
 
-
-    <string name="hide">Ocultar</string>
-    <string name="show_1">Mostrar Menu 1</string>
-    <string name="show_2">Mostrar menu 2</string>
-    <string name="action_search">Buscar</string>
-    <string name="action_ok">Todo 10</string>
     <string name="txt_date_time">Set the date and time</string>
     <string name="txt_day">Day:</string>
     <string name="txt_month">Month:</string>
@@ -120,10 +114,19 @@
     <string name="txt_set_clock">Set clock</string>
     <string name="txt_check_clock">Check clock</string>
 
-    <string name="title_trafo">Amarre Trafo</string>
-    <string name="title_cliente">Amarre Cliente</string>
+    <string name="title_trafo">Transformer connection</string>
+    <string name="title_cliente">Client connection</string>
     <string name="txt_data_base">Data base</string>
-    <string name="title_data_base">Data base</string>
+    <string name="title_meter">Meter</string>
+    <string name="title_new_meter">New meter</string>
+    <string name="title_energy_reading">Energy reading</string>
+    <string name="title_meter_PLCMC">Meter reading on PLC-MC</string>
+
+    <string name="plc_mms_in_db">PLC-MMS in the DB</string>
+    <string name="plc_mc_in_the_db">PLC-MC in the DB</string>
+    <string name="plc_tu_in_the_db">PLC-TU in the DB</string>
+    <string name="macros_in_the_db">Macros in the DB</string>
+    <string name="products_in_the_db">Products in the DB</string>
 
 
 </resources>
