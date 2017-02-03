@@ -11,7 +11,7 @@
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ID Medidor: "
+        android:text="@string/id_medidor"
         android:textColor="@color/colorRed"
         />
     <TextView
@@ -19,14 +19,14 @@
         android:id="@+id/idMedidor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Estado medidor"
+        tools:text="@string/id_medidor"
         android:paddingLeft="10dp"
         />
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Estado: "
+        android:text="@string/state"
         android:textColor="@color/colorRed"
         />
     <TextView
@@ -34,14 +34,14 @@
         android:id="@+id/estadoMedidor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Estado medidor"
+        tools:text="@string/state"
         android:paddingLeft="10dp"
         />
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tipo: "
+        android:text="@string/txt_type"
         android:textColor="@color/colorRed"
         />
     <TextView
@@ -49,14 +49,14 @@
         android:id="@+id/tipoMedidor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Tipo"
+        tools:text="@string/txt_type"
         android:paddingLeft="10dp"
         />
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Modelo: "
+        android:text="@string/txt_model"
         android:textColor="@color/colorRed"
         />
     <TextView
@@ -64,7 +64,7 @@
         android:id="@+id/modeloMedidor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Modelo"
+        tools:text="@string/txt_model"
         android:paddingLeft="10dp"
         />
 
@@ -72,7 +72,7 @@
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Marca: "
+        android:text="@string/txt_trademark"
         android:textColor="@color/colorRed"
         />
     <TextView
@@ -80,14 +80,14 @@
         android:id="@+id/marcaMedidor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Marca"
+        tools:text="@string/txt_trademark"
         android:paddingLeft="10dp"
         />
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Clase: "
+        android:text="@string/txt_class"
         android:textColor="@color/colorRed"
         />
     <TextView
@@ -95,7 +95,7 @@
         android:id="@+id/claseMedidor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Clase"
+        tools:text="@string/txt_class"
         android:paddingLeft="10dp"
         />
 

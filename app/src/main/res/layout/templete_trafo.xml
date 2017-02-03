@@ -10,7 +10,7 @@
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ID Trafo: "
+        android:text="@string/id_transformer"
         android:textColor="@color/colorRed"
         />
     <TextView
@@ -18,7 +18,7 @@
         android:id="@+id/idTrafo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="ID trafo"
+        tools:text="@string/id_transformer"
         android:paddingLeft="10dp"
         />
 

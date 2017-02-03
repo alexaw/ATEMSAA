@@ -42,7 +42,7 @@ import com.example.yogis.atemsaa_fragments.fragments.OnChangeFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcMmsSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcTuBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcTuSettingsFragment;
-import com.example.yogis.atemsaa_fragments.fragments.ProductoBDFragment;
+import com.example.yogis.atemsaa_fragments.fragments.ProductBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.RegisterUserFragment;
 import com.example.yogis.atemsaa_fragments.fragments.SearchUserFragment;
 import com.example.yogis.atemsaa_fragments.fragments.SettingsFragment;
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     MedidorBDFragment medidorBD;
     PlcMcBDFragment plcMcBD;
     PlcTuBDFragment plcTuBD;
-    ProductoBDFragment productoBD;
+    ProductBDFragment productoBD;
     TrafoBDFragment trafoBD;
 
 
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
         medidorBD = new MedidorBDFragment();
         plcMcBD = new PlcMcBDFragment();
         plcTuBD = new PlcTuBDFragment();
-        productoBD = new ProductoBDFragment();
+        productoBD = new ProductBDFragment();
         trafoBD = new TrafoBDFragment();
 
 

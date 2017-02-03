@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductoBDFragment extends Fragment implements ProductoApi.OnProductoList {
+public class ProductBDFragment extends Fragment implements ProductoApi.OnProductoList {
 
     ProductoApi productoApi;
     MainActivity activity;
@@ -32,7 +32,7 @@ public class ProductoBDFragment extends Fragment implements ProductoApi.OnProduc
     ProductoAdapter adapter;
 
 
-    public ProductoBDFragment() {
+    public ProductBDFragment() {
         // Required empty public constructor
     }
 
@@ -47,7 +47,7 @@ public class ProductoBDFragment extends Fragment implements ProductoApi.OnProduc
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View vistaProducto = inflater.inflate(R.layout.fragment_producto_bd, container, false);
+        final View vistaProducto = inflater.inflate(R.layout.fragment_product_bd, container, false);
 
         productoApi = new ProductoApi(getActivity(), null);
         productoApi.getAll(this);

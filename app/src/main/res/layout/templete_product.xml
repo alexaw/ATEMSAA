@@ -10,7 +10,7 @@
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ID Producto: "
+        android:text="@string/id_product"
         android:textColor="@color/colorRed"
         />
     <TextView
@@ -18,14 +18,14 @@
         android:id="@+id/idProducto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="ID PRODUCTO"
+        tools:text="@string/id_product"
         android:paddingLeft="10dp"
         />
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Estado: "
+        android:text="@string/state"
         android:textColor="@color/colorRed"
         />
     <TextView
@@ -33,7 +33,7 @@
         android:id="@+id/estadoProducto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Estado"
+        tools:text="@string/state"
         android:paddingLeft="10dp"
         />
 

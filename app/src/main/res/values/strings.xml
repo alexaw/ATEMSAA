@@ -53,7 +53,7 @@
     //Subtitulos en la aplicacion
     <string name="title_paired_devices">Paired Devices</string>
     <string name="title_other_devices">Other Available Devices</string>
-    <string name="subtitle_parametros_PLC">Select the parameters of the unit</string>
+    <string name="subtitle_parameters_PLC">Select the parameters of the unit</string>
     <string name="txt_options">Options </string>
     <string name="txt_clear">Clear </string>
     <string name="txt_download">Download </string>
@@ -66,13 +66,13 @@
 
 
     //Nombre de los Spinner
-    <string name="spinner_estado">State:</string>
-    <string name="spinner_accion">Action:</string>
-    <string name="spinner_gan_tx">Transmission gain:</string>
-    <string name="spinner_gan_rx">Reception gain:</string>
-    <string name="spinner_ret_tx">Transmission delay:</string>
-    <string name="spinner_tasa_tx">Transmission rate:</string>
-    <string name="spinner_hora_encuesta">Time survey:</string>
+    <string name="txt_state">State:</string>
+    <string name="txt_action">Action:</string>
+    <string name="txt_gan_tx">Transmission gain:</string>
+    <string name="txt_gan_rx">Reception gain:</string>
+    <string name="txt_delay_tx">Transmission delay:</string>
+    <string name="txt_rate_tx">Transmission rate:</string>
+    <string name="txt_survey_hour">Time survey:</string>
 
     //Spinner Estado de usuario
     <string name="txt_choose_option">Choose option: </string>
@@ -84,9 +84,9 @@
     //Texto de los botones
     <string name="btn_find">Find Device</string>
     <string name="button_scan">Scan for devices</string>
-    <string name="button_enviar">Send</string>
-    <string name="button_grabar">Record</string>
-    <string name="button_ver_config">Check settings</string>
+    <string name="button_send">Send</string>
+    <string name="button_record">Record</string>
+    <string name="button_check_config">Check settings</string>
 
     //Texto de RadioButton
     <string name="button_setting_PLC_TU">Settings PLC-TU</string>
@@ -115,7 +115,7 @@
     <string name="txt_check_clock">Check clock</string>
 
     <string name="title_trafo">Transformer connection</string>
-    <string name="title_cliente">Client connection</string>
+    <string name="title_client">Client connection</string>
     <string name="txt_data_base">Data base</string>
     <string name="title_meter">Meter</string>
     <string name="title_new_meter">New meter</string>
@@ -127,6 +127,25 @@
     <string name="plc_tu_in_the_db">PLC-TU in the DB</string>
     <string name="macros_in_the_db">Macros in the DB</string>
     <string name="products_in_the_db">Products in the DB</string>
+    <string name="id_product">ID Product:</string>
+    <string name="state">State:</string>
+    <string name="id_transformer">ID Transformer:</string>
+    <string name="id_plc_tu">ID PLC-TU:</string>
+    <string name="txt_mac">MAC:</string>
+    <string name="id_plc_mms">ID PLC-MMS:</string>
+    <string name="id_plc_mc">ID PLC-MC:</string>
+    <string name="id_medidor">ID Medidor:</string>
+    <string name="txt_type">Type:</string>
+    <string name="txt_model">Model:</string>
+    <string name="txt_trademark">Trademark:</string>
+    <string name="txt_class">Class:</string>
+    <string name="id_macro">ID Macro:</string>
+    <string name="txt_identification">Identification:</string>
+    <string name="txt_names">Names:</string>
+    <string name="txt_last_names">Last names</string>
+    <string name="txt_direction">Direction:</string>
+    <string name="txt_neighborhood">Neighborhood:</string>
+    <string name="txt_cellphone">Cellphone:</string>
 
 
 </resources>

@@ -10,7 +10,7 @@
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ID PLC-MMS: "
+        android:text="@string/id_plc_mms"
         android:textColor="@color/colorRed"
         />
     <TextView
@@ -18,30 +18,29 @@
         android:id="@+id/idPlcMms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="ID PLC-MMS"
+        tools:text="@string/id_plc_mms"
         android:paddingLeft="10dp"
         />
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Estado: "
+        android:text="@string/state"
         android:textColor="@color/colorRed"
         />
     <TextView
         style="@style/TextAppearance.AppCompat.Body1"
         android:id="@+id/estadoPlcMms"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
-        tools:text="Estado"
+        tools:text="@string/state"
         android:paddingLeft="10dp"
         />
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MAC: "
+        android:text="@string/txt_mac"
         android:textColor="@color/colorRed"
         />
     <TextView
@@ -49,7 +48,7 @@
         android:id="@+id/macPlcMms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="MAC"
+        tools:text="@string/txt_mac"
         android:paddingLeft="10dp"
         />
 
@@ -57,7 +56,7 @@
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ganancia de transmision: "
+        android:text="@string/txt_gan_tx"
         android:textColor="@color/colorRed"
         />
     <TextView
@@ -65,14 +64,14 @@
         android:id="@+id/gtxPlcMms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="GTx"
+        tools:text="@string/txt_gan_tx"
         android:paddingLeft="10dp"
         />
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ganacia de recepcion: "
+        android:text="@string/txt_gan_rx"
         android:textColor="@color/colorRed"
         />
     <TextView
@@ -80,14 +79,14 @@
         android:id="@+id/grxPlcMms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="GRx"
+        tools:text="@string/txt_gan_rx"
         android:paddingLeft="10dp"
         />
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Retardo de transmision: "
+        android:text="@string/txt_delay_tx"
         android:textColor="@color/colorRed"
         />
     <TextView
@@ -95,14 +94,14 @@
         android:id="@+id/retardoPlcMms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Retardo Tx"
+        tools:text="@string/txt_delay_tx"
         android:paddingLeft="10dp"
         />
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tasa de transmision: "
+        android:text="@string/txt_rate_tx"
         android:textColor="@color/colorRed"
         />
     <TextView
@@ -110,7 +109,7 @@
         android:id="@+id/tasaPlcMms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Tasa Tx"
+        tools:text="@string/txt_rate_tx"
         android:paddingLeft="10dp"
         />
 

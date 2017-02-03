@@ -1,6 +1,5 @@
 package com.example.yogis.atemsaa_fragments.adapters;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +28,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
 
     @Override
     public ProductoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = inflater.inflate(R.layout.templete_producto, parent, false);
+        View v = inflater.inflate(R.layout.templete_product, parent, false);
         ProductoViewHolder viewHolder = new ProductoViewHolder(v);
         return viewHolder;
     }

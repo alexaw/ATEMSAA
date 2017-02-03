@@ -60,7 +60,7 @@
             android:id="@+id/txt_mms_parametros"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/subtitle_parametros_PLC"
+            android:text="@string/subtitle_parameters_PLC"
             android:textSize="17sp"
             android:gravity="center"
             android:layout_marginBottom="15dp"
@@ -70,7 +70,7 @@
             android:id="@+id/txt_gan_tx"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/spinner_gan_tx"
+            android:text="@string/txt_gan_tx"
             android:layout_marginBottom="1dp"
             />
 
@@ -84,7 +84,7 @@
             android:id="@+id/txt_gan_rx"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/spinner_gan_rx"
+            android:text="@string/txt_gan_rx"
             android:layout_marginBottom="1dp"
             android:paddingTop="12dp"
             />
@@ -99,7 +99,7 @@
             android:id="@+id/txt_ret_tx"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/spinner_ret_tx"
+            android:text="@string/txt_delay_tx"
             android:layout_marginBottom="1dp"
             android:paddingTop="12dp"
             />
@@ -114,7 +114,7 @@
             android:id="@+id/txt_tasa_tx"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/spinner_tasa_tx"
+            android:text="@string/txt_rate_tx"
             android:layout_marginBottom="1dp"
             android:paddingTop="12dp"
             />
@@ -129,7 +129,7 @@
             android:id="@+id/txt_hora_encuesta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/spinner_hora_encuesta"
+            android:text="@string/txt_survey_hour"
             android:layout_marginBottom="1dp"
             android:paddingTop="12dp"
             />
@@ -148,7 +148,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="3dp"
-            android:text="@string/button_ver_config"
+            android:text="@string/button_check_config"
             android:layout_marginBottom="10dp"
             />
 
@@ -158,7 +158,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="3dp"
-            android:text="@string/button_grabar"
+            android:text="@string/button_record"
             android:layout_marginBottom="10dp"
             />
 
