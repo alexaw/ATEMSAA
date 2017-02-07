@@ -119,7 +119,7 @@
     <string name="txt_data_base">Data base</string>
     <string name="title_meter">Meter</string>
     <string name="title_new_meter">New meter</string>
-    <string name="title_energy_reading">Energy reading</string>
+    <string name="title_energy_reading">Energy reading in meter</string>
     <string name="title_meter_PLCMC">Meter reading on PLC-MC</string>
 
     <string name="plc_mms_in_db">PLC-MMS in the DB</string>
