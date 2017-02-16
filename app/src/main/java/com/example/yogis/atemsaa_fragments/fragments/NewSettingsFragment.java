@@ -88,7 +88,7 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
         View vistaStgs = inflater.inflate(R.layout.fragment_new_settings, container, false);
 
         // Capturo el contenido del editText donde van los ID
-
+        edTxtID = (EditText) vistaStgs.findViewById(R.id.id_dispositivo);
 
         //textView donde se muestra las respuesta de las consultas
         tvRtaNewSettings=(TextView)vistaStgs.findViewById(R.id.txt_view_rta_settings);
