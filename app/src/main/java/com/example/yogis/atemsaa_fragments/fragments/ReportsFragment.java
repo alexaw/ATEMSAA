@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +20,7 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewReportsFragment extends Fragment implements View.OnClickListener {
+public class ReportsFragment extends Fragment implements View.OnClickListener {
 
     FloatingActionsMenu flMore;
     FloatingActionButton flParcial, flList, flOpc;
@@ -32,7 +31,7 @@ public class NewReportsFragment extends Fragment implements View.OnClickListener
     OnChangeFragment changeFragment;
     MainActivity activity;
 
-    public NewReportsFragment() {
+    public ReportsFragment() {
         // Required empty public constructor
     }
 
@@ -48,7 +47,7 @@ public class NewReportsFragment extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vistaReport = inflater.inflate(R.layout.fragment_new_reports, container, false);
+        View vistaReport = inflater.inflate(R.layout.fragment_reports, container, false);
 
         //textView donde se muestra las respuesta de las consultas
         tvRtaNewReports=(TextView)vistaReport.findViewById(R.id.txt_view_rta_newreports);

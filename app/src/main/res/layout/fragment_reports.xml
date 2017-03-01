@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp"
-    tools:context="com.example.yogis.atemsaa_fragments.fragments.NewReportsFragment">
+    tools:context="com.example.yogis.atemsaa_fragments.fragments.ReportsFragment">
 
 
     <TextView

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:padding="5dp"
-    tools:context="com.example.yogis.atemsaa_fragments.fragments.NewSettingsFragment">
+    tools:context="com.example.yogis.atemsaa_fragments.fragments.SettingsFragment">
 
         <include layout="@layout/content_scrolling_settings" />
 

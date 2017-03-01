@@ -25,7 +25,7 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
 
     FloatingActionsMenu flMore;
     FloatingActionButton flNewMeter, flEnergyRead, flOpc;
-    TextView tvRtaListNewUser;
+    TextView tvRtaMeters;
     String buff = "";
     String idUsuario;
     static String estadoUsuario = "1";
@@ -55,22 +55,22 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View vistaMeter = inflater.inflate(R.layout.fragment_meter, container, false);
 
-        tvRtaListNewUser=(TextView)vistaMeter.findViewById(R.id.txt_view_rta_meter);
-        tvRtaListNewUser.setText("");
+        tvRtaMeters=(TextView)vistaMeter.findViewById(R.id.txt_view_rta_meter);
+        tvRtaMeters.setText("");
 
-        flMore = (FloatingActionsMenu) vistaMeter.findViewById(R.id.fl_more);
+        //flMore = (FloatingActionsMenu) vistaMeter.findViewById(R.id.fl_more);
 
-        flNewMeter = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_new_meter);
-        flEnergyRead = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_test_frame_user);
-        flOpc = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_opc);
+        //flNewMeter = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_new_meter);
+       // flEnergyRead = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_test_frame_user);
+        //flOpc = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_opc);
 
-        flNewMeter.setOnClickListener(this);
-        flEnergyRead.setOnClickListener(this);
-        flOpc.setOnClickListener(this);
+        //flNewMeter.setOnClickListener(this);
+        //flEnergyRead.setOnClickListener(this);
+      //  flOpc.setOnClickListener(this);
 
 
         // Capturo el contenido del editText donde van los ID
-        edTxtID = (EditText) vistaMeter.findViewById(R.id.id_list_newuser);
+        //edTxtID = (EditText) vistaMeter.findViewById(R.id.id_list_newuser);
 
         return vistaMeter;
     }
@@ -167,5 +167,9 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
         if (message.length > 0) {
             activity.writeMessage(message);
         }
+    }
+
+    public void setMsg(String msg){
+        tvRtaMeters.setText(msg);
     }
 }

@@ -33,7 +33,7 @@ import java.util.Date;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewUserFragment extends Fragment implements View.OnClickListener {
+public class UserFragment extends Fragment implements View.OnClickListener {
 
     FloatingActionsMenu flMore;
     FloatingActionButton flAdd, flTestFrame, flOpc;
@@ -49,7 +49,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
 
     MainActivity activity;
 
-    public NewUserFragment() {
+    public UserFragment() {
         // Required empty public constructor
     }
 
@@ -100,56 +100,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        /* if (isOpen){
 
-            flAdd.startAnimation(close);
-            txtAdd.startAnimation(close);
-
-            flTestFrame.startAnimation(close);
-            txtTest.startAnimation(close);
-
-            flOpc.startAnimation(close);
-            txtOpc.startAnimation(close);
-
-            flMore.startAnimation(anticlock);
-
-            flAdd.setClickable(false);
-            txtAdd.setClickable(false);
-
-            flTestFrame.setClickable(false);
-            txtTest.setClickable(false);
-
-            flOpc.setClickable(false);
-            txtOpc.setClickable(false);
-
-            isOpen = false;
-        }
-        else {
-
-            flAdd.startAnimation(open);
-            txtAdd.startAnimation(open);
-
-            flTestFrame.startAnimation(open);
-            txtTest.startAnimation(open);
-
-            flOpc.startAnimation(open);
-            txtOpc.startAnimation(open);
-
-            flMore.startAnimation(clock);
-
-            flAdd.setClickable(true);
-            txtAdd.setClickable(false);
-
-            flTestFrame.setClickable(true);
-            txtTest.setClickable(false);
-
-            flOpc.setClickable(true);
-            txtOpc.setClickable(false);
-
-            isOpen = true;
-        }
-
-        */
         switch(view.getId()){
 
 

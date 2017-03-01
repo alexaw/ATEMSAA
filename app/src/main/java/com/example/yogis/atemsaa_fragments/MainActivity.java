@@ -34,9 +34,9 @@ import com.example.yogis.atemsaa_fragments.fragments.ClockSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.GprsSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MenuBaseDatosFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MenuFragment;
-import com.example.yogis.atemsaa_fragments.fragments.NewReportsFragment;
-import com.example.yogis.atemsaa_fragments.fragments.NewSettingsFragment;
-import com.example.yogis.atemsaa_fragments.fragments.NewUserFragment;
+import com.example.yogis.atemsaa_fragments.fragments.ReportsFragment;
+import com.example.yogis.atemsaa_fragments.fragments.SettingsFragment;
+import com.example.yogis.atemsaa_fragments.fragments.UserFragment;
 import com.example.yogis.atemsaa_fragments.fragments.OnChangeFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcMmsSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcTuBDFragment;
@@ -97,9 +97,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     ClockSettingsFragment fclock;
     GprsSettingsFragment fgprs;
 
-    NewUserFragment newUser;
-    NewSettingsFragment newSettings;
-    NewReportsFragment newReports;
+    UserFragment newUser;
+    SettingsFragment newSettings;
+    ReportsFragment newReports;
     MeterFragment meters;
 
     MenuBaseDatosFragment menuBD;
@@ -149,9 +149,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
         fclock = new ClockSettingsFragment();
         fgprs = new GprsSettingsFragment();
 
-        newUser = new NewUserFragment();
-        newSettings = new NewSettingsFragment();
-        newReports = new NewReportsFragment();
+        newUser = new UserFragment();
+        newSettings = new SettingsFragment();
+        newReports = new ReportsFragment();
         meters = new MeterFragment();
 
         menuBD = new MenuBaseDatosFragment();
@@ -447,7 +447,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 newReports.setMsg(buff);
                 break;
             case 4:
-                //meters.setMsg(buff);
+                meters.setMsg(buff);
                 break;
 
         }

@@ -37,7 +37,7 @@ import java.util.Date;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewSettingsFragment extends Fragment implements View.OnClickListener {
+public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     //se inicializan todos los objetos
 
@@ -70,7 +70,7 @@ public class NewSettingsFragment extends Fragment implements View.OnClickListene
 
 
 
-    public NewSettingsFragment() {
+    public SettingsFragment() {
         // Required empty public constructor
     }
 
