@@ -38,10 +38,7 @@ public class NewUserFragment extends Fragment implements View.OnClickListener {
     FloatingActionsMenu flMore;
     FloatingActionButton flAdd, flTestFrame, flOpc;
 
-    Animation open, close, clock, anticlock;
-    boolean isOpen = false;
-
-    TextView tvRtaListNewUser, txtOpc, txtAdd, txtTest;
+    TextView tvRtaListNewUser;
     String buff = "";
     String idUsuario;
     static String estadoUsuario = "1";

@@ -76,7 +76,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
 
         if (view.getId() == R.id.btn_menu_base_datos) {
-            changeFragment.onChange(OnChangeFragment.BASEDATOS);
+            changeFragment.onChange(OnChangeFragment.DATABASE);
             return;
         }
 
@@ -87,7 +87,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
             }else {
                 switch (view.getId()) {
                     case R.id.btn_menu_usuarios:
-                        changeFragment.onChange(OnChangeFragment.USER);
+                        changeFragment.onChange(OnChangeFragment.USERS);
                         listUser();
                         break;
 
@@ -109,13 +109,15 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 
                     case R.id.btn_menu_reports:
 
-                        changeFragment.onChange(OnChangeFragment.NEWREPORTS);
+                        changeFragment.onChange(OnChangeFragment.REPORTS);
 
                         break;
 
                     case R.id.btn_menu_meter:
 
-                        changeFragment.onChange(OnChangeFragment.METER);
+                        changeFragment.onChange(OnChangeFragment.METERS);
+
+                        listMeter();
 
                         break;
 
@@ -139,6 +141,21 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 
         sendMessage(frame2Send);
     }
+
+    private void listMeter(){
+        byte[] frame2Send = new byte[7];
+
+        frame2Send[0] = 0x24;// $
+        frame2Send[1] = 0x40;// @
+        frame2Send[2] = 0x07;// length
+        frame2Send[3] = 0x1A;// Tipo
+        frame2Send[4] = 0x01;// Supioniendo 1 como origen PC
+        frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
+        frame2Send[6] = calcularCRC(frame2Send);
+
+        sendMessage(frame2Send);
+    }
+
 
     private void sendMessage(byte[] message) {
 

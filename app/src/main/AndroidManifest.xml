@@ -36,7 +36,6 @@
         <activity android:name=".DeviceListActivity" />
         <activity android:name=".Login.RootActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Login.RegisterActivity" />
         <activity android:name=".TestApiActivity"></activity>
     </application>
 

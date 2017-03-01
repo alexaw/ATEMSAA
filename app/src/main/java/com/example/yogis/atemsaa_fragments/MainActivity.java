@@ -32,7 +32,6 @@ import com.example.yogis.atemsaa_fragments.fragments.PlcMmsBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ClientBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ClockSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.GprsSettingsFragment;
-import com.example.yogis.atemsaa_fragments.fragments.ListUserFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MenuBaseDatosFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MenuFragment;
 import com.example.yogis.atemsaa_fragments.fragments.NewReportsFragment;
@@ -41,15 +40,8 @@ import com.example.yogis.atemsaa_fragments.fragments.NewUserFragment;
 import com.example.yogis.atemsaa_fragments.fragments.OnChangeFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcMmsSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcTuBDFragment;
-import com.example.yogis.atemsaa_fragments.fragments.PlcTuSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ProductBDFragment;
-import com.example.yogis.atemsaa_fragments.fragments.RegisterUserFragment;
-import com.example.yogis.atemsaa_fragments.fragments.SearchUserFragment;
-import com.example.yogis.atemsaa_fragments.fragments.SettingsFragment;
-import com.example.yogis.atemsaa_fragments.fragments.TestFrameFragment;
-import com.example.yogis.atemsaa_fragments.fragments.ToolBarFragment;
 import com.example.yogis.atemsaa_fragments.fragments.TrafoBDFragment;
-import com.example.yogis.atemsaa_fragments.fragments.UserFragment;
 
 
 public class MainActivity extends AppCompatActivity implements OnChangeFragment, ClockSettingsFragment.DateSelectedListener {
@@ -100,14 +92,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
 
     int currentFragment;
     MenuFragment menu;
-    UserFragment user;
-    SettingsFragment settings;
-    SearchUserFragment search;
-    ListUserFragment list;
-    RegisterUserFragment register;
-    TestFrameFragment test;
     PlcMmsSettingsFragment plcmms;
-    PlcTuSettingsFragment plctu;
 
     ClockSettingsFragment fclock;
     GprsSettingsFragment fgprs;
@@ -115,8 +100,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     NewUserFragment newUser;
     NewSettingsFragment newSettings;
     NewReportsFragment newReports;
-    MeterFragment meter;
-    ToolBarFragment hola;
+    MeterFragment meters;
 
     MenuBaseDatosFragment menuBD;
     ClientBDFragment clientBD;
@@ -127,7 +111,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     PlcTuBDFragment plcTuBD;
     ProductBDFragment productoBD;
     TrafoBDFragment trafoBD;
-
 
     ActionBar myToolbar;
 
@@ -160,14 +143,8 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
         myToolbar = getSupportActionBar();
 
         menu = new MenuFragment();
-        settings = new SettingsFragment();
-        user = new UserFragment();
-        search = new SearchUserFragment();
-        list = new ListUserFragment();
-        register = new RegisterUserFragment();
-        test = new TestFrameFragment();
         plcmms = new PlcMmsSettingsFragment();
-        plctu = new PlcTuSettingsFragment();
+
 
         fclock = new ClockSettingsFragment();
         fgprs = new GprsSettingsFragment();
@@ -175,9 +152,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
         newUser = new NewUserFragment();
         newSettings = new NewSettingsFragment();
         newReports = new NewReportsFragment();
-        meter = new MeterFragment();
-
-        hola = new ToolBarFragment();
+        meters = new MeterFragment();
 
         menuBD = new MenuBaseDatosFragment();
         clientBD = new ClientBDFragment();
@@ -188,9 +163,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
         plcTuBD = new PlcTuBDFragment();
         productoBD = new ProductBDFragment();
         trafoBD = new TrafoBDFragment();
-
-
-
 
         currentFragment = MENU;
         putFragment(menu, MENU);
@@ -311,7 +283,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
 
         switch (item.getItemId()) {
             case R.id.connect_disconnect:
-                // Launch the ScanDevicesActivity to see devices and do scan
+                // Launch the DevicesActivity to see devices and do scan
                 if (flagConnectDisconnect) {
                     new AlertDialog.Builder(this)
                             .setTitle(R.string.txt_caution)
@@ -474,6 +446,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
             case 3:
                 newReports.setMsg(buff);
                 break;
+            case 4:
+                //meters.setMsg(buff);
+                break;
 
         }
     }
@@ -486,7 +461,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 if (resultCode == Activity.RESULT_OK) {
                     // Get the device MAC address
                     String address = data.getExtras()
-                            .getString(ScanDevicesActivity.EXTRA_DEVICE_ADDRESS);
+                            .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
                     // Get the BLuetoothDevice object
                     BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
                     // Attempt to connect to the device
@@ -514,7 +489,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
             case MENU :
                 putFragment(menu, fragment);
                 break;
-            case USER :
+            case USERS :
                 putFragment(newUser, fragment);
                 band = 1;
                 showMenuSearch();
@@ -524,40 +499,27 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 band = 2;
                 showMenuSettings();
                 break;
-            case NEWREPORTS:
+            case REPORTS:
                 putFragment(newReports, fragment);
                 band = 3;
                 showMenuSearch();
                 break;
-            case METER:
-                putFragment(meter, fragment);
-                band = 3;
+            case METERS:
+                putFragment(meters, fragment);
+                band = 4;
                 showMenuSearch();
                 break;
-            case BASEDATOS:
+            case DATABASE:
                 putFragment(menuBD, fragment);
                 showMenuSearch();
                 break;
 
-            case SEARCH :
-                putFragment(search, fragment);
-                break;
-            case LIST :
-                putFragment(list, fragment);
-                break;
-            case REGISTER :
-                putFragment(register, fragment);
-                break;
-            case TEST :
-                putFragment(test, fragment);
-                break;
+
 
             case PLCMMS :
                 putFragment(plcmms, fragment);
                 break;
-            case PLCTU :
-                putFragment(plctu, fragment);
-                break;
+
             case PLCMC :
                 putFragment(plcmms, fragment);
                 break;
@@ -569,9 +531,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 putFragment(fgprs, fragment);
                 showMenuPpal();
                 break;
-            case HOLA :
-                putFragment(hola, fragment);
-                break;
+
             case PLCMMSBD :
                 putFragment(plcMmsBD, fragment);
                 break;
@@ -606,7 +566,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
             case MENU :
                 super.onBackPressed();
                 break;
-            case USER:
+            case USERS:
                 putFragment(menu, MENU);
                 showMenuPpal();
                 break;
@@ -614,41 +574,17 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 putFragment(menu, MENU);
                 showMenuPpal();
                 break;
-            case NEWREPORTS:
+            case REPORTS:
                 putFragment(menu, MENU);
                 showMenuSearch();
                 break;
-            case METER:
+            case METERS:
                 putFragment(menu, MENU);
                 showMenuSearch();
                 break;
-            case BASEDATOS:
+            case DATABASE:
                 putFragment(menu, MENU);
                 showMenuSearch();
-                break;
-
-
-            case SEARCH:
-                putFragment(newUser, NEWUSER);
-                break;
-            case LIST:
-                putFragment(user, USER);
-                break;
-            case REGISTER:
-                putFragment(newUser, NEWUSER);
-                break;
-            case TEST:
-                putFragment(user, USER);
-                break;
-
-            case PLCMMS:
-                putFragment(settings, SETTINGS);
-                break;
-            case PLCTU:
-                putFragment(settings, SETTINGS);
-                break;
-            case PLCMC:
-                putFragment(settings, SETTINGS);
                 break;
             case CLOCK:
                 putFragment(newSettings, SETTINGS);
@@ -658,35 +594,32 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 putFragment(newSettings, SETTINGS);
                 showMenuSettings();
                 break;
-            case HOLA:
-                putFragment(settings, NEWUSER);
-                break;
             case PLCMMSBD:
-                putFragment(menuBD, BASEDATOS);
+                putFragment(menuBD, DATABASE);
                 break;
             case CLIENTEBD:
-                putFragment(menuBD, BASEDATOS);
+                putFragment(menuBD, DATABASE);
                 break;
             case MACROBD:
-                putFragment(menuBD, BASEDATOS);
+                putFragment(menuBD, DATABASE);
                 break;
             case MEDIDORBD:
-                putFragment(menuBD, BASEDATOS);
+                putFragment(menuBD, DATABASE);
                 break;
             case PLCMCBD:
-                putFragment(menuBD, BASEDATOS);
+                putFragment(menuBD, DATABASE);
                 break;
             case PLCTUBD:
-                putFragment(menuBD, BASEDATOS);
+                putFragment(menuBD, DATABASE);
                 break;
             case PRODUCTOBD:
-                putFragment(menuBD, BASEDATOS);
+                putFragment(menuBD, DATABASE);
                 break;
             case TRAFOBD:
-                putFragment(menuBD, BASEDATOS);
+                putFragment(menuBD, DATABASE);
                 break;
             case PARCIAL:
-                putFragment(newReports, NEWREPORTS);
+                putFragment(newReports, REPORTS);
                 break;
 
         }

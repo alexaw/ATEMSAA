@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 
 import com.example.yogis.atemsaa_fragments.R;
-import com.example.yogis.atemsaa_fragments.fragments.ListUserFragment;
 import com.example.yogis.atemsaa_fragments.net.http.HttpApi;
 import com.example.yogis.atemsaa_fragments.net.http.HttpAsyncTask;
 import com.example.yogis.atemsaa_fragments.net.http.Response;

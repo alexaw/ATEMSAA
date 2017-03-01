@@ -22,7 +22,7 @@ import java.util.Set;
 public class DeviceListActivity extends AppCompatActivity {
 
     // Debugging
-    private static final String TAG = "ScanDevicesActivity";
+    private static final String TAG = "DevicesActivity";
     private static final boolean D = true;
 
     // Return Intent extra
