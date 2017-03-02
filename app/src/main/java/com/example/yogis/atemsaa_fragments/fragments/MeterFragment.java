@@ -96,7 +96,13 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
                 flMore.collapse();
 
                 idMeter = edTxtID.getText().toString();
-                byte[] posMedByte = hexStringToByteArray(sPosMed);
+
+                //String gananciaTransmisionElegida = gananciaTransmisionSpinner;
+                //Capturo el valor del spinner 'Posicion del Medidor'
+                int sPosMedInt = Integer.parseInt(sPosMed);
+                String positionmed = Integer.toHexString(sPosMedInt);
+                if (positionmed.length() == 1){positionmed = "0"+positionmed;}
+                byte[] posMedByte = hexStringToByteArray(positionmed);
 
                 if (idMeter.length() == 14) {
 
@@ -129,6 +135,7 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
                 }
 
                 break;
+
             case R.id.fl_energy_reading:
                 flMore.collapse();
 
@@ -143,7 +150,7 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
                 frame2Send[0] = 0x24;// $
                 frame2Send[1] = 0x40;// @
                 frame2Send[2] = 0x0D;// length
-                frame2Send[3] = 0x1E;// Tipo
+                frame2Send[3] = 0x1D;// Tipo
                 frame2Send[4] = 0x01;// Supioniendo 1 como origen PC
                 frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
                 frame2Send[6] = array_id[0];
@@ -166,6 +173,41 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.fl_opc:
                 flMore.collapse();
+
+                idMeter = edTxtID.getText().toString();
+
+                if (idMeter.length() == 12) {
+
+                    byte[] frame2Send = new byte[14];
+                    byte[] array_id = hexStringToByteArray(idMeter);
+
+
+                    frame2Send[0] = 0x24;// $
+                    frame2Send[1] = 0x40;// @
+                    frame2Send[2] = 0x0E;// length
+                    frame2Send[3] = 0x1C;// Tipo
+                    frame2Send[4] = 0x01;// Supioniendo 1 como origen PC
+                    frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
+                    frame2Send[6] = array_id[0];
+                    frame2Send[7] = array_id[1];
+                    frame2Send[8] = array_id[2];
+                    frame2Send[9] = array_id[3];
+                    frame2Send[10] = array_id[4];
+                    frame2Send[11] = array_id[5];
+                    frame2Send[12] = 2;
+                    frame2Send[13] = calcularCRC(frame2Send);
+
+
+                    tvRtaMeters.setText("");
+                    buff="";
+
+                    sendMessage(frame2Send);
+
+                } else {
+                    toastIngresarId();
+                }
+
+
 
                 break;
         }

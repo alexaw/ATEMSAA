@@ -55,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Datos actuales en el PLC_MMS"
+            android:paddingBottom="15dp"
             />
 
         <TextView
@@ -85,7 +86,7 @@
 
         <Spinner
             android:id="@+id/ganancia_transmision_spinner"
-            android:layout_width="100dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             />
 
@@ -100,7 +101,7 @@
 
         <Spinner
             android:id="@+id/ganancia_recepcion_spinner"
-            android:layout_width="100dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             />
 
@@ -115,7 +116,7 @@
 
         <Spinner
             android:id="@+id/retardo_transmision_spinner"
-            android:layout_width="100dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             />
 
@@ -130,7 +131,7 @@
 
         <Spinner
             android:id="@+id/tasa_transmision_spinner"
-            android:layout_width="100dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             />
 
@@ -145,7 +146,7 @@
 
         <Spinner
             android:id="@+id/hora_encuesta_spinner"
-            android:layout_width="100dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             />
 

@@ -7,37 +7,38 @@
     tools:context="com.example.yogis.atemsaa_fragments.fragments.MeterFragment"
     >
 
-    <TextView
-        android:id="@+id/txt_pos_med"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Seleccione Posicion del medidor"
-        android:paddingTop="10dp"
-        />
-
-    <Spinner
-        android:id="@+id/pos_med"
-        android:layout_below="@+id/txt_pos_med"
-        android:paddingBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </Spinner>
-
     <EditText
         android:id="@+id/id_meter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="ID:"
-        android:layout_below="@+id/pos_med"
+        android:layout_marginBottom="20dp"
         />
+
+    <TextView
+        android:id="@+id/txt_pos_med"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccione Posicion del medidor"
+        android:layout_marginBottom="1dp"
+        android:layout_below="@+id/id_meter"
+        />
+
+    <Spinner
+        android:id="@+id/pos_med"
+        android:layout_below="@+id/txt_pos_med"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"/>
+
 
     <TextView
         android:id="@+id/txt_rta_meter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/respuesta_usr"
-        android:layout_below="@+id/id_meter"
+        android:layout_below="@+id/pos_med"
+        android:paddingBottom="15dp"
+        android:paddingTop="12dp"
         />
 
     <TextView
@@ -91,7 +92,7 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/colorBlue"
             fab:fabSize="mini"
-            fab:fab_title="Opciones"
+            fab:fab_title="A/D Relé"
             fab:fab_colorPressed="@color/colorBluePressed"
             fab:fab_icon="@mipmap/ic_opc"
             />

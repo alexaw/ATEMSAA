@@ -11,34 +11,27 @@ public interface OnChangeFragment {
     int USERS = 1;
     int SETTINGS = 2;
     int REPORTS = 3;
-
-
-    //UserFragment
-
-    int METERS = 26;
+    int METERS = 4;
+    int DATABASE = 5;
 
     //SettingsFragment
-    int PLCMMS = 8;
+    int PLCMMS = 6;
+    int PLCMC = 7;
+    int CLOCK = 8;
+    int GPRS = 9;
 
-    int PLCMC = 10;
-    int CLOCK = 11;
-    int GPRS = 12;
+    //ReportsFragment
+    int PARCIAL = 10;
 
-
-
-
-    int DATABASE = 15;
+    //DataBaseFragment
     int PLCMMSBD = 16;
     int CLIENTEBD = 17;
-    int MACROBD = 18;
-    int MEDIDORBD = 19;
     int PLCMCBD = 20;
     int PLCTUBD = 21;
+    int MACROBD = 18;
+    int MEDIDORBD = 19;
     int PRODUCTOBD = 22;
     int TRAFOBD = 23;
-
-
-    int PARCIAL=25;
 
 
     void onChange(int fragment);
