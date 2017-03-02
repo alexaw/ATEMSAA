@@ -8,7 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,8 @@ import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,8 +32,11 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
     FloatingActionButton flNewMeter, flEnergyRead, flOpc;
     TextView tvRtaMeters;
     String buff = "";
-    String idUsuario;
+    String idMeter, sPosMed;
     static String estadoUsuario = "1";
+
+    Spinner posMed;
+    ArrayList listPosMed;
 
     OnChangeFragment changeFragment;
 
@@ -58,19 +66,24 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
         tvRtaMeters=(TextView)vistaMeter.findViewById(R.id.txt_view_rta_meter);
         tvRtaMeters.setText("");
 
-        //flMore = (FloatingActionsMenu) vistaMeter.findViewById(R.id.fl_more);
+        posMed = (Spinner) vistaMeter.findViewById(R.id.pos_med);
 
-        //flNewMeter = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_new_meter);
-       // flEnergyRead = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_test_frame_user);
-        //flOpc = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_opc);
+        spinnerPosMed();
 
-        //flNewMeter.setOnClickListener(this);
-        //flEnergyRead.setOnClickListener(this);
-      //  flOpc.setOnClickListener(this);
+
+        flMore = (FloatingActionsMenu) vistaMeter.findViewById(R.id.fl_more);
+
+        flNewMeter = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_new_meter);
+        flEnergyRead = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_energy_reading);
+        flOpc = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_opc);
+
+        flNewMeter.setOnClickListener(this);
+        flEnergyRead.setOnClickListener(this);
+        flOpc.setOnClickListener(this);
 
 
         // Capturo el contenido del editText donde van los ID
-        //edTxtID = (EditText) vistaMeter.findViewById(R.id.id_list_newuser);
+        edTxtID = (EditText) vistaMeter.findViewById(R.id.id_meter);
 
         return vistaMeter;
     }
@@ -82,8 +95,13 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
             case R.id.fl_new_meter:
                 flMore.collapse();
 
+                idMeter = edTxtID.getText().toString();
+                byte[] posMedByte = hexStringToByteArray(sPosMed);
+
+                if (idMeter.length() == 14) {
+
                 byte[] frame2Send = new byte[14];
-                byte[] array_id = hexStringToByteArray("?????????");
+                byte[] array_id = hexStringToByteArray(idMeter);
 
 
                 frame2Send[0] = 0x24;// $
@@ -92,7 +110,7 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
                 frame2Send[3] = 0x19;// Tipo
                 frame2Send[4] = 0x01;// Supioniendo 1 como origen PC
                 frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
-                //frame2Send[6] = System.Convert.ToByte(PosMed);
+                frame2Send[6] = posMedByte[0];
                 frame2Send[7] = array_id[0];
                 frame2Send[8] = array_id[1];
                 frame2Send[9] = array_id[2];
@@ -101,14 +119,25 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
                 frame2Send[12] = array_id[5];
                 frame2Send[13] = calcularCRC(frame2Send);
 
+                    tvRtaMeters.setText("");
+                    buff="";
+
                 sendMessage(frame2Send);
+
+                } else {
+                    toastIngresarId();
+                }
 
                 break;
             case R.id.fl_energy_reading:
                 flMore.collapse();
 
-                frame2Send = new byte[13];
-                array_id = hexStringToByteArray("?????????");
+                idMeter = edTxtID.getText().toString();
+
+                if (idMeter.length() == 12) {
+
+                byte[] frame2Send = new byte[13];
+                byte[] array_id = hexStringToByteArray(idMeter);
 
 
                 frame2Send[0] = 0x24;// $
@@ -125,7 +154,14 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
                 frame2Send[11] = array_id[5];
                 frame2Send[12] = calcularCRC(frame2Send);
 
+                    tvRtaMeters.setText("");
+                    buff="";
+
                 sendMessage(frame2Send);
+
+                } else {
+                    toastIngresarId();
+                }
 
                 break;
             case R.id.fl_opc:
@@ -171,5 +207,36 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
 
     public void setMsg(String msg){
         tvRtaMeters.setText(msg);
+    }
+
+    public void toastIngresarId() {
+        Toast.makeText(this.getContext(), getString(R.string.txt_verificar_ID), Toast.LENGTH_SHORT).show();
+
+    }
+
+    public void spinnerPosMed(){
+        listPosMed = new ArrayList <String> ();
+        listPosMed.add("1");
+        listPosMed.add("2");
+        listPosMed.add("3");
+        listPosMed.add("4");
+        listPosMed.add("5");
+        listPosMed.add("6");
+
+        ArrayAdapter<String> adaptador3 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listPosMed);
+        adaptador3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        posMed.setAdapter(adaptador3);
+
+        posMed.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
+                sPosMed = arg0.getItemAtPosition(arg2).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
     }
 }

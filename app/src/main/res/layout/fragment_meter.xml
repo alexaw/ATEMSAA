@@ -7,13 +7,29 @@
     tools:context="com.example.yogis.atemsaa_fragments.fragments.MeterFragment"
     >
 
+    <TextView
+        android:id="@+id/txt_pos_med"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccione Posicion del medidor"
+        android:paddingTop="10dp"
+        />
+
+    <Spinner
+        android:id="@+id/pos_med"
+        android:layout_below="@+id/txt_pos_med"
+        android:paddingBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </Spinner>
 
     <EditText
         android:id="@+id/id_meter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="ID:"
-        android:layout_marginBottom="50dp"
+        android:layout_below="@+id/pos_med"
         />
 
     <TextView
@@ -21,8 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/respuesta_usr"
-        android:layout_marginTop="50dp"
-        android:paddingBottom="15dp"
+        android:layout_below="@+id/id_meter"
         />
 
     <TextView
@@ -45,7 +60,7 @@
         fab:fab_addButtonPlusIconColor="@color/colorGray"
         fab:fab_labelStyle="@style/menu_labels_style"
 
-        android:layout_below="@+id/txt_view_rta_meter"
+        android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true">
 
         <com.getbase.floatingactionbutton.FloatingActionButton

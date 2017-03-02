@@ -85,7 +85,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vistaStgs = inflater.inflate(R.layout.fragment_new_settings, container, false);
+        View vistaStgs = inflater.inflate(R.layout.fragment_settings, container, false);
 
         // Capturo el contenido del editText donde van los ID
         edTxtID = (EditText) vistaStgs.findViewById(R.id.id_dispositivo);
