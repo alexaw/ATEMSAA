@@ -72,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/colorBlue"
-            fab:fab_title="Agregar nuevo medidor"
+            fab:fab_title="Agregar medidor"
             fab:fab_colorPressed="@color/colorBluePressed"
             fab:fabSize="mini"
             fab:fab_icon="@mipmap/ic_add_user"
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/colorBlue"
             fab:fabSize="mini"
-            fab:fab_title="activar rele"
+            fab:fab_title="Activar rele"
             fab:fab_colorPressed="@color/colorBluePressed"
             fab:fab_icon="@mipmap/ic_opc"
             />
@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/colorBlue"
             fab:fabSize="mini"
-            fab:fab_title=" desactivar rele"
+            fab:fab_title=" Desactivar rele"
             fab:fab_colorPressed="@color/colorBluePressed"
             fab:fab_icon="@mipmap/ic_opc"
             />

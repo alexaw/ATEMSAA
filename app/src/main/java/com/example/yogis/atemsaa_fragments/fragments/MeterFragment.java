@@ -105,7 +105,7 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
                 if (positionmed.length() == 1){positionmed = "0"+positionmed;}
                 byte[] posMedByte = hexStringToByteArray(positionmed);
 
-                if (idMeter.length() == 14) {
+                if (idMeter.length() == 12) {
 
                 byte[] frame2Send = new byte[14];
                 byte[] array_id = hexStringToByteArray(idMeter);
