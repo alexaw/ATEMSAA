@@ -29,7 +29,7 @@ import java.util.ArrayList;
 public class MeterFragment extends Fragment implements View.OnClickListener {
 
     FloatingActionsMenu flMore;
-    FloatingActionButton flNewMeter, flEnergyRead, flOpc;
+    FloatingActionButton flNewMeter, flEnergyRead, flReleOn,flReleOff;
     TextView tvRtaMeters;
     String buff = "";
     String idMeter, sPosMed;
@@ -75,12 +75,13 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
 
         flNewMeter = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_new_meter);
         flEnergyRead = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_energy_reading);
-        flOpc = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_opc);
+        flReleOn = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_rele_on);
+        flReleOff = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_rele_off);
 
         flNewMeter.setOnClickListener(this);
         flEnergyRead.setOnClickListener(this);
-        flOpc.setOnClickListener(this);
-
+        flReleOn.setOnClickListener(this);
+        flReleOff.setOnClickListener(this);
 
         // Capturo el contenido del editText donde van los ID
         edTxtID = (EditText) vistaMeter.findViewById(R.id.id_meter);
@@ -171,7 +172,46 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
                 }
 
                 break;
-            case R.id.fl_opc:
+
+            case R.id.fl_rele_on:
+                flMore.collapse();
+
+                idMeter = edTxtID.getText().toString();
+
+                if (idMeter.length() == 12) {
+
+                    byte[] frame2Send = new byte[14];
+                    byte[] array_id = hexStringToByteArray(idMeter);
+
+
+                    frame2Send[0] = 0x24;// $
+                    frame2Send[1] = 0x40;// @
+                    frame2Send[2] = 0x0E;// length
+                    frame2Send[3] = 0x1C;// Tipo
+                    frame2Send[4] = 0x01;// Supioniendo 1 como origen PC
+                    frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
+                    frame2Send[6] = array_id[0];
+                    frame2Send[7] = array_id[1];
+                    frame2Send[8] = array_id[2];
+                    frame2Send[9] = array_id[3];
+                    frame2Send[10] = array_id[4];
+                    frame2Send[11] = array_id[5];
+                    frame2Send[12] = 1;
+                    frame2Send[13] = calcularCRC(frame2Send);
+
+
+                    tvRtaMeters.setText("");
+                    buff="";
+
+                    sendMessage(frame2Send);
+
+                } else {
+                    toastIngresarId();
+                }
+
+                break;
+
+            case R.id.fl_rele_off:
                 flMore.collapse();
 
                 idMeter = edTxtID.getText().toString();
@@ -206,8 +246,6 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
                 } else {
                     toastIngresarId();
                 }
-
-
 
                 break;
         }

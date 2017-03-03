@@ -60,9 +60,12 @@
         fab:fab_addButtonColorPressed="@color/colorBluePressed"
         fab:fab_addButtonPlusIconColor="@color/colorGray"
         fab:fab_labelStyle="@style/menu_labels_style"
-
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true">
+
+        >
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fl_new_meter"
@@ -87,12 +90,23 @@
             />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fl_opc"
+            android:id="@+id/fl_rele_on"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/colorBlue"
             fab:fabSize="mini"
-            fab:fab_title="A/D Relé"
+            fab:fab_title="activar rele"
+            fab:fab_colorPressed="@color/colorBluePressed"
+            fab:fab_icon="@mipmap/ic_opc"
+            />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fl_rele_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/colorBlue"
+            fab:fabSize="mini"
+            fab:fab_title=" desactivar rele"
             fab:fab_colorPressed="@color/colorBluePressed"
             fab:fab_icon="@mipmap/ic_opc"
             />
