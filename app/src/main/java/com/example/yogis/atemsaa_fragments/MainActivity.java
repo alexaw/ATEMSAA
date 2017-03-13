@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     private Menu  optMenu;
 
     //private FrameManager frameManager;
-    private boolean flagConnectDisconnect = false;
+    private static boolean flagConnectDisconnect = false;
 
     public boolean sdDisponible = false;
     public boolean sdAccesoEscritura = false;
@@ -266,13 +266,21 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
         }else if (state == MENUSEARCH)
         {
             menu.clear();
-            inflater.inflate(R.menu.menu_main,menu);
-            inflater.inflate(R.menu.menu_main_search, menu);
+            if(flagConnectDisconnect){
+                inflater.inflate(R.menu.menu_main_off,menu);
+                inflater.inflate(R.menu.menu_main_search, menu);}
+            else{
+                inflater.inflate(R.menu.menu_main, menu);
+                inflater.inflate(R.menu.menu_main_search, menu);}
        }else if (state == MENUCLOCKGPRS)
         {
             menu.clear();
-            inflater.inflate(R.menu.menu_main,menu);
-            inflater.inflate(R.menu.menu_main_settings, menu);
+            if(flagConnectDisconnect){
+                inflater.inflate(R.menu.menu_main_off,menu);
+                inflater.inflate(R.menu.menu_main_settings, menu);}
+            else{
+                inflater.inflate(R.menu.menu_main, menu);
+                inflater.inflate(R.menu.menu_main_settings, menu);}
         }
 
         return super.onPrepareOptionsMenu(menu);

@@ -14,6 +14,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +29,8 @@ import android.widget.TextView;
 
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
+import com.example.yogis.atemsaa_fragments.adapters.ClientAdapter;
+import com.example.yogis.atemsaa_fragments.net.api.Cliente.ClienteApi;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -72,8 +76,10 @@ public class ClockSettingsFragment extends DialogFragment  {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        activity = (MainActivity) context;
         this.dateSelectedListener = (DateSelectedListener) context;
     }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -102,5 +108,16 @@ public class ClockSettingsFragment extends DialogFragment  {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         return new DatePickerDialog(getContext(), oyenteSelectorFecha, year, month, day);
     }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        final View vistaClock = inflater.inflate(R.layout.fragment_clock_settings, container, false);
+
+
+        return vistaClock;
+    }
+
 
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    >
+
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:id="@+id/text_log"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_log_in"
+        android:gravity="center"
+        android:layout_marginBottom="40dp"
+        android:paddingTop="50dp"
+        />
+    <EditText
+        android:id="@+id/usr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_user"
+        android:inputType="text"
+        android:layout_marginBottom="15dp"
+        />
+
+    <EditText
+        android:id="@+id/pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_password"
+        android:inputType="textPassword"
+        android:layout_marginBottom="50dp"
+        />
+
+    <Button
+        android:id="@+id/btn_log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Log in"
+        android:textColor="#ffffff"
+        android:background="#FF8700"
+        />
+
+    <TextView
+        android:id="@+id/linkReg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_register_here"
+        android:textColor="#0fffffff"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:paddingTop="20dp"
+        />
+
+</LinearLayout>
+</ScrollView>
