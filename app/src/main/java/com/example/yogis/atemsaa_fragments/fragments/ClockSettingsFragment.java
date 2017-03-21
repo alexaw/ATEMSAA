@@ -109,15 +109,7 @@ public class ClockSettingsFragment extends DialogFragment  {
         return new DatePickerDialog(getContext(), oyenteSelectorFecha, year, month, day);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        final View vistaClock = inflater.inflate(R.layout.fragment_clock_settings, container, false);
 
-
-        return vistaClock;
-    }
 
 
 }
