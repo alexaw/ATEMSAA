@@ -50,16 +50,16 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     TextView tvRtaPLCMMS, txtPlcMms, txtPlcTu, txtPlcMc, tvRtaClock, tvRtaPLCMC;
     Button btnCheckSettingsMMS, btnCheckSettingsMC, btnRecordMMS, btnRecordMC;
-    Spinner txGainMMS, rxGainMMS, txDelayMMS, txRateMMS, timeSurveyMMS, txGainMC, rxGainMC, txDelayMC, txRateMC, timeSurveyMC, biuThres;
-    ArrayList listGtx, listGrx, listDTx, listaRTx, listTime, listBIUThres;
+    Spinner txGainMMS, rxGainMMS, txDelayMMS, txRateMMS, timeSurveyMMS, txGainMC, rxGainMC, txDelayMC, txRateMC, timeSurveyMC;
+    ArrayList listGtx, listGrx, listDTx, listaRTx, listTime;
     String transmissionGainSpinnerMMS, receptionGainSpinnerMMS, transmissionDelaySpinnerMMS, transmissionRateSpinnerMMS, timeSurveySpinnerMMS,
-            transmissionGainSpinnerMC, receptionGainSpinnerMC, transmissionDelaySpinnerMC, transmissionRateSpinnerMC, timeSurveySpinnerMC, biuthresSpinner;
+            transmissionGainSpinnerMC, receptionGainSpinnerMC, transmissionDelaySpinnerMC, transmissionRateSpinnerMC, timeSurveySpinnerMC;
     String buff = "";
 
     MainActivity activity;
 
     byte[] readBuf;
-    byte gantxBytesMMS, ganrxBytesMMS, ratetxBytesMMS, delaytxBytesMMS, gantxBytesMC, ganrxBytesMC, ratetxBytesMC, delaytxBytesMC, biuThresByte;
+    byte gantxBytesMMS, ganrxBytesMMS, ratetxBytesMMS, delaytxBytesMMS, gantxBytesMC, ganrxBytesMC, ratetxBytesMC, delaytxBytesMC;
 
     OnChangeFragment changeFragment;
 
@@ -256,24 +256,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         adaptador5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         timeSurveyMMS.setAdapter(adaptador5);
 
-        biuThres = (Spinner) vistaStgs.findViewById(R.id.biuthres_spinner_mms);
-
-        listBIUThres = new ArrayList<String>();
-        listBIUThres.add("70");
-        listBIUThres.add("75");
-        listBIUThres.add("80");
-        listBIUThres.add("87");
-        listBIUThres.add("90");
-        listBIUThres.add("93");
-        listBIUThres.add("96");
-        listBIUThres.add("99");
-        listBIUThres.add("Auto");
-        listBIUThres.add("Disable");
-
-        ArrayAdapter<String> adaptador11 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listBIUThres);
-        adaptador11.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        biuThres.setAdapter(adaptador11);
-
         //aqui van todos los estados de los spinner!!!
 
         txGainMMS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -341,21 +323,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        biuThres.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
-
-                biuthresSpinner = arg0.getItemAtPosition(arg2).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-            }
-        });
-
-
-
 
         //SPINNER PARA PLC-MC
 
@@ -421,38 +388,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         adaptador9.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         txRateMC.setAdapter(adaptador9);
 
-        //Spinner Hora de encuesta
-        timeSurveyMC = (Spinner) vistaStgs.findViewById(R.id.time_survey_spinner_mc);
-
-        listTime = new ArrayList<String>();
-        listTime.add("00");
-        listTime.add("01");
-        listTime.add("02");
-        listTime.add("03");
-        listTime.add("04");
-        listTime.add("05");
-        listTime.add("06");
-        listTime.add("07");
-        listTime.add("08");
-        listTime.add("09");
-        listTime.add("10");
-        listTime.add("11");
-        listTime.add("12");
-        listTime.add("13");
-        listTime.add("14");
-        listTime.add("15");
-        listTime.add("16");
-        listTime.add("17");
-        listTime.add("18");
-        listTime.add("19");
-        listTime.add("20");
-        listTime.add("21");
-        listTime.add("22");
-        listTime.add("23");
-        ArrayAdapter<String> adaptador10 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listTime);
-        adaptador10.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        timeSurveyMC.setAdapter(adaptador10);
-
         //aqui van todos los estados de los spinner!!!
 
         txGainMC.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -500,19 +435,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 
                 transmissionRateSpinnerMC = arg0.getItemAtPosition(arg2).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-            }
-        });
-
-        timeSurveyMC.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
-
-                timeSurveySpinnerMC = arg0.getItemAtPosition(arg2).toString();
             }
 
             @Override
@@ -798,58 +720,15 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                         break;
                 }
 
-                //Capturo el valor del spinner 'BIUThres'
-                String biuthresElegida = biuthresSpinner;
-                switch (biuthresElegida)
-                {
-                    case "70":
-                        biuThresByte = 0x00;
-                        break;
-
-                    case "75":
-                        biuThresByte = 0x01;
-                        break;
-
-                    case "80":
-                        biuThresByte = 0x02;
-                        break;
-
-                    case "87":
-                        biuThresByte = 0x03;
-                        break;
-
-                    case "90":
-                        biuThresByte = 0x04;
-                        break;
-
-                    case "93":
-                        biuThresByte = 0x05;
-                        break;
-
-                    case "96":
-                        biuThresByte = 0x06;
-                        break;
-
-                    case "99":
-                        biuThresByte = 0x07;
-                        break;
-
-                    case "Auto":
-                        biuThresByte = 0x08;
-                        break;
-
-                    case "Disable":
-                        biuThresByte = 0x09;
-                        break;
-
-                }
-
 
         //Capturo el valor del spinner 'hora de encuesta'
                 int horaEncuestaSpinnerInt = Integer.parseInt(timeSurveySpinnerMMS);
                 String horaenc = Integer.toHexString(horaEncuestaSpinnerInt);
                 if (horaenc.length() == 1){horaenc = "0"+horaenc;}
                 byte[] horaencBytes = hexStringToByteArray(horaenc);
+
+                idUsuarioMMS = edTxtIDMMS.getText().toString();
+                idMacro = edTxtIDMacro.getText().toString();
 
                 if (idUsuarioMMS.length() == 8 && idMacro.length() == 12) {
                     byte[] idUsuarioBytes = hexStringToByteArray(idUsuarioMMS);
@@ -872,7 +751,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                     frame2send[11] = gantxBytesMMS;//ganancia de transmision
                     frame2send[12] = ganrxBytesMMS;//ganancia de recepcion
                     frame2send[13] = delaytxBytesMMS;//retardo de transmision
-                    frame2send[14] = biuThresByte;//retardo de transmision
+                    frame2send[14] = 0x08;//BIUThres
                     frame2send[15] = horaencBytes[0];//hora de encuesta
                     frame2send[16] = idMacroBytes[0];
                     frame2send[17] = idMacroBytes[1];

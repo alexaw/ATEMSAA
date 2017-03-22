@@ -8,6 +8,8 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/fragment_settings"
     >
+
+
     <TabHost
         android:id="@+id/tabHost"
         android:layout_width="fill_parent"
@@ -72,7 +74,7 @@
                 android:id="@+id/id_dispositivoMMS"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ID Macro:"
+                android:hint="ID PLC-MMS:"
                 android:layout_marginBottom="30dp"
                 />
 
@@ -80,7 +82,7 @@
                     android:id="@+id/id_macro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="ID PLC-MMS:"
+                    android:hint="ID Macro:"
                     android:layout_marginBottom="30dp"
                     />
 
@@ -88,7 +90,7 @@
                 android:id="@+id/txt_rta_MMS"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Datos actuales en el PLC_MMS"
+                android:text="Datos actuales en el PLC-MMS"
                 android:paddingBottom="15dp"
                 />
 
@@ -183,23 +185,6 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 />
-
-
-
-                <TextView
-                    android:id="@+id/txt_biuthres_mms"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="BIUThres"
-                    android:layout_marginBottom="1dp"
-                    android:paddingTop="12dp"
-                    />
-
-                <Spinner
-                    android:id="@+id/biuthres_spinner_mms"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    />
 
             <Button
                 android:id="@+id/btn_check_settings_mms"
@@ -312,21 +297,6 @@
 
                 <Spinner
                     android:id="@+id/transmission_rate_spinner_mc"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    />
-
-                <TextView
-                    android:id="@+id/txt_time_survey_mc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txt_survey_hour"
-                    android:layout_marginBottom="1dp"
-                    android:paddingTop="12dp"
-                    />
-
-                <Spinner
-                    android:id="@+id/time_survey_spinner_mc"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     />
