@@ -323,6 +323,131 @@
 
             </LinearLayout>
 
+            //PANTALLA DE CONFIGURACION DE PLC-TU
+            <LinearLayout
+                android:id="@+id/tab3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <EditText
+                    android:id="@+id/id_dispositivoTU"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="ID PLC-TU:"
+                    android:layout_marginTop="20dp"
+                    android:paddingBottom="15dp"
+                    android:layout_marginBottom="30dp"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_rta_TU"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Datos actuales en el PLC-TU"
+                    android:paddingBottom="15dp"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_view_rta_setTU"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:background="@drawable/rectangle_green"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:id="@+id/txt_tu_parametros"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/subtitle_parameters_PLC"
+                    android:textSize="17sp"
+                    android:gravity="center"
+                    android:layout_marginBottom="15dp"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_gan_tx_tu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_gan_tx"
+                    android:layout_marginBottom="1dp"
+                    />
+
+                <Spinner
+                    android:id="@+id/transmission_gain_spinner_tu"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_rx_gan_tu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_gan_rx"
+                    android:layout_marginBottom="1dp"
+                    android:paddingTop="12dp"
+                    />
+
+                <Spinner
+                    android:id="@+id/reception_gain_spinner_tu"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_tx_delay_tu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_delay_tx"
+                    android:layout_marginBottom="1dp"
+                    android:paddingTop="12dp"
+                    />
+
+                <Spinner
+                    android:id="@+id/transmission_delay_spinner_tu"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_tx_rate_tu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_rate_tx"
+                    android:layout_marginBottom="1dp"
+                    android:paddingTop="12dp"
+                    />
+
+                <Spinner
+                    android:id="@+id/transmission_rate_spinner_tu"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    />
+
+                <Button
+                    android:id="@+id/btn_check_settings_tu"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:text="@string/button_check_config"
+                    android:layout_marginBottom="10dp"
+                    />
+
+                <Button
+                    android:id="@+id/btn_record_tu"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:text="@string/button_record"
+                    android:layout_marginBottom="10dp"
+                    />
+
+            </LinearLayout>
+
         </FrameLayout>
         </LinearLayout>
     </TabHost>

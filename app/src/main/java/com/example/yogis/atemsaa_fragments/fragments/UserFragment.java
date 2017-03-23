@@ -11,7 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +28,7 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -36,6 +40,13 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     FloatingActionButton flAdd, flTestFrame, flOpc;
 
     TextView tvRtaListNewUser;
+
+    Spinner typeDevice, meterNumber;
+    ArrayList listTypeDev, listMeterNum;
+    String typeDeviceSpinner, meterNumberSpinner;
+    byte typeDevBytes, meterNumBytes;
+
+
     String buff = "";
     String idUsuario;
     static String estadoUsuario = "1";
@@ -92,6 +103,61 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         // Capturo el contenido del editText donde van los ID
         edTxtID = (EditText) vistaUsr.findViewById(R.id.id_list_newuser);
 
+        //SPINNER PARA PLC-MMS
+
+        //Spinner Tipo de Dispositivo
+        typeDevice = (Spinner) vistaUsr.findViewById(R.id.type_device_spinner);
+
+        listTypeDev = new ArrayList<String>();
+        listTypeDev.add("PLC-TU");
+        listTypeDev.add("PLC-MC");
+        ArrayAdapter<String> adaptador1 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listTypeDev);
+        adaptador1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typeDevice.setAdapter(adaptador1);
+
+        //Spinner Cantidad de Medidores
+        meterNumber = (Spinner) vistaUsr.findViewById(R.id.meter_number_spinner);
+
+        listMeterNum = new ArrayList<String>();
+        listMeterNum.add("1");
+        listMeterNum.add("2");
+        listMeterNum.add("3");
+        listMeterNum.add("4");
+        listMeterNum.add("5");
+        listMeterNum.add("6");
+        ArrayAdapter<String> adaptador2 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listMeterNum);
+        adaptador2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        meterNumber.setAdapter(adaptador2);
+
+        //aqui van todos los estados de los spinner!!!
+
+        typeDevice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
+
+                typeDeviceSpinner = arg0.getItemAtPosition(arg2).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+
+        meterNumber.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
+
+                meterNumberSpinner = arg0.getItemAtPosition(arg2).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+
+
         return vistaUsr;
     }
 
@@ -105,26 +171,69 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             case R.id.fl_add_user:
 
                 flMore.collapse();
-
-                //Toast.makeText(this.getActivity(),"Button is clicked", Toast.LENGTH_SHORT).show();
-                //Toast.makeText(getApplicationContext(),"Button is clicked", Toast.LENGTH_LONG).show();
-                //changeFragment.onChange(OnChangeFragment.NEWUSER);
                 idUsuario = edTxtID.getText().toString();
 
                 if (estadoUsuario.length() == 1) {
                     estadoUsuario = "0" + estadoUsuario;
                 }
+
+                //Capturo el valor del spinner 'tipo de dispositivo'
+                String typeDeviceChosen = typeDeviceSpinner;
+
+                switch (typeDeviceChosen){
+                    case "PLC-TU":
+                        typeDevBytes = 0x01;
+                        break;
+
+                    case "PLC-MC":
+                        typeDevBytes = 0x02;
+                        break;
+                }
+
+                //Capturo el valor del spinner 'cantidad de medidores'
+                String meterNumberChosen = meterNumberSpinner;
+
+
+                switch (meterNumberChosen)
+                {
+
+                    case "1":
+                        meterNumBytes = 0x01;
+                        break;
+
+                    case "2":
+                        meterNumBytes = 0x02;
+                        break;
+
+                    case "3":
+                        meterNumBytes = 0x01;
+                        break;
+
+                    case "4":
+                        meterNumBytes = 0x02;
+                        break;
+
+                    case "5":
+                        meterNumBytes = 0x01;
+                        break;
+
+                    case "6":
+                        meterNumBytes = 0x02;
+                        break;
+                }
+
+
                 byte[] estadoUsuarioBytes = hexStringToByteArray(estadoUsuario);
 
                 if (idUsuario.length() == 16) {
 
-                    byte[] frame2Send = new byte[16];
+                    byte[] frame2Send = new byte[17];
 
                     byte[] idUsuarioBytes = hexStringToByteArray(idUsuario);
 
                     frame2Send[0] = 0x24;// $
                     frame2Send[1] = 0x40;// @
-                    frame2Send[2] = 0x10;// length
+                    frame2Send[2] = 0x11;// length
                     frame2Send[3] = 0x05;// Tipo
                     frame2Send[4] = 0x01;// Suponiendo 1 como origen PC
                     frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
@@ -136,8 +245,9 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                     frame2Send[11] = idUsuarioBytes[5];
                     frame2Send[12] = idUsuarioBytes[6];
                     frame2Send[13] = idUsuarioBytes[7];
-                    frame2Send[14] = estadoUsuarioBytes[0]; //Estado de usuario
-                    frame2Send[15] = calcularCRC(frame2Send);
+                    frame2Send[14] = typeDevBytes; //Tipo de dispositivo
+                    frame2Send[15] = meterNumBytes; //Numero de medidores
+                    frame2Send[16] = calcularCRC(frame2Send);
 
                     tvRtaListNewUser.setText("");
                     buff="";

@@ -33,6 +33,8 @@ public interface OnChangeFragment {
     int PRODUCTOBD = 22;
     int TRAFOBD = 23;
 
+    int PLCTU = 24;
+
 
     void onChange(int fragment);
 

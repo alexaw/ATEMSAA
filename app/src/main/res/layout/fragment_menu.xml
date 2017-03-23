@@ -84,26 +84,26 @@
                 >
 
                 <Button
-                    android:id="@+id/btn_menu_reports"
+                    android:id="@+id/btn_menu_plc_tu"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:background="@mipmap/ic_reportes"
+                    android:background="@mipmap/ic_bd"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/txt_set"
                     />
 
                 <TextView
-                    android:id="@+id/txt_rep"
+                    android:id="@+id/txt_plc_tu"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_reports"
+                    android:text="@string/txt_plc_tu"
                     android:gravity="center"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/btn_menu_reportes"
+                    android:layout_below="@+id/btn_menu_plc_tu"
                     android:layout_marginBottom="30dp"
                     />
 
             </LinearLayout>
+
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_height="match_parent"
@@ -138,6 +138,33 @@
             android:layout_weight="1"
             android:layout_width="match_parent">
 
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
+
+                <Button
+                    android:id="@+id/btn_menu_reports"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@mipmap/ic_reportes"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/txt_set"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_rep"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_reports"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/btn_menu_reportes"
+                    android:layout_marginBottom="30dp"
+                    />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"

@@ -146,6 +146,9 @@
     <string name="txt_direction">Direction:</string>
     <string name="txt_neighborhood">Neighborhood:</string>
     <string name="txt_cellphone">Cellphone:</string>
+    <string name="txt_type_device">Type of device</string>
+    <string name="txt_number_meters">Number of meters</string>
+    <string name="txt_plc_tu">PLC-TU</string>
 
 
 </resources>

@@ -36,6 +36,7 @@ import com.example.yogis.atemsaa_fragments.fragments.MenuBaseDatosFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MenuFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ReportsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.SettingsFragment;
+import com.example.yogis.atemsaa_fragments.fragments.TerminalUFragment;
 import com.example.yogis.atemsaa_fragments.fragments.UserFragment;
 import com.example.yogis.atemsaa_fragments.fragments.OnChangeFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcMmsSettingsFragment;
@@ -111,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     PlcTuBDFragment plcTuBD;
     ProductBDFragment productoBD;
     TrafoBDFragment trafoBD;
+    TerminalUFragment terminal;
 
     ActionBar myToolbar;
 
@@ -163,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
         plcTuBD = new PlcTuBDFragment();
         productoBD = new ProductBDFragment();
         trafoBD = new TrafoBDFragment();
+        terminal = new TerminalUFragment();
 
         currentFragment = MENU;
         putFragment(menu, MENU);
@@ -457,6 +460,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
             case 4:
                 meters.setMsg(buff);
                 break;
+            case 5:
+                terminal.setMsg(buff);
+                break;
 
         }
     }
@@ -515,6 +521,11 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
             case METERS:
                 putFragment(meters, fragment);
                 band = 4;
+                showMenuSearch();
+                break;
+            case PLCTU:
+                putFragment(terminal, fragment);
+                band = 5;
                 showMenuSearch();
                 break;
             case DATABASE:
@@ -589,6 +600,10 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
             case METERS:
                 putFragment(menu, MENU);
                 showMenuSearch();
+                break;
+            case PLCTU:
+                putFragment(menu, MENU);
+                showMenuPpal();
                 break;
             case DATABASE:
                 putFragment(menu, MENU);
