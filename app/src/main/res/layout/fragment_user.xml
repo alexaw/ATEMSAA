@@ -97,6 +97,17 @@
             />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fl_remove_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/colorBlue"
+            fab:fab_title="Eliminar"
+            fab:fab_colorPressed="@color/colorBluePressed"
+            fab:fabSize="mini"
+            fab:fab_icon="@mipmap/ic_add_user"
+            />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fl_test_frame_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
