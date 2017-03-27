@@ -37,7 +37,7 @@ import java.util.Date;
 public class UserFragment extends Fragment implements View.OnClickListener {
 
     FloatingActionsMenu flMore;
-    FloatingActionButton flAdd, flRemove, flTestFrame, flOpc;
+    FloatingActionButton flAdd, flSearch, flRemove, flTestFrame, flOpc;
 
     TextView tvRtaListNewUser;
 
@@ -82,9 +82,10 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         flMore = (FloatingActionsMenu) vistaUsr.findViewById(R.id.fl_more);
 
         flAdd = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_add_user);
+        flSearch = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_search_user);
         flRemove = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_remove_user);
         flTestFrame = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_test_frame_user);
-        flOpc = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_opc);
+        //flOpc = (FloatingActionButton) vistaUsr.findViewById(R.id.fl_opc);
 
         /*txtOpc = (TextView) vistaUsr.findViewById(R.id.txt_opc);
         txtAdd = (TextView) vistaUsr.findViewById(R.id.txt_add_user);
@@ -97,9 +98,10 @@ public class UserFragment extends Fragment implements View.OnClickListener {
 
 */
         flAdd.setOnClickListener(this);
+        flSearch.setOnClickListener(this);
         flRemove.setOnClickListener(this);
         flTestFrame.setOnClickListener(this);
-        flOpc.setOnClickListener(this);
+        //flOpc.setOnClickListener(this);
 
 
         // Capturo el contenido del editText donde van los ID
@@ -253,6 +255,44 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                 }
                 break;
 
+            //caso de BUSCAR un usuario
+            case R.id.fl_search_user:
+
+                flMore.collapse();
+                idUsuario = edTxtID.getText().toString();
+
+                if (idUsuario.length() == 16) {
+
+                    byte[] frame2Send = new byte[15];
+
+                    byte[] idUsuarioBytes = hexStringToByteArray(idUsuario);
+
+                    frame2Send[0] = 0x24;// $
+                    frame2Send[1] = 0x40;// @
+                    frame2Send[2] = 0x0F;// length
+                    frame2Send[3] = 0x08;// Tipo
+                    frame2Send[4] = 0x01;// Suponiendo 1 como origen PC
+                    frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
+                    frame2Send[6] = idUsuarioBytes[0];
+                    frame2Send[7] = idUsuarioBytes[1];
+                    frame2Send[8] = idUsuarioBytes[2];
+                    frame2Send[9] = idUsuarioBytes[3];
+                    frame2Send[10] = idUsuarioBytes[4];
+                    frame2Send[11] = idUsuarioBytes[5];
+                    frame2Send[12] = idUsuarioBytes[6];
+                    frame2Send[13] = idUsuarioBytes[7];
+                    frame2Send[14] = calcularCRC(frame2Send);
+
+                    tvRtaListNewUser.setText("");
+                    buff="";
+
+                    sendMessage(frame2Send);
+
+                } else {
+                    toastIngresarId();
+                }
+                break;
+
             //caso de ELIMINAR un usuario
             case R.id.fl_remove_user:
 
@@ -261,7 +301,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
 
                 if (idUsuario.length() == 16) {
 
-                    byte[] frame2Send = new byte[14];
+                    byte[] frame2Send = new byte[15];
 
                     byte[] idUsuarioBytes = hexStringToByteArray(idUsuario);
 

@@ -80,9 +80,9 @@
         fab:fab_addButtonPlusIconColor="@color/colorGray"
         fab:fab_labelStyle="@style/menu_labels_style"
 
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginEnd="0dp"
         >
 
         <com.getbase.floatingactionbutton.FloatingActionButton
@@ -91,6 +91,17 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/colorBlue"
             fab:fab_title="Agregar"
+            fab:fab_colorPressed="@color/colorBluePressed"
+            fab:fabSize="mini"
+            fab:fab_icon="@mipmap/ic_add_user"
+            />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fl_search_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/colorBlue"
+            fab:fab_title="Buscar"
             fab:fab_colorPressed="@color/colorBluePressed"
             fab:fabSize="mini"
             fab:fab_icon="@mipmap/ic_add_user"
@@ -118,6 +129,7 @@
             fab:fab_icon="@mipmap/ic_test"
             />
 
+        <!--
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fl_opc"
             android:layout_width="wrap_content"
@@ -128,6 +140,7 @@
             fab:fab_colorPressed="@color/colorBluePressed"
             fab:fab_icon="@mipmap/ic_opc"
             />
+             -->
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 

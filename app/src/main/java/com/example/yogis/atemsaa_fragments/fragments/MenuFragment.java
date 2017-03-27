@@ -83,9 +83,9 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
             return;
         }
 
-       if (MainActivity.mCommandService.getState() == BluetoothCommandService.STATE_CONNECTED) {
+      // if (MainActivity.mCommandService.getState() == BluetoothCommandService.STATE_CONNECTED) {
 
-          //  if (MainActivity.mCommandService.getState() != BluetoothCommandService.STATE_CONNECTED) {
+          if (MainActivity.mCommandService.getState() != BluetoothCommandService.STATE_CONNECTED) {
                 Toast.makeText(this.getActivity(), "Por favor conectarse a un dispositivo", Toast.LENGTH_SHORT).show();
             }else {
                 switch (view.getId()) {
@@ -119,7 +119,6 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
                     case R.id.btn_menu_meter:
 
                         changeFragment.onChange(OnChangeFragment.METERS);
-
                         listMeter();
 
                         break;
@@ -127,6 +126,8 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
                     case R.id.btn_menu_plc_tu:
 
                         changeFragment.onChange(OnChangeFragment.PLCTU);
+                        Toast.makeText(this.getActivity(), "Por favor seleccione una opcion del menu", Toast.LENGTH_SHORT).show();
+
 
                         break;
 
