@@ -509,7 +509,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
             case USERS :
                 putFragment(newUser, fragment);
                 band = 1;
-                showMenuSearch();
                 break;
             case SETTINGS :
                 putFragment(newSettings, fragment);
