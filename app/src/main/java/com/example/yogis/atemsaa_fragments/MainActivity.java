@@ -34,6 +34,7 @@ import com.example.yogis.atemsaa_fragments.fragments.ClockSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.GprsSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MenuBaseDatosFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MenuFragment;
+import com.example.yogis.atemsaa_fragments.fragments.RTCFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ReportsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.SettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.TerminalUFragment;
@@ -113,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     ProductBDFragment productoBD;
     TrafoBDFragment trafoBD;
     TerminalUFragment terminal;
+    RTCFragment rtc;
 
     ActionBar myToolbar;
 
@@ -166,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
         productoBD = new ProductBDFragment();
         trafoBD = new TrafoBDFragment();
         terminal = new TerminalUFragment();
+        rtc = new RTCFragment();
 
         currentFragment = MENU;
         putFragment(menu, MENU);
@@ -516,21 +519,20 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
             case REPORTS:
                 putFragment(newReports, fragment);
                 band = 3;
-                showMenuSearch();
                 break;
             case METERS:
                 putFragment(meters, fragment);
                 band = 4;
-                showMenuSearch();
                 break;
             case PLCTU:
                 putFragment(terminal, fragment);
                 band = 5;
-                showMenuSearch();
+                break;
+            case RTC:
+                putFragment(rtc, fragment);
                 break;
             case DATABASE:
                 putFragment(menuBD, fragment);
-                showMenuSearch();
                 break;
 
 
@@ -595,19 +597,22 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 break;
             case REPORTS:
                 putFragment(menu, MENU);
-                showMenuSearch();
+                showMenuPpal();
                 break;
             case METERS:
                 putFragment(menu, MENU);
-                showMenuSearch();
+                showMenuPpal();
                 break;
             case PLCTU:
+                putFragment(menu, MENU);
+                showMenuPpal();
+            case RTC:
                 putFragment(menu, MENU);
                 showMenuPpal();
                 break;
             case DATABASE:
                 putFragment(menu, MENU);
-                showMenuSearch();
+                showMenuPpal();
                 break;
             case CLOCK:
                 putFragment(newSettings, SETTINGS);

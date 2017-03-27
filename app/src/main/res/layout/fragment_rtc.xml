@@ -1,0 +1,150 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.yogis.atemsaa_fragments.fragments.RTCFragment"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/txt_rta_RTC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Datos actuales en el RTC:"
+        android:paddingBottom="15dp"
+        />
+
+    <TextView
+        android:id="@+id/txt_view_rta_rtc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:background="@drawable/rectangle_green"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/txt_rtc_parameters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select the parameters for RTC"
+        android:textSize="17sp"
+        android:gravity="center"
+        android:layout_marginBottom="15dp"
+        />
+
+    <TextView
+        android:id="@+id/txt_rtc_day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Day:"
+        android:layout_marginBottom="1dp"
+        />
+
+    <Spinner
+        android:id="@+id/day_rtc_spinner"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/txt_rtc_month"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Month:"
+        android:layout_marginBottom="1dp"
+        android:paddingTop="12dp"
+        />
+
+    <Spinner
+        android:id="@+id/month_rtc_spinner"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/txt_rtc_year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Year:"
+        android:layout_marginBottom="1dp"
+        android:paddingTop="12dp"
+        />
+
+    <Spinner
+        android:id="@+id/year_rtc_spinner"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/txt_rtc_hour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hour:"
+        android:layout_marginBottom="1dp"
+        android:paddingTop="12dp"
+        />
+
+    <Spinner
+        android:id="@+id/hour_rtc_spinner"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/txt_rtc_minute"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Minute:"
+        android:layout_marginBottom="1dp"
+        android:paddingTop="12dp"
+        />
+
+    <Spinner
+        android:id="@+id/minute_rtc_spinner"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/txt_rtc_second"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Second:"
+        android:layout_marginBottom="1dp"
+        android:paddingTop="12dp"
+        />
+
+    <Spinner
+        android:id="@+id/second_rtc_spinner"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        />
+    <Button
+        android:id="@+id/btn_check_rtc"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="3dp"
+        android:text="@string/button_check_config"
+        android:layout_marginBottom="10dp"
+        />
+
+    <Button
+        android:id="@+id/btn_record_rtc"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="3dp"
+        android:text="@string/button_record"
+        android:layout_marginBottom="10dp"
+        />
+
+</LinearLayout>
+</ScrollView>

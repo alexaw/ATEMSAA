@@ -35,7 +35,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 
     OnChangeFragment changeFragment;
 
-    Button menuUsuarios, menuConfiguracion, menuReports, menuMeter, menuBaseDatos, menuPlcTu;
+    Button menuUsr, menuSettings, menuReports, menuMeter, menuDataBase, menuPlcTu, menuRTC;
 
     public MenuFragment() {}
 
@@ -54,11 +54,11 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_menu, container, false);
 
         //Recupero los botones
-        menuUsuarios = (Button) v.findViewById(R.id.btn_menu_usuarios);
-        menuUsuarios.setOnClickListener(this);
+        menuUsr = (Button) v.findViewById(R.id.btn_menu_usr);
+        menuUsr.setOnClickListener(this);
 
-        menuConfiguracion = (Button) v.findViewById(R.id.btn_menu_configuracion);
-        menuConfiguracion.setOnClickListener(this);
+        menuSettings = (Button) v.findViewById(R.id.btn_menu_settings);
+        menuSettings.setOnClickListener(this);
 
         menuReports = (Button) v.findViewById(R.id.btn_menu_reports);
         menuReports.setOnClickListener(this);
@@ -66,11 +66,14 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         menuMeter = (Button) v.findViewById(R.id.btn_menu_meter);
         menuMeter.setOnClickListener(this);
 
-        menuBaseDatos = (Button) v.findViewById(R.id.btn_menu_base_datos);
-        menuBaseDatos.setOnClickListener(this);
+        menuDataBase = (Button) v.findViewById(R.id.btn_menu_data_base);
+        menuDataBase.setOnClickListener(this);
 
         menuPlcTu = (Button) v.findViewById(R.id.btn_menu_plc_tu);
         menuPlcTu.setOnClickListener(this);
+
+        menuRTC = (Button) v.findViewById(R.id.btn_menu_rtc);
+        menuRTC.setOnClickListener(this);
 
         return v;
     }
@@ -78,23 +81,23 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
 
-        if (view.getId() == R.id.btn_menu_base_datos) {
+        if (view.getId() == R.id.btn_menu_data_base) {
             changeFragment.onChange(OnChangeFragment.DATABASE);
             return;
         }
 
-      // if (MainActivity.mCommandService.getState() == BluetoothCommandService.STATE_CONNECTED) {
+       if (MainActivity.mCommandService.getState() == BluetoothCommandService.STATE_CONNECTED) {
 
-          if (MainActivity.mCommandService.getState() != BluetoothCommandService.STATE_CONNECTED) {
+          //if (MainActivity.mCommandService.getState() != BluetoothCommandService.STATE_CONNECTED) {
                 Toast.makeText(this.getActivity(), "Por favor conectarse a un dispositivo", Toast.LENGTH_SHORT).show();
             }else {
                 switch (view.getId()) {
-                    case R.id.btn_menu_usuarios:
+                    case R.id.btn_menu_usr:
                         changeFragment.onChange(OnChangeFragment.USERS);
                         listUser();
                         break;
 
-                    case R.id.btn_menu_configuracion:
+                    case R.id.btn_menu_settings:
                         changeFragment.onChange(OnChangeFragment.SETTINGS);
 
                         byte []frame2Send = new byte[7];
@@ -128,7 +131,22 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
                         changeFragment.onChange(OnChangeFragment.PLCTU);
                         Toast.makeText(this.getActivity(), "Por favor seleccione una opcion del menu", Toast.LENGTH_SHORT).show();
 
+                        break;
 
+                    case R.id.btn_menu_rtc:
+
+                        changeFragment.onChange(OnChangeFragment.RTC);
+
+                        byte []frame3Send = new byte[7];
+
+                        frame3Send[0] = 0x24;// $
+                        frame3Send[1] = 0x40;// @
+                        frame3Send[2] = 0x07;// length
+                        frame3Send[3] = 0x0F;// Tipo
+                        frame3Send[4] = 0x01;// Suponiendo 1 como origen PC
+                        frame3Send[5] = 0x02;// Suponiendo 2 como destino PLC
+                        frame3Send[6] = calcularCRC(frame3Send);
+                        sendMessage(frame3Send);
                         break;
 
 

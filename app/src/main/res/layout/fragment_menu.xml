@@ -1,3 +1,9 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical" >
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -24,11 +30,10 @@
                 >
 
                 <Button
-                    android:id="@+id/btn_menu_usuarios"
+                    android:id="@+id/btn_menu_usr"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:background="@mipmap/ic_user"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     />
 
@@ -38,12 +43,11 @@
                     android:layout_height="wrap_content"
                     android:text="@string/title_users"
                     android:gravity="center"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/btn_menu_usuarios"
                     android:layout_marginBottom="30dp"
                     />
 
             </LinearLayout>
+
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_height="match_parent"
@@ -51,27 +55,26 @@
                 >
 
                 <Button
-                    android:id="@+id/btn_menu_configuracion"
+                    android:id="@+id/btn_menu_rtc"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:background="@mipmap/ic_settings"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/txt_user"
+                    android:background="@mipmap/ic_clock"
+                    android:backgroundTint="@color/colorGreen"
                     />
 
                 <TextView
-                    android:id="@+id/txt_set"
+                    android:id="@+id/txt_rtc"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_settings"
+                    android:text="RTC"
                     android:gravity="center"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/btn_menu_configuracion"
                     android:layout_marginBottom="30dp"
                     />
 
             </LinearLayout>
+
         </TableRow>
+
         <TableRow
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -84,21 +87,19 @@
                 >
 
                 <Button
-                    android:id="@+id/btn_menu_plc_tu"
+                    android:id="@+id/btn_menu_meter"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:background="@mipmap/ic_bd"
-                    android:layout_centerHorizontal="true"
+                    android:background="@mipmap/ic_medidor"
+                    android:backgroundTint="@color/colorOrange"
                     />
 
                 <TextView
-                    android:id="@+id/txt_plc_tu"
+                    android:id="@+id/txt_meter"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/txt_plc_tu"
+                    android:text="@string/title_meter"
                     android:gravity="center"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/btn_menu_plc_tu"
                     android:layout_marginBottom="30dp"
                     />
 
@@ -111,26 +112,26 @@
                 >
 
                 <Button
-                    android:id="@+id/btn_menu_meter"
+                    android:id="@+id/btn_menu_plc_tu"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:background="@mipmap/ic_bd"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/txt_rep"
+                    android:background="@mipmap/ic_opc"
+                    android:backgroundTint="@color/colorRed"
                     />
 
                 <TextView
-                    android:id="@+id/txt_meter"
+                    android:id="@+id/txt_plc_tu"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_meter"
+                    android:text="@string/txt_plc_tu"
                     android:gravity="center"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/btn_menu_base_datos"
                     android:layout_marginBottom="30dp"
                     />
 
             </LinearLayout>
+
+
+
         </TableRow>
 
         <TableRow
@@ -145,22 +146,18 @@
                 >
 
                 <Button
-                    android:id="@+id/btn_menu_reports"
+                    android:id="@+id/btn_menu_settings"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:background="@mipmap/ic_reportes"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/txt_set"
+                    android:background="@mipmap/ic_settings"
                     />
 
                 <TextView
-                    android:id="@+id/txt_rep"
+                    android:id="@+id/txt_set"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_reports"
+                    android:text="@string/title_settings"
                     android:gravity="center"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/btn_menu_reportes"
                     android:layout_marginBottom="30dp"
                     />
 
@@ -173,12 +170,42 @@
                 >
 
                 <Button
-                    android:id="@+id/btn_menu_base_datos"
+                    android:id="@+id/btn_menu_reports"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@mipmap/ic_reportes"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_rep"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_reports"
+                    android:gravity="center"
+                    android:layout_marginBottom="30dp"
+                    />
+
+            </LinearLayout>
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_width="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
+
+                <Button
+                    android:id="@+id/btn_menu_data_base"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:background="@mipmap/ic_bd"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/txt_rep"
                     />
 
                 <TextView
@@ -187,8 +214,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/txt_data_base"
                     android:gravity="center"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/btn_menu_base_datos"
                     android:layout_marginBottom="30dp"
                     />
 
@@ -196,3 +221,4 @@
         </TableRow>
     </TableLayout>
 </RelativeLayout>
+</ScrollView>

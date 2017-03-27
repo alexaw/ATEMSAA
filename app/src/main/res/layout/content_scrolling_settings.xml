@@ -86,15 +86,15 @@
                     android:layout_marginBottom="30dp"
                     />
 
-            <TextView
-                android:id="@+id/txt_rta_MMS"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Datos actuales en el PLC-MMS"
-                android:paddingBottom="15dp"
-                />
+                <TextView
+                    android:id="@+id/txt_rta_MMS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Datos actuales en el PLC-MMS"
+                    android:paddingBottom="15dp"
+                    />
 
-            <TextView
+                <TextView
                 android:id="@+id/txt_view_rta_setMMS"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

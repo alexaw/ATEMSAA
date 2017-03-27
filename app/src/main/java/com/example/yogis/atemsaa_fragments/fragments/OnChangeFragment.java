@@ -34,6 +34,7 @@ public interface OnChangeFragment {
     int TRAFOBD = 23;
 
     int PLCTU = 24;
+    int RTC = 25;
 
 
     void onChange(int fragment);
