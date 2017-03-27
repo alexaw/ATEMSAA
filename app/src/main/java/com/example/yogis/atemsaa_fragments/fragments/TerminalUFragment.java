@@ -85,7 +85,7 @@ public class TerminalUFragment extends Fragment implements View.OnClickListener 
         switch (view.getId()){
 
             case R.id.fl_energy_reading:
-                flMore.collapse();
+                close();
 
                 idPLCTU = edTxtID.getText().toString();
 
@@ -121,7 +121,7 @@ public class TerminalUFragment extends Fragment implements View.OnClickListener 
                 break;
 
             case R.id.fl_rele_on:
-                flMore.collapse();
+                close();
 
                 idPLCTU = edTxtID.getText().toString();
 
@@ -159,7 +159,7 @@ public class TerminalUFragment extends Fragment implements View.OnClickListener 
                 break;
 
             case R.id.fl_rele_off:
-                flMore.collapse();
+                close();
 
                 idPLCTU = edTxtID.getText().toString();
 
@@ -239,5 +239,9 @@ public class TerminalUFragment extends Fragment implements View.OnClickListener 
     public void toastIngresarId() {
         Toast.makeText(this.getContext(), getString(R.string.txt_verificar_ID), Toast.LENGTH_SHORT).show();
 
+    }
+
+    public void close(){
+        flMore.collapse();
     }
 }

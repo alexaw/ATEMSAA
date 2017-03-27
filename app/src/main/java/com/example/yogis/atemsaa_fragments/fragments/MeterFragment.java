@@ -94,7 +94,7 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()){
 
             case R.id.fl_new_meter:
-                flMore.collapse();
+                close();
 
                 idMeter = edTxtID.getText().toString();
 
@@ -138,7 +138,7 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.fl_energy_reading:
-                flMore.collapse();
+                close();
 
                 idMeter = edTxtID.getText().toString();
 
@@ -174,7 +174,7 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.fl_rele_on:
-                flMore.collapse();
+                close();
 
                 idMeter = edTxtID.getText().toString();
 
@@ -212,7 +212,7 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.fl_rele_off:
-                flMore.collapse();
+                close();
 
                 idMeter = edTxtID.getText().toString();
 
@@ -318,5 +318,9 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
             public void onNothingSelected(AdapterView<?> arg0) {
             }
         });
+    }
+
+    public void close(){
+        flMore.collapse();
     }
 }

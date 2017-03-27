@@ -1308,7 +1308,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.fl_plc_mc:
-                flMore.collapse();
+                close();
 
                 Date horaActual=new Date();
 
@@ -1324,6 +1324,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-
+    public void close(){
+        flMore.collapse();
+    }
 
 }
