@@ -31,8 +31,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     String sUsr, sPass;
     Button in;
     TextView link;
+    String input;
 
     LoginApi loginApi;
+
+
 
 
     @Override

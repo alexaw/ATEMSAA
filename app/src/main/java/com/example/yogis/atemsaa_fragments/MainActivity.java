@@ -99,9 +99,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     ClockSettingsFragment fclock;
     GprsSettingsFragment fgprs;
 
-    UserFragment newUser;
-    SettingsFragment newSettings;
-    ReportsFragment newReports;
+    UserFragment user;
+    SettingsFragment settings;
+    ReportsFragment reports;
     MeterFragment meters;
 
     MenuBaseDatosFragment menuBD;
@@ -153,9 +153,9 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
         fclock = new ClockSettingsFragment();
         fgprs = new GprsSettingsFragment();
 
-        newUser = new UserFragment();
-        newSettings = new SettingsFragment();
-        newReports = new ReportsFragment();
+        user = new UserFragment();
+        settings = new SettingsFragment();
+        reports = new ReportsFragment();
         meters = new MeterFragment();
 
         menuBD = new MenuBaseDatosFragment();
@@ -342,7 +342,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
 
             case R.id.action_search_user:
 
-               newUser.getSearchUser();
+               user.getSearchUser();
                 return true;
 
             case R.id.action_settings_clock:
@@ -452,13 +452,13 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     private void answerTextView() {
         switch (band){
             case 1:
-                newUser.setMsg(buff);
+                user.setMsg(buff);
                 break;
             case 2:
-                newSettings.setMsg(buff);
+                settings.setMsg(buff);
                 break;
             case 3:
-                newReports.setMsg(buff);
+                reports.setMsg(buff);
                 break;
             case 4:
                 meters.setMsg(buff);
@@ -507,16 +507,16 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 putFragment(menu, fragment);
                 break;
             case USERS :
-                putFragment(newUser, fragment);
+                putFragment(user, fragment);
                 band = 1;
                 break;
             case SETTINGS :
-                putFragment(newSettings, fragment);
+                putFragment(settings, fragment);
                 band = 2;
                 showMenuSettings();
                 break;
             case REPORTS:
-                putFragment(newReports, fragment);
+                putFragment(reports, fragment);
                 band = 3;
                 break;
             case METERS:
@@ -584,25 +584,31 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
 
         switch (currentFragment){
             case MENU :
+
                 super.onBackPressed();
                 break;
             case USERS:
+                user.close();
                 putFragment(menu, MENU);
                 showMenuPpal();
                 break;
             case SETTINGS:
+                settings.close();
                 putFragment(menu, MENU);
                 showMenuPpal();
                 break;
             case REPORTS:
+                reports.close();
                 putFragment(menu, MENU);
                 showMenuPpal();
                 break;
             case METERS:
+                meters.close();
                 putFragment(menu, MENU);
                 showMenuPpal();
                 break;
             case PLCTU:
+                terminal.close();
                 putFragment(menu, MENU);
                 showMenuPpal();
             case RTC:
@@ -614,11 +620,11 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 showMenuPpal();
                 break;
             case CLOCK:
-                putFragment(newSettings, SETTINGS);
+                putFragment(settings, SETTINGS);
                 showMenuSettings();
                 break;
             case GPRS:
-                putFragment(newSettings, SETTINGS);
+                putFragment(settings, SETTINGS);
                 showMenuSettings();
                 break;
             case PLCMMSBD:
@@ -646,7 +652,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 putFragment(menuBD, DATABASE);
                 break;
             case PARCIAL:
-                putFragment(newReports, REPORTS);
+                putFragment(reports, REPORTS);
                 break;
 
         }

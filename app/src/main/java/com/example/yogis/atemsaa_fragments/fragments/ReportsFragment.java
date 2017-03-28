@@ -148,7 +148,7 @@ public class ReportsFragment extends Fragment implements View.OnClickListener {
 
             case R.id.fl_list:
 
-            flMore.collapse();
+            close();
 
                 byte[] frame2Send = new byte[7];
 
@@ -168,7 +168,7 @@ public class ReportsFragment extends Fragment implements View.OnClickListener {
 
             //caso de reporte parcial
             case R.id.fl_parcial:
-                flMore.collapse();
+                close();
 
                 frame2Send = new byte[7];
 
@@ -187,7 +187,7 @@ public class ReportsFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.fl_opc:
-                flMore.collapse();
+                close();
 
                 //Capturo el valor del spinner 'mes'
                 int monthSpinnerInt = Integer.parseInt(monthSpinnerReports);
@@ -218,6 +218,7 @@ public class ReportsFragment extends Fragment implements View.OnClickListener {
                 frame2Send[8] = calcularCRC(frame2Send);
 
             break;
+
 
         }
     }
@@ -258,5 +259,10 @@ public class ReportsFragment extends Fragment implements View.OnClickListener {
 
     public void setMsg(String msg){
         tvRtaReports.setText(msg);
+
+    }
+
+    public void close(){
+        flMore.collapse();
     }
 }

@@ -173,7 +173,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             //caso de REGISTRAR un usuario
             case R.id.fl_add_user:
 
-                flMore.collapse();
+                close();
                 idUsuario = edTxtID.getText().toString();
 
                 //Capturo el valor del spinner 'tipo de dispositivo'
@@ -258,7 +258,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             //caso de BUSCAR un usuario
             case R.id.fl_search_user:
 
-                flMore.collapse();
+                close();
                 idUsuario = edTxtID.getText().toString();
 
                 if (idUsuario.length() == 16) {
@@ -296,7 +296,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             //caso de ELIMINAR un usuario
             case R.id.fl_remove_user:
 
-                flMore.collapse();
+                close();
                 idUsuario = edTxtID.getText().toString();
 
                 if (idUsuario.length() == 16) {
@@ -335,7 +335,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             //caso de ENVIAR TRAMA DE PRUEBA
             case R.id.fl_test_frame_user:
 
-                flMore.collapse();
+                close();
                 //Toast.makeText(this.getActivity(),"Button is clicked", Toast.LENGTH_SHORT).show();
                 //Toast.makeText(getApplicationContext(),"Button is clicked", Toast.LENGTH_LONG).show();
                 //changeFragment.onChange(OnChangeFragment.SEARCH);
@@ -376,7 +376,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
 
             case R.id.fl_opc:
 
-                flMore.collapse();
+                close();
 
                 new AlertDialog.Builder(view.getContext())
                         .setTitle(getString(R.string.txt_options))
@@ -500,6 +500,9 @@ public class UserFragment extends Fragment implements View.OnClickListener {
        return;
    }
 
+    public void close(){
+        flMore.collapse();
+    }
 
 
 }
