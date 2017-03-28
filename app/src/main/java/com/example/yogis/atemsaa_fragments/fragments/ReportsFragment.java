@@ -74,18 +74,18 @@ public class ReportsFragment extends Fragment implements View.OnClickListener {
         flOpc.setOnClickListener(this);
 
         //Spinner Mes
-        monthReports = (Spinner) vistaReports.findViewById(R.id.month_rtc_spinner);
+        monthReports = (Spinner) vistaReports.findViewById(R.id.month_reports_spinner);
 
         listMonth = new ArrayList<String>();
-        listMonth.add("1");
-        listMonth.add("2");
-        listMonth.add("3");
-        listMonth.add("4");
-        listMonth.add("5");
-        listMonth.add("6");
-        listMonth.add("7");
-        listMonth.add("8");
-        listMonth.add("9");
+        listMonth.add("01");
+        listMonth.add("02");
+        listMonth.add("03");
+        listMonth.add("04");
+        listMonth.add("05");
+        listMonth.add("06");
+        listMonth.add("07");
+        listMonth.add("08");
+        listMonth.add("09");
         listMonth.add("10");
         listMonth.add("11");
         listMonth.add("12");
@@ -94,7 +94,7 @@ public class ReportsFragment extends Fragment implements View.OnClickListener {
         monthReports.setAdapter(adaptador2);
 
         //Spinner Año
-        yearReports = (Spinner) vistaReports.findViewById(R.id.year_rtc_spinner);
+        yearReports = (Spinner) vistaReports.findViewById(R.id.year_reports_spinner);
 
         listYear = new ArrayList<String>();
         listYear.add("2011");
@@ -200,7 +200,7 @@ public class ReportsFragment extends Fragment implements View.OnClickListener {
                 //Capturo el valor del spinner 'año'
                 int yearSpinnerInt = Integer.parseInt(yearSpinnerReports);
                 String year = Integer.toHexString(yearSpinnerInt);
-                if (year.length() == 1) {
+                if (year.length() == 3) {
                     year = "0" + year;
                 }
                 byte[] yearBytes = hexStringToByteArray(year);

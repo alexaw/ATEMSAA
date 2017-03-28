@@ -80,15 +80,15 @@ public class RTCFragment extends Fragment implements View.OnClickListener {
         dayRTC = (Spinner) vistaRTC.findViewById(R.id.day_rtc_spinner);
 
         listDay = new ArrayList<String>();
-        listDay.add("1");
-        listDay.add("2");
-        listDay.add("3");
-        listDay.add("4");
-        listDay.add("5");
-        listDay.add("6");
-        listDay.add("7");
-        listDay.add("8");
-        listDay.add("9");
+        listDay.add("01");
+        listDay.add("02");
+        listDay.add("03");
+        listDay.add("04");
+        listDay.add("05");
+        listDay.add("06");
+        listDay.add("07");
+        listDay.add("08");
+        listDay.add("09");
         listDay.add("10");
         listDay.add("11");
         listDay.add("12");
@@ -119,15 +119,15 @@ public class RTCFragment extends Fragment implements View.OnClickListener {
         monthRTC = (Spinner) vistaRTC.findViewById(R.id.month_rtc_spinner);
 
         listMonth = new ArrayList<String>();
-        listMonth.add("1");
-        listMonth.add("2");
-        listMonth.add("3");
-        listMonth.add("4");
-        listMonth.add("5");
-        listMonth.add("6");
-        listMonth.add("7");
-        listMonth.add("8");
-        listMonth.add("9");
+        listMonth.add("01");
+        listMonth.add("02");
+        listMonth.add("03");
+        listMonth.add("04");
+        listMonth.add("05");
+        listMonth.add("06");
+        listMonth.add("07");
+        listMonth.add("08");
+        listMonth.add("09");
         listMonth.add("10");
         listMonth.add("11");
         listMonth.add("12");
@@ -451,7 +451,7 @@ public class RTCFragment extends Fragment implements View.OnClickListener {
                 //Capturo el valor del spinner 'año'
                 int yearSpinnerInt = Integer.parseInt(yearSpinnerRTC);
                 String year = Integer.toHexString(yearSpinnerInt);
-                if (year.length() == 1) {
+                if (year.length() == 3) {
                     year = "0" + year;
                 }
                 byte[] yearBytes = hexStringToByteArray(year);
