@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,6 +34,7 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
     TextView tvRtaMeters;
     String buff = "";
     String idMeter, sPosMed;
+    Button upD;
     static String estadoUsuario = "1";
 
     Spinner posMed;
@@ -78,10 +80,16 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
         flReleOn = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_rele_on);
         flReleOff = (FloatingActionButton) vistaMeter.findViewById(R.id.fl_rele_off);
 
+        upD= (Button) vistaMeter.findViewById(R.id.but_update);
+
+
+
         flNewMeter.setOnClickListener(this);
         flEnergyRead.setOnClickListener(this);
         flReleOn.setOnClickListener(this);
         flReleOff.setOnClickListener(this);
+
+        upD.setOnClickListener(this);
 
         // Capturo el contenido del editText donde van los ID
         edTxtID = (EditText) vistaMeter.findViewById(R.id.id_meter);
@@ -92,6 +100,13 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()){
+
+            case R.id.but_update:
+                close();
+
+                listMeter();
+                
+                break;
 
             case R.id.fl_new_meter:
                 close();
@@ -322,5 +337,19 @@ public class MeterFragment extends Fragment implements View.OnClickListener {
 
     public void close(){
         flMore.collapse();
+    }
+
+    private void listMeter(){
+        byte[] frame2Send = new byte[7];
+
+        frame2Send[0] = 0x24;// $
+        frame2Send[1] = 0x40;// @
+        frame2Send[2] = 0x07;// length
+        frame2Send[3] = 0x1A;// Tipo
+        frame2Send[4] = 0x01;// Supioniendo 1 como origen PC
+        frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
+        frame2Send[6] = calcularCRC(frame2Send);
+
+        sendMessage(frame2Send);
     }
 }
