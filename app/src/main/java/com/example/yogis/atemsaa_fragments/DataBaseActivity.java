@@ -28,34 +28,34 @@ import android.widget.Toast;
 
 import com.example.yogis.atemsaa_fragments.Login.LoginActivity;
 import com.example.yogis.atemsaa_fragments.adapters.PageAdapter;
-import com.example.yogis.atemsaa_fragments.fragments.MacroBDFragment;
-import com.example.yogis.atemsaa_fragments.fragments.MedidorBDFragment;
-import com.example.yogis.atemsaa_fragments.fragments.MeterFragment;
-import com.example.yogis.atemsaa_fragments.fragments.PlcMcBDFragment;
-import com.example.yogis.atemsaa_fragments.fragments.PlcMcSettingsFragment;
-import com.example.yogis.atemsaa_fragments.fragments.PlcMmsBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ClientBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ClockSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.GprsSettingsFragment;
+import com.example.yogis.atemsaa_fragments.fragments.MacroBDFragment;
+import com.example.yogis.atemsaa_fragments.fragments.MedidorBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MenuBaseDatosFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MenuFragment;
+import com.example.yogis.atemsaa_fragments.fragments.MeterFragment;
+import com.example.yogis.atemsaa_fragments.fragments.OnChangeFragment;
+import com.example.yogis.atemsaa_fragments.fragments.PlcMcBDFragment;
+import com.example.yogis.atemsaa_fragments.fragments.PlcMcSettingsFragment;
+import com.example.yogis.atemsaa_fragments.fragments.PlcMmsBDFragment;
+import com.example.yogis.atemsaa_fragments.fragments.PlcMmsSettingsFragment;
+import com.example.yogis.atemsaa_fragments.fragments.PlcTuBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcTuSettingsFragment;
+import com.example.yogis.atemsaa_fragments.fragments.ProductBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.RTCFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ReportsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.SettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.TerminalUFragment;
-import com.example.yogis.atemsaa_fragments.fragments.UserFragment;
-import com.example.yogis.atemsaa_fragments.fragments.OnChangeFragment;
-import com.example.yogis.atemsaa_fragments.fragments.PlcMmsSettingsFragment;
-import com.example.yogis.atemsaa_fragments.fragments.PlcTuBDFragment;
-import com.example.yogis.atemsaa_fragments.fragments.ProductBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.TrafoBDFragment;
+import com.example.yogis.atemsaa_fragments.fragments.UserFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements OnChangeFragment, ClockSettingsFragment.DateSelectedListener {
+public class DataBaseActivity extends AppCompatActivity implements OnChangeFragment, ClockSettingsFragment.DateSelectedListener {
 
     static int band=0;
 
@@ -146,18 +146,11 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        setContentView(R.layout.activity_main_2);
+        setContentView(R.layout.activity_main);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         campoFecha = (TextView) findViewById(R.id.editFecha);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        TabLayout tabs = (TabLayout) findViewById(R.id.tabs2);
-
-        setSupportActionBar(toolbar);
 
         appContext = getApplicationContext();
 
@@ -187,117 +180,13 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
         terminal = new TerminalUFragment();
         rtc = new RTCFragment();
 
-        currentFragment = MENU;
-        //putFragment(menu, MENU);
-
-        // Get local Bluetooth adapter
-        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
-        // If the adapter is null, then Bluetooth is not supported
-        if (mBluetoothAdapter == null) {
-            Toast.makeText(this, R.string.bt_not_available, Toast.LENGTH_LONG).show();
-            finish();
-            return;
-        }
-
-
-
-        List<Fragment> data = new ArrayList<>();
-
-        /*
-         //Para PLC-MMS
-        data.add(user);
-        data.add(plcmms);
-        data.add(reports);
-
-        PageAdapter adapter1 = new PageAdapter(getSupportFragmentManager(), data, new String[]{"User", "Settings", "Reports"});
-        pager.setAdapter(adapter1);
-        tabs.setupWithViewPager(pager);
-        */
-
-        //Para PLC-MC
-        data.add(meters);
-        data.add(plcmc);
-
-        PageAdapter adapter2 = new PageAdapter(getSupportFragmentManager(), data, new String[]{"Meter", "Settings"});
-        pager.setAdapter(adapter2);
-        tabs.setupWithViewPager(pager);
-
-        /*
-        //Para PLC-TU
-        data.add(terminal);
-        data.add(plctu);
-
-        PageAdapter adapter3 = new PageAdapter(getSupportFragmentManager(), data, new String[]{"PLC-TU", "Settings"});
-        pager.setAdapter(adapter3);
-        tabs.setupWithViewPager(pager);
-        */
+        currentFragment = DATABASE;
+        putFragment(menuBD, DATABASE);
 
 
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        // If BT is not on, request that it be enabled.
-        // setupCommand() will then be called during onActivityResult
-        if (!mBluetoothAdapter.isEnabled()) {
-            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-        }
-        // otherwise set up the command service
-        else {
-            if (mCommandService == null)
-                setupCommand();
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // Performing this check in onResume() covers the case in which BT was
-        // not enabled during onStart(), so we were paused to enable it...
-        // onResume() will be called when ACTION_REQUEST_ENABLE activity returns.
-        if (mCommandService != null) {
-            if (mCommandService.getState() == BluetoothCommandService.STATE_NONE) {
-                mCommandService.start();
-            }
-        }
-    }
-
-    public void setupCommand() {
-        // Initialize the BluetoothChatService to perform bluetooth connections
-        mCommandService = new BluetoothCommandService(this, mHandler);
-    }
-
-    @Override
-    protected void onDestroy() {
-
-        if (mCommandService != null) {
-            mCommandService.stop();
-            mCommandService = null;
-        }
-        super.onDestroy();
-    }
-
-    public void sendMessage(byte[] message) {
-
-        // Check that we're actually connected before trying anything
-        if (mCommandService.getState() != BluetoothCommandService.STATE_CONNECTED) {
-            Toast.makeText(this, getString(R.string.txt_not_connect_yet), Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // Check that there's actually something to send
-        if (message.length > 0) {
-
-            mCommandService.write(message);
-
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -387,7 +276,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 return true;
 
             case R.id.btn_data_base:
-                Intent intent = new Intent(MainActivity.this, DataBaseActivity.class);
+                Intent intent = new Intent(this, DataBaseActivity.class);
                 startActivity(intent);
                 finish();
 
@@ -527,36 +416,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
                 terminal.setMsg(buff);
                 break;
 
-        }
-    }
-
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case REQUEST_CONNECT_DEVICE:
-                // When DeviceListActivity returns with a device to connect
-                if (resultCode == Activity.RESULT_OK) {
-                    // Get the device MAC address
-                    String address = data.getExtras()
-                            .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
-                    // Get the BLuetoothDevice object
-                    BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
-                    // Attempt to connect to the device
-                    mCommandService.connect(device);
-                    //Activate Progress Bar
-
-                }
-                break;
-            case REQUEST_ENABLE_BT:
-                // When the request to enable Bluetooth returns
-                if (resultCode == Activity.RESULT_OK) {
-                    // Bluetooth is now enabled, so set up a chat session
-                    setupCommand();
-                } else {
-                    // User did not enable Bluetooth or an error occured
-                    Toast.makeText(this, R.string.bt_not_enabled_leaving, Toast.LENGTH_SHORT).show();
-                    finish();
-                }
         }
     }
 

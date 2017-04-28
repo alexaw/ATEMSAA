@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yogis.atemsaa_fragments.BluetoothCommandService;
+import com.example.yogis.atemsaa_fragments.DataBaseActivity;
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
 
@@ -29,7 +30,7 @@ import java.util.Date;
  */
 public class MenuFragment extends Fragment implements View.OnClickListener {
 
-    MainActivity activity;
+    DataBaseActivity activity;
     private boolean bol = false;
     private final String LOG_TAG = "test";
 
@@ -44,7 +45,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
     public void onAttach(Context context) {
         super.onAttach(context);
         changeFragment = (OnChangeFragment) context;
-        activity = (MainActivity) context;
+        activity = (DataBaseActivity) context;
     }
 
     @Override

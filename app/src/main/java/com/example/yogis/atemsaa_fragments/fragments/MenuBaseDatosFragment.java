@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.yogis.atemsaa_fragments.DataBaseActivity;
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
 
@@ -17,7 +18,7 @@ import com.example.yogis.atemsaa_fragments.R;
  */
 public class MenuBaseDatosFragment extends Fragment implements View.OnClickListener {
 
-    MainActivity activity;
+    DataBaseActivity activity;
     private boolean bol = false;
     private final String LOG_TAG = "test";
 
@@ -33,7 +34,7 @@ public class MenuBaseDatosFragment extends Fragment implements View.OnClickListe
     public void onAttach(Context context) {
         super.onAttach(context);
         changeFragment = (OnChangeFragment) context;
-        activity = (MainActivity) context;
+        activity = (DataBaseActivity) context;
     }
 
 
