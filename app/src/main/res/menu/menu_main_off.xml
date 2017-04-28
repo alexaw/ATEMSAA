@@ -9,6 +9,12 @@
         android:showAsAction="never"
         tools:ignore="AppCompatResource" />
 
+    <item android:id="@+id/data_base"
+        android:icon="@android:drawable/ic_menu_mylocation"
+        android:title="@string/title_data_base"
+        android:showAsAction="never"
+        tools:ignore="AppCompatResource" />
+
     <item android:id="@+id/btn_sign_off"
         android:icon="@android:drawable/ic_menu_mylocation"
         android:title="@string/title_sign_off"

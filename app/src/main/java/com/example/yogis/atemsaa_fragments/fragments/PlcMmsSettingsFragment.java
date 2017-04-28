@@ -3,6 +3,7 @@ package com.example.yogis.atemsaa_fragments.fragments;
 
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Environment;
@@ -11,16 +12,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yogis.atemsaa_fragments.BluetoothCommandService;
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -31,17 +37,36 @@ import java.util.Date;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PlcMmsSettingsFragment extends Fragment {
+public class PlcMmsSettingsFragment extends Fragment implements View.OnClickListener {
 
     //se inicializan todos los objetos
-    TextView tvRtaMmsSettings;
-    Button btnCheckSettings, btnRecord;
-    Spinner ganTransmisionMMS, ganRecepcionMMS, retTransmisionMMS, tasaTransmisionMMS, horaEncuestaMMS;
-    ArrayList listaGtx, listaGrx, listaRetardoTx, listaTasaTx, listaHoraEncuesta;
-    String gananciaTransmisionSpinner, gananciaRecepcionSpinner, retardoTransmisionSpinner, tasaTransmisionSpinner, horaEncuestaSpinner;
+
+    FloatingActionButton flPlcMms, flPlcTu, flPlcMc;
+    FloatingActionsMenu flMore;
+
+    Animation open, close, clock, anticlock;
+    boolean isOpen = false;
+
+    TextView tvRtaPLCMMS, txtPlcMms;
+    Button btnCheckSettingsMMS, btnRecordMMS ;
+    Spinner txGainMMS, rxGainMMS, txDelayMMS, txRateMMS, timeSurveyMMS;
+    ArrayList listGtx, listGrx, listDTx, listRTx, listTime;
+    String transmissionGainSpinnerMMS, receptionGainSpinnerMMS, transmissionDelaySpinnerMMS, transmissionRateSpinnerMMS, timeSurveySpinnerMMS;
     String buff = "";
+
+    MainActivity activity;
+
     byte[] readBuf;
-    byte gantxBytes, ganrxBytes, tasatxBytes, retxBytes;
+    byte gantxBytesMMS, ganrxBytesMMS, ratetxBytesMMS, delaytxBytesMMS;
+
+    OnChangeFragment changeFragment;
+
+    String idUsuarioMMS, idMacro;
+    static String estadoUsuario = "1";
+
+
+    EditText edTxtIDMMS, edTxtIDMacro;
+    TabHost th;
 
 
 
@@ -49,120 +74,154 @@ public class PlcMmsSettingsFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        changeFragment = (OnChangeFragment) context;
+        activity = (MainActivity) context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View vista5 = inflater.inflate(R.layout.fragment_plc_mms_settings, container, false);
+        View vistaStgs = inflater.inflate(R.layout.fragment_plc_mms_settings, container, false);
+
+        // Capturo el contenido del editText donde van los ID
+        edTxtIDMMS = (EditText) vistaStgs.findViewById(R.id.id_dispositivoMMS);
+        edTxtIDMacro = (EditText) vistaStgs.findViewById(R.id.id_macro);
+
+
+
+        //textView donde se muestra las respuesta de las consultas
+        tvRtaPLCMMS=(TextView)vistaStgs.findViewById(R.id.txt_view_rta_setMMS);
+        tvRtaPLCMMS.setText("");
+
+        tvRtaPLCMMS.setText("");
+
+        //se recuperan los botones de las interfaces de Settings
+        btnCheckSettingsMMS = (Button) vistaStgs.findViewById(R.id.btn_check_settings_mms);
+        btnRecordMMS = (Button) vistaStgs.findViewById(R.id.btn_record_mms);
+
+        btnCheckSettingsMMS.setOnClickListener(this);
+        btnRecordMMS.setOnClickListener(this);
+
+
+        /*txtPlcMms= (TextView) vistaStgs.findViewById(R.id.txt_plc_mms);
+        txtPlcTu= (TextView) vistaStgs.findViewById(R.id.txt_plc_tu);
+        txtPlcMc= (TextView) vistaStgs.findViewById(R.id.txt_plc_mc);
+
+        open = AnimationUtils.loadAnimation(vistaStgs.getContext(),R.anim.open);
+        close = AnimationUtils.loadAnimation(vistaStgs.getContext(),R.anim.close);
+        clock = AnimationUtils.loadAnimation(vistaStgs.getContext(),R.anim.rorate_clock);
+        anticlock = AnimationUtils.loadAnimation(vistaStgs.getContext(),R.anim.rotate_anticlock);*/
 
         //declaro todos los spinner
 
-        //Spinner Ganancia de transmision
-        ganTransmisionMMS = (Spinner) vista5.findViewById(R.id.mms_ganancia_transmision_spinner);
+        //SPINNER PARA PLC-MMS
 
-        listaGtx = new ArrayList<String>();
-        listaGtx.add("55 mVpp");
-        listaGtx.add("75 mVpp");
-        listaGtx.add("100 mVpp");
-        listaGtx.add("125 mVpp");
-        listaGtx.add("180 mVpp");
-        listaGtx.add("250 mVpp");
-        listaGtx.add("360 mVpp");
-        listaGtx.add("480 mVpp");
-        listaGtx.add("660 mVpp");
-        listaGtx.add("900 mVpp");
-        listaGtx.add("1.25 Vpp");
-        listaGtx.add("1.55 Vpp");
-        listaGtx.add("2.25 Vpp");
-        listaGtx.add("3.00 Vpp");
-        listaGtx.add("3.50 Vpp");
-        ArrayAdapter<String> adaptador3 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listaGtx);
-        adaptador3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        ganTransmisionMMS.setAdapter(adaptador3);
+        //Spinner Ganancia de transmision
+        txGainMMS = (Spinner) vistaStgs.findViewById(R.id.transmission_gain_spinner_mms);
+
+        listGtx = new ArrayList<String>();
+        listGtx.add("55 mVpp");
+        listGtx.add("75 mVpp");
+        listGtx.add("100 mVpp");
+        listGtx.add("125 mVpp");
+        listGtx.add("180 mVpp");
+        listGtx.add("250 mVpp");
+        listGtx.add("360 mVpp");
+        listGtx.add("480 mVpp");
+        listGtx.add("660 mVpp");
+        listGtx.add("900 mVpp");
+        listGtx.add("1.25 Vpp");
+        listGtx.add("1.55 Vpp");
+        listGtx.add("2.25 Vpp");
+        listGtx.add("3.00 Vpp");
+        listGtx.add("3.50 Vpp");
+        ArrayAdapter<String> adaptador1 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listGtx);
+        adaptador1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        txGainMMS.setAdapter(adaptador1);
 
         //Spinner Ganancia de recepcion
-        ganRecepcionMMS = (Spinner) vista5.findViewById(R.id.mms_ganancia_recepcion_spinner);
+        rxGainMMS = (Spinner) vistaStgs.findViewById(R.id.reception_gain_spinner_mms);
 
-        listaGrx = new ArrayList<String>();
-        listaGrx.add("5 mVrms");
-        listaGrx.add("2.5 mVrms");
-        listaGrx.add("1.25 mVrms");
-        listaGrx.add("600 uVrms");
-        listaGrx.add("350 uVrms");
-        listaGrx.add("250 uVrms");
-        listaGrx.add("125 uVrms");
-        ArrayAdapter<String> adaptador4 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listaGrx);
-        adaptador4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        ganRecepcionMMS.setAdapter(adaptador4);
+        listGrx = new ArrayList<String>();
+        listGrx.add("5 mVrms");
+        listGrx.add("2.5 mVrms");
+        listGrx.add("1.25 mVrms");
+        listGrx.add("600 uVrms");
+        listGrx.add("350 uVrms");
+        listGrx.add("250 uVrms");
+        listGrx.add("125 uVrms");
+        ArrayAdapter<String> adaptador2 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listGrx);
+        adaptador2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        rxGainMMS.setAdapter(adaptador2);
 
         //Spinner Retardo de transmision
-        retTransmisionMMS = (Spinner) vista5.findViewById(R.id.mms_retardo_transmision_spinner);
+        txDelayMMS = (Spinner) vistaStgs.findViewById(R.id.transmission_delay_spinner_mms);
 
-        listaRetardoTx = new ArrayList<String>();
-        listaRetardoTx.add("100 ms");
-        listaRetardoTx.add("200 ms");
-        listaRetardoTx.add("300 ms");
-        listaRetardoTx.add("400 ms");
-        listaRetardoTx.add("500 ms");
-        ArrayAdapter<String> adaptador5 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listaRetardoTx);
-        adaptador5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        retTransmisionMMS.setAdapter(adaptador5);
+        listDTx = new ArrayList<String>();
+        listDTx.add("100 ms");
+        listDTx.add("200 ms");
+        listDTx.add("300 ms");
+        listDTx.add("400 ms");
+        listDTx.add("500 ms");
+        ArrayAdapter<String> adaptador3 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listDTx);
+        adaptador3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        txDelayMMS.setAdapter(adaptador3);
 
         //Spinner Tasa de transmision
-        tasaTransmisionMMS = (Spinner) vista5.findViewById(R.id.mms_tasa_transmision_spinner);
+        txRateMMS = (Spinner) vistaStgs.findViewById(R.id.transmission_rate_spinner_mms);
 
-        listaTasaTx = new ArrayList<String>();
-        listaTasaTx.add("600 bps");
-        listaTasaTx.add("1200 bps");
-        listaTasaTx.add("2400 bps");
-        ArrayAdapter<String> adaptador6 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listaTasaTx);
-        adaptador6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        tasaTransmisionMMS.setAdapter(adaptador6);
+        listRTx = new ArrayList<String>();
+        listRTx.add("600 bps");
+        listRTx.add("1200 bps");
+        listRTx.add("2400 bps");
+        ArrayAdapter<String> adaptador4 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listRTx);
+        adaptador4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        txRateMMS.setAdapter(adaptador4);
 
         //Spinner Hora de encuesta
-        horaEncuestaMMS = (Spinner) vista5.findViewById(R.id.mms_hora_encuesta_spinner);
+        timeSurveyMMS = (Spinner) vistaStgs.findViewById(R.id.time_survey_spinner_mms);
 
-        listaHoraEncuesta = new ArrayList<String>();
-        listaHoraEncuesta.add("00");
-        listaHoraEncuesta.add("01");
-        listaHoraEncuesta.add("02");
-        listaHoraEncuesta.add("03");
-        listaHoraEncuesta.add("04");
-        listaHoraEncuesta.add("05");
-        listaHoraEncuesta.add("06");
-        listaHoraEncuesta.add("07");
-        listaHoraEncuesta.add("08");
-        listaHoraEncuesta.add("09");
-        listaHoraEncuesta.add("10");
-        listaHoraEncuesta.add("11");
-        listaHoraEncuesta.add("12");
-        listaHoraEncuesta.add("13");
-        listaHoraEncuesta.add("14");
-        listaHoraEncuesta.add("15");
-        listaHoraEncuesta.add("16");
-        listaHoraEncuesta.add("17");
-        listaHoraEncuesta.add("18");
-        listaHoraEncuesta.add("19");
-        listaHoraEncuesta.add("20");
-        listaHoraEncuesta.add("21");
-        listaHoraEncuesta.add("22");
-        listaHoraEncuesta.add("23");
-        ArrayAdapter<String> adaptador7 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listaHoraEncuesta);
-        adaptador7.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        horaEncuestaMMS.setAdapter(adaptador7);
-
-        //textView donde se muestra la respuesta a la busqueda del usuario (Search User)
-        tvRtaMmsSettings=(TextView)vista5.findViewById(R.id.txt_view_mms_rta_settings);
+        listTime = new ArrayList<String>();
+        listTime.add("00");
+        listTime.add("01");
+        listTime.add("02");
+        listTime.add("03");
+        listTime.add("04");
+        listTime.add("05");
+        listTime.add("06");
+        listTime.add("07");
+        listTime.add("08");
+        listTime.add("09");
+        listTime.add("10");
+        listTime.add("11");
+        listTime.add("12");
+        listTime.add("13");
+        listTime.add("14");
+        listTime.add("15");
+        listTime.add("16");
+        listTime.add("17");
+        listTime.add("18");
+        listTime.add("19");
+        listTime.add("20");
+        listTime.add("21");
+        listTime.add("22");
+        listTime.add("23");
+        ArrayAdapter<String> adaptador5 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listTime);
+        adaptador5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        timeSurveyMMS.setAdapter(adaptador5);
 
         //aqui van todos los estados de los spinner!!!
 
-        ganTransmisionMMS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        txGainMMS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 
-                gananciaTransmisionSpinner = arg0.getItemAtPosition(arg2).toString();
+                transmissionGainSpinnerMMS = arg0.getItemAtPosition(arg2).toString();
             }
 
             @Override
@@ -170,12 +229,12 @@ public class PlcMmsSettingsFragment extends Fragment {
             }
         });
 
-        ganRecepcionMMS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        rxGainMMS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 
-                gananciaRecepcionSpinner = arg0.getItemAtPosition(arg2).toString();
+                receptionGainSpinnerMMS = arg0.getItemAtPosition(arg2).toString();
             }
 
             @Override
@@ -183,12 +242,12 @@ public class PlcMmsSettingsFragment extends Fragment {
             }
         });
 
-        retTransmisionMMS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        txDelayMMS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 
-                retardoTransmisionSpinner = arg0.getItemAtPosition(arg2).toString();
+                transmissionDelaySpinnerMMS = arg0.getItemAtPosition(arg2).toString();
             }
 
             @Override
@@ -196,12 +255,12 @@ public class PlcMmsSettingsFragment extends Fragment {
             }
         });
 
-        tasaTransmisionMMS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        txRateMMS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 
-                tasaTransmisionSpinner = arg0.getItemAtPosition(arg2).toString();
+                transmissionRateSpinnerMMS = arg0.getItemAtPosition(arg2).toString();
             }
 
             @Override
@@ -209,12 +268,12 @@ public class PlcMmsSettingsFragment extends Fragment {
             }
         });
 
-        horaEncuestaMMS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        timeSurveyMMS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 
-                horaEncuestaSpinner = arg0.getItemAtPosition(arg2).toString();
+                timeSurveySpinnerMMS = arg0.getItemAtPosition(arg2).toString();
             }
 
             @Override
@@ -222,248 +281,8 @@ public class PlcMmsSettingsFragment extends Fragment {
             }
         });
 
-        //Boton de Verificar la configuracion del PLC-MMS
 
-        btnCheckSettings = (Button) vista5.findViewById(R.id.btn_mms_verificar_configuracion);
-        btnCheckSettings.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                byte []frame2Send = new byte[7];
-
-                frame2Send[0] = 0x24;// $
-                frame2Send[1] = 0x40;// @
-                frame2Send[2] = 0x07;// length
-                frame2Send[3] = 0x07;// Tipo
-                frame2Send[4] = 0x01;// Suponiendo 1 como origen PC
-                frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
-                frame2Send[6] = calcularCRC(frame2Send);
-
-                tvRtaMmsSettings.setText("");
-                buff="";
-
-                sendMessage(frame2Send);
-
-            }
-        });
-
-//Boton de Grabar la configuracion del PLC-MMS
-        btnRecord = (Button) vista5.findViewById(R.id.btn_mms_configuracion);
-        btnRecord.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                // Capturo el contenido del editText donde van los ID
-                TextView et_id = (TextView) vista5.findViewById(R.id.id_mms_user);
-                String id_usuario = et_id.getText().toString();
-
-                //Capturo el valor del spinner 'ganancia de transmision'
-                String ganancia_transmision_elegida = gananciaTransmisionSpinner;
-
-                switch (ganancia_transmision_elegida){
-                    case "55 mVpp":
-                        gantxBytes = 0x00;
-                        break;
-
-                    case "75 mVpp":
-                        gantxBytes = 0x01;
-                        break;
-
-                    case "100 mVpp":
-                        gantxBytes = 0x02;
-                        break;
-
-                    case "125 mVpp":
-                        gantxBytes = 0x03;
-                        break;
-
-                    case "180 mVpp":
-                        gantxBytes = 0x04;
-                        break;
-
-                    case "250 mVpp":
-                        gantxBytes = 0x05;
-                        break;
-
-                    case "360 mVpp":
-                        gantxBytes = 0x06;
-                        break;
-
-                    case "480 mVpp":
-                        gantxBytes = 0x07;
-                        break;
-
-                    case "660 mVpp":
-                        gantxBytes = 0x08;
-                        break;
-
-                    case "900 mVpp":
-                        gantxBytes = 0x09;
-                        break;
-
-                    case "1.25 Vpp":
-                        gantxBytes = 0x0A;
-                        break;
-
-                    case "1.55 Vpp":
-                        gantxBytes = 0x0B;
-                        break;
-
-                    case "2.25 Vpp":
-                        gantxBytes = 0x0C;
-                        break;
-
-                    case "3.00 Vpp":
-                        gantxBytes = 0x0D;
-                        break;
-
-                    case "3.50 Vpp":
-                        gantxBytes = 0x0E;
-                        break;
-                }
-
-                //Capturo el valor del spinner 'ganancia de recepcion'
-                String ganancia_recepcion_elegida = gananciaRecepcionSpinner;
-
-                switch (ganancia_recepcion_elegida){
-                    case "5 mVrms":
-                        ganrxBytes = 0x01;
-                        break;
-
-                    case "2.5 mVrms":
-                        ganrxBytes = 0x02;
-                        break;
-
-                    case "1.25 mVrms":
-                        ganrxBytes = 0x03;
-                        break;
-
-                    case "600 uVrms":
-                        ganrxBytes = 0x04;
-                        break;
-
-                    case "350 uVrms":
-                        ganrxBytes = 0x05;
-                        break;
-
-                    case "250 uVrms":
-                        ganrxBytes = 0x06;
-                        break;
-
-                    case "125 uVrms":
-                        ganrxBytes = 0x07;
-                        break;
-                }
-
-                //Capturo el valor del spinner 'retardo de transmision'
-                String retardo_transmision_elegida = retardoTransmisionSpinner;
-
-                switch (retardo_transmision_elegida){
-                    case "100 ms":
-                        retxBytes = 0x01;
-                        break;
-
-                    case "200 ms":
-                        retxBytes = 0x02;
-                        break;
-
-                    case "300 ms":
-                        retxBytes = 0x03;
-                        break;
-
-                    case "400 ms":
-                        retxBytes = 0x04;
-                        break;
-
-                    case "500 ms":
-                        retxBytes = 0x05;
-                        break;
-                }
-
-                //Capturo el valor del spinner 'tasa de transmision'
-                String tasa_transmision_elegida = tasaTransmisionSpinner;
-
-                switch (tasa_transmision_elegida){
-                    case "600 bps":
-                        tasatxBytes = 0x00;
-                        break;
-
-                    case "1200 bps":
-                        tasatxBytes = 0x01;
-                        break;
-
-                    case "2400 bps":
-                        tasatxBytes = 0x03;
-                        break;
-                }
-
-                //Capturo el valor del spinner 'hora de encuesta'
-                int hora_encuesta_spinner_int = Integer.parseInt(horaEncuestaSpinner);
-                String horaenc = Integer.toHexString(hora_encuesta_spinner_int);
-                if (horaenc.length() == 1){horaenc = "0"+horaenc;}
-                byte[] horaenc_bytes = hexStringToByteArray(horaenc);
-
-                if (id_usuario.length() == 8) {
-
-                    byte[] frame2Send = new byte[16];
-
-                    byte[] id_usuario_bytes = hexStringToByteArray(id_usuario);
-
-                    frame2Send[0] = 0x24;// $
-                    frame2Send[1] = 0x40;// @
-                    frame2Send[2] = 0x10;// length
-                    frame2Send[3] = 0x11;// Tipo
-                    frame2Send[4] = 0x01;// Suponiendo 1 como origen PC
-                    frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
-                    frame2Send[6] = id_usuario_bytes[0];
-                    frame2Send[7] = id_usuario_bytes[1];
-                    frame2Send[8] = id_usuario_bytes[2];
-                    frame2Send[9] = id_usuario_bytes[3];
-                    frame2Send[10] = tasatxBytes;//tasa de transmision
-                    frame2Send[11] = gantxBytes;//ganancia de transmision
-                    frame2Send[12] = ganrxBytes;//ganancia de recepcion
-                    frame2Send[13] = retxBytes;//retardo de transmision
-                    frame2Send[14] = horaenc_bytes[0];//hora de encuesta
-                    frame2Send[15] = calcularCRC(frame2Send);
-
-                    sendMessage(frame2Send);
-
-                } else {
-                    toastIngresarId();
-                }
-
-            }
-        });
-
-        //Para limpiar la pantalla o descargar archivos
-        tvRtaMmsSettings.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                new AlertDialog.Builder(v.getContext())
-                        .setTitle(getString(R.string.txt_options))
-                        .setMessage("")
-                        .setNegativeButton(getString(R.string.txt_clear), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dlg, int sumthin) {
-                                // Limpio los textView
-                                tvRtaMmsSettings.setText("");
-                                buff="";
-                            }
-                        })
-                        .setPositiveButton(getString(R.string.txt_download), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dlg, int sumthin) {
-
-                                Date horaActual=new Date();
-
-                                String fecha=(horaActual.getYear()+1900)+""+(horaActual.getMonth()+1)+
-                                        ""+horaActual.getDate()+""+horaActual.getHours()+
-                                        ""+horaActual.getMinutes()+""+horaActual.getSeconds();
-
-                                writeFile("atemsaa"+fecha+".csv", buff);
-
-                            }
-                        })
-                        .show();
-            }
-        });
-        return vista5;
+        return vistaStgs;
 
     }
 
@@ -515,7 +334,234 @@ public class PlcMmsSettingsFragment extends Fragment {
     }
 
     public void setMsg(String msg){
-        tvRtaMmsSettings.setText(msg);
+        tvRtaPLCMMS.setText(msg);
     }
 
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+
+            //caso de CHECK SETTINGS
+            case R.id.btn_check_settings_mms:
+
+                byte []frame2Send = new byte[7];
+
+                frame2Send[0] = 0x24;// $
+                frame2Send[1] = 0x40;// @
+                frame2Send[2] = 0x07;// length
+                frame2Send[3] = 0x07;// Tipo
+                frame2Send[4] = 0x01;// Suponiendo 1 como origen PC
+                frame2Send[5] = 0x02;// Suponiendo 2 como destino PLC
+                frame2Send[6] = calcularCRC(frame2Send);
+
+                tvRtaPLCMMS.setText("");
+                buff="";
+
+                sendMessage(frame2Send);
+
+                break;
+
+            case R.id.btn_record_mms:
+                // Capturo el contenido del editText donde van los ID
+                idUsuarioMMS = edTxtIDMMS.getText().toString();
+                idMacro = edTxtIDMacro.getText().toString();
+
+                //Capturo el valor del spinner 'ganancia de transmision'
+                String gananciaTransmisionElegida = transmissionGainSpinnerMMS;
+
+                switch (gananciaTransmisionElegida){
+                    case "55 mVpp":
+                        gantxBytesMMS = 0x00;
+                        break;
+
+                    case "75 mVpp":
+                        gantxBytesMMS = 0x01;
+                        break;
+
+                    case "100 mVpp":
+                        gantxBytesMMS = 0x02;
+                        break;
+
+                    case "125 mVpp":
+                        gantxBytesMMS = 0x03;
+                        break;
+
+                    case "180 mVpp":
+                        gantxBytesMMS = 0x04;
+                        break;
+
+                    case "250 mVpp":
+                        gantxBytesMMS = 0x05;
+                        break;
+
+                    case "360 mVpp":
+                        gantxBytesMMS = 0x06;
+                        break;
+
+                    case "480 mVpp":
+                        gantxBytesMMS = 0x07;
+                        break;
+
+                    case "660 mVpp":
+                        gantxBytesMMS = 0x08;
+                        break;
+
+                    case "900 mVpp":
+                        gantxBytesMMS = 0x09;
+                        break;
+
+                    case "1.25 Vpp":
+                        gantxBytesMMS = 0x0A;
+                        break;
+
+                    case "1.55 Vpp":
+                        gantxBytesMMS = 0x0B;
+                        break;
+
+                    case "2.25 Vpp":
+                        gantxBytesMMS = 0x0C;
+                        break;
+
+                    case "3.00 Vpp":
+                        gantxBytesMMS = 0x0D;
+                        break;
+
+                    case "3.50 Vpp":
+                        gantxBytesMMS = 0x0E;
+                        break;
+                }
+
+                //Capturo el valor del spinner 'ganancia de recepcion'
+                String gananciaRecepcionElegida = receptionGainSpinnerMMS;
+
+                switch (gananciaRecepcionElegida){
+                    case "5 mVrms":
+                        ganrxBytesMMS = 0x01;
+                        break;
+
+                    case "2.5 mVrms":
+                        ganrxBytesMMS = 0x02;
+                        break;
+
+                    case "1.25 mVrms":
+                        ganrxBytesMMS = 0x03;
+                        break;
+
+                    case "600 uVrms":
+                        ganrxBytesMMS = 0x04;
+                        break;
+
+                    case "350 uVrms":
+                        ganrxBytesMMS = 0x05;
+                        break;
+
+                    case "250 uVrms":
+                        ganrxBytesMMS = 0x06;
+                        break;
+
+                    case "125 uVrms":
+                        ganrxBytesMMS = 0x07;
+                        break;
+                }
+
+                //Capturo el valor del spinner 'retardo de transmision'
+                String retardoTransmisionElegida = transmissionDelaySpinnerMMS;
+
+                switch (retardoTransmisionElegida){
+                    case "100 ms":
+                        delaytxBytesMMS = 0x01;
+                        break;
+
+                    case "200 ms":
+                        delaytxBytesMMS = 0x02;
+                        break;
+
+                    case "300 ms":
+                        delaytxBytesMMS = 0x03;
+                        break;
+
+                    case "400 ms":
+                        delaytxBytesMMS = 0x04;
+                        break;
+
+                    case "500 ms":
+                        delaytxBytesMMS = 0x05;
+                        break;
+                }
+
+                //Capturo el valor del spinner 'tasa de transmision'
+                String tasaTransmisionElegida = transmissionRateSpinnerMMS;
+
+                switch (tasaTransmisionElegida){
+                    case "600 bps":
+                        ratetxBytesMMS = 0x00;
+                        break;
+
+                    case "1200 bps":
+                        ratetxBytesMMS = 0x01;
+                        break;
+
+                    case "2400 bps":
+                        ratetxBytesMMS = 0x03;
+                        break;
+                }
+
+
+                //Capturo el valor del spinner 'hora de encuesta'
+                int horaEncuestaSpinnerInt = Integer.parseInt(timeSurveySpinnerMMS);
+                String horaenc = Integer.toHexString(horaEncuestaSpinnerInt);
+                if (horaenc.length() == 1){horaenc = "0"+horaenc;}
+                byte[] horaencBytes = hexStringToByteArray(horaenc);
+
+                idUsuarioMMS = edTxtIDMMS.getText().toString();
+                idMacro = edTxtIDMacro.getText().toString();
+
+                if (idUsuarioMMS.length() == 8 && idMacro.length() == 12) {
+                    byte[] idUsuarioBytes = hexStringToByteArray(idUsuarioMMS);
+                    byte[] idMacroBytes = hexStringToByteArray(idMacro);
+
+                    byte[] frame2send = new byte[23];
+
+
+                    frame2send[0] = 0x24;// $
+                    frame2send[1] = 0x40;// @
+                    frame2send[2] = 0x17;// length
+                    frame2send[3] = 0x11;// Tipo
+                    frame2send[4] = 0x01;// Suponiendo 1 como origen PC
+                    frame2send[5] = 0x02;// Suponiendo 2 como destino PLC
+                    frame2send[6] = idUsuarioBytes[0];
+                    frame2send[7] = idUsuarioBytes[1];
+                    frame2send[8] = idUsuarioBytes[2];
+                    frame2send[9] = idUsuarioBytes[3];
+                    frame2send[10] = ratetxBytesMMS;//tasa de transmision
+                    frame2send[11] = gantxBytesMMS;//ganancia de transmision
+                    frame2send[12] = ganrxBytesMMS;//ganancia de recepcion
+                    frame2send[13] = delaytxBytesMMS;//retardo de transmision
+                    frame2send[14] = 0x08;//BIUThres
+                    frame2send[15] = horaencBytes[0];//hora de encuesta
+                    frame2send[16] = idMacroBytes[0];
+                    frame2send[17] = idMacroBytes[1];
+                    frame2send[18] = idMacroBytes[2];
+                    frame2send[19] = idMacroBytes[3];
+                    frame2send[20] = idMacroBytes[4];
+                    frame2send[21] = idMacroBytes[5];
+                    frame2send[22] = calcularCRC(frame2send);
+
+                    sendMessage(frame2send);
+
+                } else {
+                    toastIngresarId();
+                }
+
+                break;
+
+
+
+        }
+    }
+
+    public void close(){
+        flMore.collapse();
+    }
 }

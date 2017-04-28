@@ -5,152 +5,125 @@
     android:layout_gravity="center"
     android:orientation="vertical" >
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-
-
-    tools:context="com.example.yogis.atemsaa_fragments.fragments.PlcMcSettingsFragment"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/title_plc_mc"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/title_PLC_MC"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:padding="10dp"
-        android:layout_marginBottom="10dp"
-        />
+        android:layout_height="match_parent"
+        android:padding="5dp">
 
-    <EditText
-        android:id="@+id/id_mc_user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="ID:"
-        android:layout_marginBottom="10dp"
-        />
+        <LinearLayout
+            android:id="@+id/tab2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
-    <TextView
-        android:id="@+id/txt_mc_parametros"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/subtitle_parameters_PLC"
-        android:textSize="17sp"
-        android:gravity="center"
-        android:layout_marginBottom="15dp"
-        />
+            <TextView
+                android:id="@+id/txt_rta_MC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Datos actuales en el PLC-MC"
+                android:paddingBottom="15dp"
+                />
 
-    <TextView
-        android:id="@+id/txt_mc_gan_tx"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_gan_tx"
-        android:layout_marginBottom="10dp"
-        />
+            <TextView
+                android:id="@+id/txt_view_rta_setMC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:background="@drawable/rectangle_green"
+                android:padding="10dp"/>
 
-    <Spinner
-        android:id="@+id/mc_ganancia_transmision_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+            <TextView
+                android:id="@+id/txt_mc_parametros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/subtitle_parameters_PLC"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:layout_marginBottom="15dp"
+                />
 
-    <TextView
-        android:id="@+id/txt_mc_gan_rx"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_gan_rx"
-        android:layout_marginBottom="10dp"
-        />
+            <TextView
+                android:id="@+id/txt_gan_tx_mc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_gan_tx"
+                android:layout_marginBottom="1dp"
+                />
 
-    <Spinner
-        android:id="@+id/mc_ganancia_recepcion_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+            <Spinner
+                android:id="@+id/transmission_gain_spinner_mc"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                />
 
-    <TextView
-        android:id="@+id/txt_mc_ret_tx"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_delay_tx"
-        android:layout_marginBottom="10dp"
-        />
+            <TextView
+                android:id="@+id/txt_rx_gan_mc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_gan_rx"
+                android:layout_marginBottom="1dp"
+                android:paddingTop="12dp"
+                />
 
-    <Spinner
-        android:id="@+id/mc_retardo_transmision_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+            <Spinner
+                android:id="@+id/reception_gain_spinner_mc"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                />
 
-    <TextView
-        android:id="@+id/txt_mc_tasa_tx"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_rate_tx"
-        android:layout_marginBottom="10dp"
-        />
+            <TextView
+                android:id="@+id/txt_tx_delay_mc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_delay_tx"
+                android:layout_marginBottom="1dp"
+                android:paddingTop="12dp"
+                />
 
-    <Spinner
-        android:id="@+id/mc_tasa_transmision_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+            <Spinner
+                android:id="@+id/transmission_delay_spinner_mc"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                />
 
-    <TextView
-        android:id="@+id/txt_mc_hora_encuesta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_survey_hour"
-        android:layout_marginBottom="10dp"
-        />
+            <TextView
+                android:id="@+id/txt_tx_rate_mc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_rate_tx"
+                android:layout_marginBottom="1dp"
+                android:paddingTop="12dp"
+                />
 
-    <Spinner
-        android:id="@+id/mc_hora_encuesta_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="30dp"
-        />
+            <Spinner
+                android:id="@+id/transmission_rate_spinner_mc"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                />
 
-    <Button
-        android:id="@+id/btn_mc_verificar_configuracion"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="3dp"
-        android:text="@string/button_check_config"
-        android:layout_marginBottom="10dp"
-        />
+            <Button
+                android:id="@+id/btn_check_settings_mc"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="3dp"
+                android:text="@string/button_check_config"
+                android:layout_marginBottom="10dp"
+                />
 
-    <Button
-        android:id="@+id/btn_mc_configuracion"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="3dp"
-        android:text="@string/button_record"
-        android:layout_marginBottom="10dp"
-        />
+            <Button
+                android:id="@+id/btn_record_mc"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="3dp"
+                android:text="@string/button_record"
+                android:layout_marginBottom="10dp"
+                />
 
-    <TextView
-        android:id="@+id/txt_mc_rta_user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/respuesta_usr"
-        />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/txt_view_mc_rta_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="" />
+    </RelativeLayout>
 
-</LinearLayout>
 </ScrollView>

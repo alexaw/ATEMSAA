@@ -32,12 +32,14 @@ import com.example.yogis.atemsaa_fragments.fragments.MacroBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MedidorBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MeterFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcMcBDFragment;
+import com.example.yogis.atemsaa_fragments.fragments.PlcMcSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcMmsBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ClientBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ClockSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.GprsSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MenuBaseDatosFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MenuFragment;
+import com.example.yogis.atemsaa_fragments.fragments.PlcTuSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.RTCFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ReportsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.SettingsFragment;
@@ -114,6 +116,8 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     MenuBaseDatosFragment menuBD;
     ClientBDFragment clientBD;
     PlcMmsBDFragment plcMmsBD;
+    PlcMcSettingsFragment plcmc;
+    PlcTuSettingsFragment plctu;
     MacroBDFragment macroBD;
     MedidorBDFragment medidorBD;
     PlcMcBDFragment plcMcBD;
@@ -161,6 +165,8 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
 
         menu = new MenuFragment();
         plcmms = new PlcMmsSettingsFragment();
+        plcmc = new PlcMcSettingsFragment();
+        plctu = new PlcTuSettingsFragment();
         fclock = new ClockSettingsFragment();
         fgprs = new GprsSettingsFragment();
 
@@ -201,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
         /*
          //Para PLC-MMS
         data.add(user);
-        data.add(settings);
+        data.add(plcmms);
         data.add(reports);
 
         PageAdapter adapter1 = new PageAdapter(getSupportFragmentManager(), data, new String[]{"User", "Settings", "Reports"});
@@ -211,17 +217,16 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
 
         //Para PLC-MC
         data.add(meters);
-        data.add(settings);
+        data.add(plctu);
 
         PageAdapter adapter2 = new PageAdapter(getSupportFragmentManager(), data, new String[]{"Meter", "Settings"});
         pager.setAdapter(adapter2);
         tabs.setupWithViewPager(pager);
 
-
         /*
         //Para PLC-TU
         data.add(terminal);
-        data.add(settings);
+        data.add(plctu);
 
         PageAdapter adapter3 = new PageAdapter(getSupportFragmentManager(), data, new String[]{"PLC-TU", "Settings"});
         pager.setAdapter(adapter3);

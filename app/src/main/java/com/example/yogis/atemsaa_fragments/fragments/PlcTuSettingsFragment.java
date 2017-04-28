@@ -34,33 +34,35 @@ import java.util.Date;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PlcMcSettingsFragment extends Fragment implements View.OnClickListener {
+public class PlcTuSettingsFragment extends Fragment implements View.OnClickListener {
+
 
     //se inicializan todos los objetos
 
 
-    Animation open, close, clock, anticlock;
-    boolean isOpen = false;
 
-    TextView txtPlcMc, tvRtaPLCMC;
-    Button btnCheckSettingsMC, btnRecordMC;
-    Spinner txGainMC, rxGainMC, txDelayMC, txRateMC;
+    TextView txtPlcTu, tvRtaPLCTU ;
+    Button btnCheckSettingsTU, btnRecordTU ;
+    Spinner txGainTU, rxGainTU, txDelayTU, txRateTU;
     ArrayList listGtx, listGrx, listDTx, listRTx, listTime;
-    String transmissionGainSpinnerMC, receptionGainSpinnerMC, transmissionDelaySpinnerMC, transmissionRateSpinnerMC;
+    String transmissionGainSpinnerTU, receptionGainSpinnerTU, transmissionDelaySpinnerTU, transmissionRateSpinnerTU;
     String buff = "";
 
     MainActivity activity;
 
     byte[] readBuf;
-    byte   gantxBytesMC, ganrxBytesMC, ratetxBytesMC, delaytxBytesMC;
+    byte gantxBytesTU, ganrxBytesTU, ratetxBytesTU, delaytxBytesTU;
 
     OnChangeFragment changeFragment;
 
-
+    String idUsuarioTU ;
     static String estadoUsuario = "1";
 
 
-    public PlcMcSettingsFragment() {
+    EditText edTxtIDTU;
+
+
+    public PlcTuSettingsFragment() {
         // Required empty public constructor
     }
 
@@ -76,27 +78,28 @@ public class PlcMcSettingsFragment extends Fragment implements View.OnClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vistaStgs = inflater.inflate(R.layout.fragment_plc_mc_settings, container, false);
+        View vistaStgs = inflater.inflate(R.layout.fragment_plc_tu_settings, container, false);
 
+        // Capturo el contenido del editText donde van los ID
+        edTxtIDTU = (EditText) vistaStgs.findViewById(R.id.id_dispositivoTU);
 
-        tvRtaPLCMC=(TextView)vistaStgs.findViewById(R.id.txt_view_rta_setMC);
-        tvRtaPLCMC.setText("");
-
-        tvRtaPLCMC.setText("");
+        //textView donde se muestra las respuesta de las consultas
+        tvRtaPLCTU=(TextView)vistaStgs.findViewById(R.id.txt_view_rta_setTU);
+        tvRtaPLCTU.setText("");
 
         //se recuperan los botones de las interfaces de Settings
-        btnCheckSettingsMC = (Button) vistaStgs.findViewById(R.id.btn_check_settings_mc);
-        btnRecordMC = (Button) vistaStgs.findViewById(R.id.btn_record_mc);
+        btnCheckSettingsTU = (Button) vistaStgs.findViewById(R.id.btn_check_settings_tu);
+        btnRecordTU = (Button) vistaStgs.findViewById(R.id.btn_record_tu);
 
-        btnCheckSettingsMC.setOnClickListener(this);
-        btnRecordMC.setOnClickListener(this);
+        btnCheckSettingsTU.setOnClickListener(this);
+        btnRecordTU.setOnClickListener(this);
 
         //declaro todos los spinner
 
-        //SPINNER PARA PLC-MC
+        //SPINNER PARA PLC-TU
 
         //Spinner Ganancia de transmision
-        txGainMC = (Spinner) vistaStgs.findViewById(R.id.transmission_gain_spinner_mc);
+        txGainTU = (Spinner) vistaStgs.findViewById(R.id.transmission_gain_spinner_tu);
 
         listGtx = new ArrayList<String>();
         listGtx.add("55 mVpp");
@@ -114,12 +117,12 @@ public class PlcMcSettingsFragment extends Fragment implements View.OnClickListe
         listGtx.add("2.25 Vpp");
         listGtx.add("3.00 Vpp");
         listGtx.add("3.50 Vpp");
-        ArrayAdapter<String> adaptador6 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listGtx);
-        adaptador6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        txGainMC.setAdapter(adaptador6);
+        ArrayAdapter<String> adaptador10 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listGtx);
+        adaptador10.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        txGainTU.setAdapter(adaptador10);
 
         //Spinner Ganancia de recepcion
-        rxGainMC = (Spinner) vistaStgs.findViewById(R.id.reception_gain_spinner_mc);
+        rxGainTU = (Spinner) vistaStgs.findViewById(R.id.reception_gain_spinner_tu);
 
         listGrx = new ArrayList<String>();
         listGrx.add("5 mVrms");
@@ -129,12 +132,12 @@ public class PlcMcSettingsFragment extends Fragment implements View.OnClickListe
         listGrx.add("350 uVrms");
         listGrx.add("250 uVrms");
         listGrx.add("125 uVrms");
-        ArrayAdapter<String> adaptador7 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listGrx);
-        adaptador7.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        rxGainMC.setAdapter(adaptador7);
+        ArrayAdapter<String> adaptador11 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listGrx);
+        adaptador11.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        rxGainTU.setAdapter(adaptador11);
 
         //Spinner Retardo de transmision
-        txDelayMC = (Spinner) vistaStgs.findViewById(R.id.transmission_delay_spinner_mc);
+        txDelayTU = (Spinner) vistaStgs.findViewById(R.id.transmission_delay_spinner_tu);
 
         listDTx = new ArrayList<String>();
         listDTx.add("100 ms");
@@ -142,29 +145,30 @@ public class PlcMcSettingsFragment extends Fragment implements View.OnClickListe
         listDTx.add("300 ms");
         listDTx.add("400 ms");
         listDTx.add("500 ms");
-        ArrayAdapter<String> adaptador8 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listDTx);
-        adaptador8.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        txDelayMC.setAdapter(adaptador8);
+        ArrayAdapter<String> adaptador12 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listDTx);
+        adaptador12.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        txDelayTU.setAdapter(adaptador12);
 
         //Spinner Tasa de transmision
-        txRateMC = (Spinner) vistaStgs.findViewById(R.id.transmission_rate_spinner_mc);
+        txRateTU = (Spinner) vistaStgs.findViewById(R.id.transmission_rate_spinner_tu);
 
         listRTx = new ArrayList<String>();
         listRTx.add("600 bps");
         listRTx.add("1200 bps");
         listRTx.add("2400 bps");
-        ArrayAdapter<String> adaptador9 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listRTx);
-        adaptador9.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        txRateMC.setAdapter(adaptador9);
+        ArrayAdapter<String> adaptador13 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, listRTx);
+        adaptador13.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        txRateTU.setAdapter(adaptador13);
+
 
         //aqui van todos los estados de los spinner!!!
 
-        txGainMC.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        txGainTU.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 
-                transmissionGainSpinnerMC = arg0.getItemAtPosition(arg2).toString();
+                transmissionGainSpinnerTU = arg0.getItemAtPosition(arg2).toString();
             }
 
             @Override
@@ -172,12 +176,12 @@ public class PlcMcSettingsFragment extends Fragment implements View.OnClickListe
             }
         });
 
-        rxGainMC.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        rxGainTU.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 
-                receptionGainSpinnerMC = arg0.getItemAtPosition(arg2).toString();
+                receptionGainSpinnerTU = arg0.getItemAtPosition(arg2).toString();
             }
 
             @Override
@@ -185,12 +189,12 @@ public class PlcMcSettingsFragment extends Fragment implements View.OnClickListe
             }
         });
 
-        txDelayMC.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        txDelayTU.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 
-                transmissionDelaySpinnerMC = arg0.getItemAtPosition(arg2).toString();
+                transmissionDelaySpinnerTU = arg0.getItemAtPosition(arg2).toString();
             }
 
             @Override
@@ -198,12 +202,12 @@ public class PlcMcSettingsFragment extends Fragment implements View.OnClickListe
             }
         });
 
-        txRateMC.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        txRateTU.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 
-                transmissionRateSpinnerMC = arg0.getItemAtPosition(arg2).toString();
+                transmissionRateSpinnerTU = arg0.getItemAtPosition(arg2).toString();
             }
 
             @Override
@@ -212,6 +216,7 @@ public class PlcMcSettingsFragment extends Fragment implements View.OnClickListe
         });
 
         return vistaStgs;
+
     }
 
     public static byte[] hexStringToByteArray(String s) {
@@ -262,197 +267,198 @@ public class PlcMcSettingsFragment extends Fragment implements View.OnClickListe
     }
 
     public void setMsg(String msg){
-        tvRtaPLCMC.setText(msg);
+        tvRtaPLCTU.setText(msg);
 
     }
-
 
     @Override
     public void onClick(View view) {
 
         switch (view.getId()) {
 
-            case R.id.btn_check_settings_mc:
+            case R.id.btn_check_settings_tu:
 
-                byte []frame3Send = new byte[7];
+                byte []frame4Send = new byte[7];
 
-                frame3Send[0] = 0x24;// $
-                frame3Send[1] = 0x40;// @
-                frame3Send[2] = 0x07;// length
-                frame3Send[3] = 0x07;// Tipo
-                frame3Send[4] = 0x01;// Suponiendo 1 como origen PC
-                frame3Send[5] = 0x02;// Suponiendo 2 como destino PLC
-                frame3Send[6] = calcularCRC(frame3Send);
+                frame4Send[0] = 0x24;// $
+                frame4Send[1] = 0x40;// @
+                frame4Send[2] = 0x07;// length
+                frame4Send[3] = 0x07;// Tipo
+                frame4Send[4] = 0x01;// Suponiendo 1 como origen PC
+                frame4Send[5] = 0x02;// Suponiendo 2 como destino PLC
+                frame4Send[6] = calcularCRC(frame4Send);
 
-                tvRtaPLCMC.setText("");
+                tvRtaPLCTU.setText("");
                 buff="";
 
-                sendMessage(frame3Send);
+                sendMessage(frame4Send);
 
                 break;
 
-            case R.id.btn_record_mc:
+            case R.id.btn_record_tu:
 
                 //Capturo el valor del spinner 'ganancia de transmision'
-                String gananciaTransmisionElegida2 = transmissionGainSpinnerMC;
+                String gananciaTransmisionElegida3 = transmissionGainSpinnerTU;
 
-                switch (gananciaTransmisionElegida2){
+                switch (gananciaTransmisionElegida3){
                     case "55 mVpp":
-                        gantxBytesMC = 0x00;
+                        gantxBytesTU = 0x00;
                         break;
 
                     case "75 mVpp":
-                        gantxBytesMC = 0x01;
+                        gantxBytesTU = 0x01;
                         break;
 
                     case "100 mVpp":
-                        gantxBytesMC = 0x02;
+                        gantxBytesTU = 0x02;
                         break;
 
                     case "125 mVpp":
-                        gantxBytesMC = 0x03;
+                        gantxBytesTU = 0x03;
                         break;
 
                     case "180 mVpp":
-                        gantxBytesMC = 0x04;
+                        gantxBytesTU = 0x04;
                         break;
 
                     case "250 mVpp":
-                        gantxBytesMC = 0x05;
+                        gantxBytesTU = 0x05;
                         break;
 
                     case "360 mVpp":
-                        gantxBytesMC = 0x06;
+                        gantxBytesTU = 0x06;
                         break;
 
                     case "480 mVpp":
-                        gantxBytesMC = 0x07;
+                        gantxBytesTU = 0x07;
                         break;
 
                     case "660 mVpp":
-                        gantxBytesMC = 0x08;
+                        gantxBytesTU = 0x08;
                         break;
 
                     case "900 mVpp":
-                        gantxBytesMC = 0x09;
+                        gantxBytesTU = 0x09;
                         break;
 
                     case "1.25 Vpp":
-                        gantxBytesMC = 0x0A;
+                        gantxBytesTU = 0x0A;
                         break;
 
                     case "1.55 Vpp":
-                        gantxBytesMC = 0x0B;
+                        gantxBytesTU = 0x0B;
                         break;
 
                     case "2.25 Vpp":
-                        gantxBytesMC = 0x0C;
+                        gantxBytesTU = 0x0C;
                         break;
 
                     case "3.00 Vpp":
-                        gantxBytesMC = 0x0D;
+                        gantxBytesTU = 0x0D;
                         break;
 
                     case "3.50 Vpp":
-                        gantxBytesMC = 0x0E;
+                        gantxBytesTU = 0x0E;
                         break;
                 }
 
                 //Capturo el valor del spinner 'ganancia de recepcion'
-                String gananciaRecepcionElegida2 = receptionGainSpinnerMC;
+                String gananciaRecepcionElegida3 = receptionGainSpinnerTU;
 
-                switch (gananciaRecepcionElegida2){
+                switch (gananciaRecepcionElegida3){
                     case "5 mVrms":
-                        ganrxBytesMC = 0x01;
+                        ganrxBytesTU = 0x01;
                         break;
 
                     case "2.5 mVrms":
-                        ganrxBytesMC = 0x02;
+                        ganrxBytesTU = 0x02;
                         break;
 
                     case "1.25 mVrms":
-                        ganrxBytesMC = 0x03;
+                        ganrxBytesTU = 0x03;
                         break;
 
                     case "600 uVrms":
-                        ganrxBytesMC = 0x04;
+                        ganrxBytesTU = 0x04;
                         break;
 
                     case "350 uVrms":
-                        ganrxBytesMC = 0x05;
+                        ganrxBytesTU = 0x05;
                         break;
 
                     case "250 uVrms":
-                        ganrxBytesMC = 0x06;
+                        ganrxBytesTU = 0x06;
                         break;
 
                     case "125 uVrms":
-                        ganrxBytesMC = 0x07;
+                        ganrxBytesTU = 0x07;
                         break;
                 }
 
                 //Capturo el valor del spinner 'retardo de transmision'
-                String retardoTransmisionElegida2 = transmissionDelaySpinnerMC;
+                String retardoTransmisionElegida3 = transmissionDelaySpinnerTU;
 
-                switch (retardoTransmisionElegida2){
+                switch (retardoTransmisionElegida3){
                     case "100 ms":
-                        delaytxBytesMC = 0x01;
+                        delaytxBytesTU = 0x01;
                         break;
 
                     case "200 ms":
-                        delaytxBytesMC = 0x02;
+                        delaytxBytesTU = 0x02;
                         break;
 
                     case "300 ms":
-                        delaytxBytesMC = 0x03;
+                        delaytxBytesTU = 0x03;
                         break;
 
                     case "400 ms":
-                        delaytxBytesMC = 0x04;
+                        delaytxBytesTU = 0x04;
                         break;
 
                     case "500 ms":
-                        delaytxBytesMC = 0x05;
+                        delaytxBytesTU = 0x05;
                         break;
                 }
 
                 //Capturo el valor del spinner 'tasa de transmision'
-                String tasaTransmisionElegida2 = transmissionRateSpinnerMC;
+                String tasaTransmisionElegida3 = transmissionRateSpinnerTU;
 
-                switch (tasaTransmisionElegida2){
+                switch (tasaTransmisionElegida3){
                     case "600 bps":
-                        ratetxBytesMC = 0x00;
+                        ratetxBytesTU = 0x00;
                         break;
 
                     case "1200 bps":
-                        ratetxBytesMC = 0x01;
+                        ratetxBytesTU = 0x01;
                         break;
 
                     case "2400 bps":
-                        ratetxBytesMC = 0x03;
+                        ratetxBytesTU = 0x03;
                         break;
                 }
 
-                byte[] frame2send = new byte[11];
+                byte[] frame3send = new byte[11];
 
 
-                frame2send[0] = 0x24;// $
-                frame2send[1] = 0x40;// @
-                frame2send[2] = 0x0B;// length
-                frame2send[3] = 0x18;// Tipo
-                frame2send[4] = 0x01;// Suponiendo 1 como origen PC
-                frame2send[5] = 0x02;// Suponiendo 2 como destino PLC
-                frame2send[6] = ratetxBytesMC;//tasa de transmision
-                frame2send[7] = gantxBytesMC;//ganancia de transmision
-                frame2send[8] = ganrxBytesMC;//ganancia de recepcion
-                frame2send[9] = delaytxBytesMC;//retardo de transmision
-                frame2send[10] = calcularCRC(frame2send);
+                frame3send[0] = 0x24;// $
+                frame3send[1] = 0x40;// @
+                frame3send[2] = 0x0B;// length
+                frame3send[3] = 0x12;// Tipo
+                frame3send[4] = 0x01;// Suponiendo 1 como origen PC
+                frame3send[5] = 0x02;// Suponiendo 2 como destino PLC
+                frame3send[6] = ratetxBytesTU;
+                frame3send[7] = gantxBytesTU;
+                frame3send[8] = ganrxBytesTU;
+                frame3send[9] = delaytxBytesTU;
+                frame3send[10] = calcularCRC(frame3send);//tasa de transmision
 
-                sendMessage(frame2send);
+                sendMessage(frame3send);
 
                 break;
 
         }
 
     }
+
+
 }
