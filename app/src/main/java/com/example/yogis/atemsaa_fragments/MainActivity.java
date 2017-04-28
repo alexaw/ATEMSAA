@@ -10,10 +10,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yogis.atemsaa_fragments.Login.LoginActivity;
+import com.example.yogis.atemsaa_fragments.adapters.PageAdapter;
 import com.example.yogis.atemsaa_fragments.fragments.MacroBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MedidorBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.MeterFragment;
@@ -44,6 +48,9 @@ import com.example.yogis.atemsaa_fragments.fragments.PlcMmsSettingsFragment;
 import com.example.yogis.atemsaa_fragments.fragments.PlcTuBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.ProductBDFragment;
 import com.example.yogis.atemsaa_fragments.fragments.TrafoBDFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements OnChangeFragment, ClockSettingsFragment.DateSelectedListener {
@@ -135,12 +142,18 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_2);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         campoFecha = (TextView) findViewById(R.id.editFecha);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        TabLayout tabs = (TabLayout) findViewById(R.id.tabs2);
+
+        setSupportActionBar(toolbar);
 
         appContext = getApplicationContext();
 
@@ -148,8 +161,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
 
         menu = new MenuFragment();
         plcmms = new PlcMmsSettingsFragment();
-
-
         fclock = new ClockSettingsFragment();
         fgprs = new GprsSettingsFragment();
 
@@ -171,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
         rtc = new RTCFragment();
 
         currentFragment = MENU;
-        putFragment(menu, MENU);
+        //putFragment(menu, MENU);
 
         // Get local Bluetooth adapter
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -182,6 +193,43 @@ public class MainActivity extends AppCompatActivity implements OnChangeFragment,
             finish();
             return;
         }
+
+
+
+        List<Fragment> data = new ArrayList<>();
+
+        /*
+         //Para PLC-MMS
+        data.add(user);
+        data.add(settings);
+        data.add(reports);
+
+        PageAdapter adapter1 = new PageAdapter(getSupportFragmentManager(), data, new String[]{"User", "Settings", "Reports"});
+        pager.setAdapter(adapter1);
+        tabs.setupWithViewPager(pager);
+        */
+
+        //Para PLC-MC
+        data.add(meters);
+        data.add(settings);
+
+        PageAdapter adapter2 = new PageAdapter(getSupportFragmentManager(), data, new String[]{"Meter", "Settings"});
+        pager.setAdapter(adapter2);
+        tabs.setupWithViewPager(pager);
+
+
+        /*
+        //Para PLC-TU
+        data.add(terminal);
+        data.add(settings);
+
+        PageAdapter adapter3 = new PageAdapter(getSupportFragmentManager(), data, new String[]{"PLC-TU", "Settings"});
+        pager.setAdapter(adapter3);
+        tabs.setupWithViewPager(pager);
+        */
+
+
+
     }
 
     @Override

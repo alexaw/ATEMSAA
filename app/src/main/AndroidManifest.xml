@@ -35,7 +35,7 @@
 
         <activity android:name=".DeviceListActivity" android:screenOrientation="portrait"/>
         <activity android:name=".Login.RootActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait" android:theme="@style/NoActionBar"/>
         <activity android:name=".TestApiActivity" android:screenOrientation="portrait"></activity>
     </application>
 
