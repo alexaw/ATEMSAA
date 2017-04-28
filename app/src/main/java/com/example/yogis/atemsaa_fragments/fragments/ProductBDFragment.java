@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.yogis.atemsaa_fragments.DataBaseActivity;
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
 import com.example.yogis.atemsaa_fragments.adapters.ProductoAdapter;
@@ -25,7 +26,7 @@ import java.util.List;
 public class ProductBDFragment extends Fragment implements ProductoApi.OnProductoList {
 
     ProductoApi productoApi;
-    MainActivity activity;
+    DataBaseActivity activity;
     OnChangeFragment changeFragment;
 
     RecyclerView recyclerView;
@@ -40,7 +41,7 @@ public class ProductBDFragment extends Fragment implements ProductoApi.OnProduct
     public void onAttach(Context context) {
         super.onAttach(context);
         changeFragment = (OnChangeFragment) context;
-        activity = (MainActivity) context;
+        activity = (DataBaseActivity) context;
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.yogis.atemsaa_fragments.DataBaseActivity;
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
 import com.example.yogis.atemsaa_fragments.adapters.PlcTuAdapter;
@@ -25,7 +26,7 @@ import java.util.List;
 public class PlcTuBDFragment extends Fragment implements PlcTuApi.OnPlcTuList {
 
     PlcTuApi plcTuApi;
-    MainActivity activity;
+    DataBaseActivity activity;
     OnChangeFragment changeFragment;
 
     RecyclerView recyclerView;
@@ -40,7 +41,7 @@ public class PlcTuBDFragment extends Fragment implements PlcTuApi.OnPlcTuList {
     public void onAttach(Context context) {
         super.onAttach(context);
         changeFragment = (OnChangeFragment) context;
-        activity = (MainActivity) context;
+        activity = (DataBaseActivity) context;
     }
 
 

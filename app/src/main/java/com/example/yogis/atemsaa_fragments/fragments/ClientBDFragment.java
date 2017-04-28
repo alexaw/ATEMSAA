@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.yogis.atemsaa_fragments.DataBaseActivity;
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
 import com.example.yogis.atemsaa_fragments.adapters.ClientAdapter;
@@ -28,7 +29,7 @@ import java.util.List;
 public class ClientBDFragment extends Fragment implements ClienteApi.OnClienteList, View.OnClickListener {
 
     ClienteApi clienteApi;
-    MainActivity activity;
+    DataBaseActivity activity;
     OnChangeFragment changeFragment;
 
     TextView tvRtaListClient;
@@ -45,7 +46,7 @@ public class ClientBDFragment extends Fragment implements ClienteApi.OnClienteLi
     public void onAttach(Context context) {
         super.onAttach(context);
         changeFragment = (OnChangeFragment) context;
-        activity = (MainActivity) context;
+        activity = (DataBaseActivity) context;
     }
 
 

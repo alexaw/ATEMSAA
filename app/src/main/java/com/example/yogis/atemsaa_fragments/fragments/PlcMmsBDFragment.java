@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.yogis.atemsaa_fragments.DataBaseActivity;
 import com.example.yogis.atemsaa_fragments.MainActivity;
 import com.example.yogis.atemsaa_fragments.R;
 import com.example.yogis.atemsaa_fragments.adapters.PlcMmsAdapter;
@@ -27,7 +28,7 @@ import java.util.List;
 public class PlcMmsBDFragment extends Fragment implements PlcMmsApi.OnPlcMmsList, View.OnClickListener {
 
     PlcMmsApi plcMmsApi;
-    MainActivity activity;
+    DataBaseActivity activity;
     OnChangeFragment changeFragment;
 
     TextView tvRtaListPlcMms;
@@ -44,7 +45,7 @@ public class PlcMmsBDFragment extends Fragment implements PlcMmsApi.OnPlcMmsList
     public void onAttach(Context context) {
         super.onAttach(context);
         changeFragment = (OnChangeFragment) context;
-        activity = (MainActivity) context;
+        activity = (DataBaseActivity) context;
     }
 
 
